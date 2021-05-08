@@ -16,13 +16,13 @@ public class Menu extends JFrame implements ActionListener {
 
     ImageIcon java = new ImageIcon("img/java_2.jpeg");
     ImageIcon cat = new ImageIcon("img/Programming_1.jpeg");
-    ImageIcon sapienza_img = new ImageIcon("img/Sapienza.png");
+    ImageIcon sapienza_img = new ImageIcon("img/Sapienza_1.png");
     ImageIcon acs = new ImageIcon("img/ACSAI_1.jpeg");
 
     JLabel cat_label = new JLabel();
     JLabel acsai = new JLabel();
     JLabel sapienza = new JLabel();
-    JLabel sapienza_1 = new JLabel();
+    JLabel sapienza_1 = new JLabel(); 
     JLabel java_item = new JLabel();
     JLabel java_item_1 = new JLabel();
 
@@ -46,7 +46,7 @@ public class Menu extends JFrame implements ActionListener {
         frame.setBounds(10, 10,800, 800);
         panel.setBackground(bordeaux);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Login");
+        frame.setTitle("Menu");
         panel.setLayout(null);
 
         java_item.setBounds(0, 23, 160, 75);
@@ -109,5 +109,7 @@ public class Menu extends JFrame implements ActionListener {
             //Morphism m = new Morphism();
     }
 }
+
+
 
 
