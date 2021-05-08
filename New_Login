@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -13,8 +12,8 @@ public class New_Login {
             @Override
             public void run() {
                 try{
-                    //Login_Start frame_1 = new Login2();
-                    Menu frame_1 = new Menu();
+                    Login_Start frame_1 = new Login_Start();
+                    //Menu frame_1 = new Menu();
                     //Login frame_1 = new Login();
                 }catch(Exception e){
                     e.printStackTrace();
@@ -22,6 +21,5 @@ public class New_Login {
 
             }
         });
-
     }
 }
