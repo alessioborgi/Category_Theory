@@ -14,7 +14,7 @@ public class Menu extends JFrame implements ActionListener {
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
 
-    ImageIcon java = new ImageIcon("img/java_2.png");
+    ImageIcon java = new ImageIcon("img/java_2.jpeg");
     ImageIcon cat = new ImageIcon("img/Programming_1.jpeg");
     ImageIcon sapienza_img = new ImageIcon("img/Sapienza.png");
     ImageIcon acs = new ImageIcon("img/ACSAI_1.jpeg");
@@ -49,11 +49,11 @@ public class Menu extends JFrame implements ActionListener {
         frame.setTitle("Login");
         panel.setLayout(null);
 
-        java_item.setBounds(0, 20, 160, 75);
+        java_item.setBounds(0, 23, 160, 75);
         java_item.setIcon(java);
-        cat_label.setBounds(160, 20, 480, 75);
+        cat_label.setBounds(160, 23, 480, 75);
         cat_label.setIcon(cat);
-        java_item_1.setBounds(640, 20, 160, 75);
+        java_item_1.setBounds(640, 23, 160, 75);
         java_item_1.setIcon(java);
 
         sapienza.setBounds(0, 650, 160, 100);
