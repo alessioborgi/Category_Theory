@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.*;
 import java.awt.event.*;
 
 /**
@@ -9,40 +10,52 @@ import java.awt.event.*;
 
 public class Login_Start extends JFrame implements ActionListener {
 
+    //Dimension screen_size = Toolkit.getDefaultToolkit().getScreenSize();
+    //int screenHeight = screen_size.height;
+    //int screenWidth = screen_size.width;
+
+
     public static java.awt.Color bordeaux = new java.awt.Color(110, 34, 44);
     public static java.awt.Color black = new java.awt.Color(0, 0, 0);
-    JFrame frame = new JFrame();
-    JPanel panel = new JPanel();
-    JLabel user = new JLabel("User: ");
-    JLabel password = new JLabel("Password: ");
-    JTextField username = new JTextField(20);
-    JPasswordField password_text = new JPasswordField();
-    JCheckBox show_password = new JCheckBox("Show Password");
-    JButton login = new JButton("Login");
-    JButton clear = new JButton("Clear");
+    private JFrame frame = new JFrame();
+    private JPanel panel = new JPanel();
+    private JLabel user = new JLabel("User: ");
+    private JLabel password = new JLabel("Password: ");
+    private JTextField username = new JTextField(20);
+    private JPasswordField password_text = new JPasswordField();
+    private JCheckBox show_password = new JCheckBox("Show Password");
+    private JButton login = new JButton("Login");
+    private JButton clear = new JButton("Clear");
 
-    ImageIcon java = new ImageIcon("img/java_2.png");
-    ImageIcon cat = new ImageIcon("img/Programming.jpeg");
-    ImageIcon sapienza_img = new ImageIcon("img/Sapienza.png");
-    ImageIcon acs = new ImageIcon("img/ACSAI.jpeg");
+    private ImageIcon java = new ImageIcon("img/java_2.jpeg");
+    private ImageIcon cat = new ImageIcon("img/Programming.jpeg");
+    private ImageIcon sapienza_img = new ImageIcon("img/Sapienza_2.png");
+    private ImageIcon acs = new ImageIcon("img/ACSAI_2.jpeg");
 
-    JLabel cat_label = new JLabel();
-    JLabel acsai = new JLabel();
-    JLabel sapienza = new JLabel();
-    JLabel sapienza_1 = new JLabel();
-    JLabel java_item = new JLabel();
-    JLabel java_item_1 = new JLabel();
+    private JLabel cat_label = new JLabel();
+    private JLabel acsai = new JLabel();
+    private JLabel sapienza = new JLabel();
+    private JLabel sapienza_1 = new JLabel();
+    private JLabel java_item = new JLabel();
+    private JLabel java_item_1 = new JLabel();
+
+    private JLabel current_date = new JLabel();
+    private JLabel current_time = new JLabel();
+
 
 
     public Login_Start() {
         setter();
         adder();
         addListeners();
+        clock();
+        pack();
     }
 
 
     private void setter(){
-        frame.setBounds(200, 200,515, 510);
+        //frame.setSize(screenWidth / 2, screenHeight / 2);
+        frame.setBounds(200, 200,500, 540);
         panel.setBackground(bordeaux);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Login");
@@ -55,24 +68,28 @@ public class Login_Start extends JFrame implements ActionListener {
         java_item_1.setBounds(385, 0, 115, 75);
         java_item_1.setIcon(java);
 
-        user.setBounds(95, 180, 80, 25);
+        user.setBounds(85, 180, 80, 25);
         user.setForeground(black);
-        password.setBounds(95, 210, 80, 25);
+        password.setBounds(85, 210, 80, 25);
         password.setForeground(black);
-        username.setBounds(190, 180, 165, 25);
-        password_text.setBounds(190, 210, 165, 25);
-        show_password.setBounds(360,210,150,25);
+        username.setBounds(180, 180, 165, 25);
+        password_text.setBounds(180, 210, 165, 25);
+        show_password.setBounds(350,210,150,25);
         show_password.setForeground(black);
         show_password.setBackground(bordeaux);
-        login.setBounds(285, 250, 70, 25);
+        login.setBounds(275, 250, 70, 25);
         login.setForeground(black);
-        clear.setBounds(190, 250, 70, 25);
+        clear.setBounds(180, 250, 70, 25);
         clear.setForeground(black);
-        sapienza.setBounds(0, 400, 110, 110);
+        current_date.setBounds(0, 375, 150, 25);
+        current_date.setForeground(black);
+        current_time.setBounds(415, 375, 100, 25 );
+        current_time.setForeground(black);
+        sapienza.setBounds(0, 400, 115, 110);
         sapienza.setIcon(sapienza_img);
-        acsai.setBounds(110, 400, 400, 75);
+        acsai.setBounds(115, 400, 270, 110);
         acsai.setIcon(acs);
-        sapienza_1.setBounds(380, 400, 120, 110);
+        sapienza_1.setBounds(385, 400, 115, 110);
         sapienza_1.setIcon(sapienza_img);
         frame.setVisible(true);
     }
@@ -92,8 +109,34 @@ public class Login_Start extends JFrame implements ActionListener {
         panel.add(sapienza);
         panel.add(acsai);
         panel.add(sapienza_1);
+        panel.add(current_date);
+        panel.add(current_time);
     }
 
+    public void clock(){
+        String months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        Thread clock = new Thread(){
+            public void run(){
+                try {
+                    for(;;) {     //Never Ending Loop (We could have also used the "while(true)"
+                        Calendar cal = new GregorianCalendar();
+                        int day = cal.get(Calendar.DAY_OF_MONTH);
+                        int month = cal.get(Calendar.MONTH);
+                        int year = cal.get(Calendar.YEAR);
+                        int second = cal.get(Calendar.SECOND);
+                        int minute = cal.get(Calendar.MINUTE);
+                        int hour = cal.get(Calendar.HOUR);
+                        current_time.setText("Time " + hour + ":" + minute + ":" + second);
+                        current_date.setText(" Date: " + months[month] + "/" + day + "/" + year);
+                        sleep(1000);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        clock.start();
+    }
 
     private void addListeners(){
         show_password.addActionListener(this);
@@ -117,9 +160,7 @@ public class Login_Start extends JFrame implements ActionListener {
                     (userName.trim().equals("federica") && password.trim().equals("valeau")) ||
                     (userName.trim().equals("elena") && password.trim().equals("muia"))){
                 JOptionPane.showMessageDialog(frame, "Welcome Back " + userName + " \nIt's always a pleasure to see you again!");
-                frame.setVisible(false);
                 frame.dispose();
-                //System.exit(0);
                 Menu frame2 = new Menu();
                 frame2.setVisible(true);
             } else if((userName.trim().equals("admin")) && !(password.trim().equals("admin"))){
