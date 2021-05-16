@@ -1,4 +1,5 @@
-import javax.swing.*;
+package Login;
+
 import java.awt.*;
 
 /**
@@ -14,6 +15,7 @@ public class New_Login {
             public void run() {
                 try{
                     Login_Start frame_1 = new Login_Start();
+                    //Menu frame_1 = new Menu();
                 }catch(Exception e){
                     e.printStackTrace();
                 }
