@@ -1,6 +1,11 @@
+package Login;
+
 import javax.swing.*;
+import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
+
+
 
 /**
  * @author alessioborgi
@@ -10,15 +15,23 @@ import java.awt.event.*;
 
 public class Login_Start extends JFrame implements ActionListener {
 
-    //Dimension screen_size = Toolkit.getDefaultToolkit().getScreenSize();
-    //int screenHeight = screen_size.height;
-    //int screenWidth = screen_size.width;
-
-
     public static java.awt.Color bordeaux = new java.awt.Color(110, 34, 44);
     public static java.awt.Color black = new java.awt.Color(0, 0, 0);
+    public static java.awt.Color orange = new java.awt.Color(249,166, 2);
+    public static java.awt.Color white = new java.awt.Color(255,255,255);
     private JFrame frame = new JFrame();
-    private JPanel panel = new JPanel();
+    private JPanel panel = new JPanel(){protected void paintComponent(Graphics g) {
+        if (g instanceof Graphics2D) {
+
+            Paint p = new GradientPaint(0.0f, 0.0f, new Color(110, 34, 44, 220),
+                            getWidth(), getHeight(), new Color(110, 34, 44, 255), true);
+            Graphics2D g2d = (Graphics2D)g;
+            g2d.setPaint(p);
+            g2d.fillRect(0, 0, getWidth(), getHeight());
+        } else {
+            super.paintComponent(g);
+        }
+    }};;
     private JLabel user = new JLabel("User: ");
     private JLabel password = new JLabel("Password: ");
     private JTextField username = new JTextField(20);
@@ -54,7 +67,6 @@ public class Login_Start extends JFrame implements ActionListener {
 
 
     private void setter(){
-        //frame.setSize(screenWidth / 2, screenHeight / 2);
         frame.setBounds(200, 200,500, 540);
         panel.setBackground(bordeaux);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,14 +88,13 @@ public class Login_Start extends JFrame implements ActionListener {
         password_text.setBounds(180, 210, 165, 25);
         show_password.setBounds(350,210,150,25);
         show_password.setForeground(black);
-        show_password.setBackground(bordeaux);
         login.setBounds(275, 250, 70, 25);
         login.setForeground(black);
         clear.setBounds(180, 250, 70, 25);
         clear.setForeground(black);
         current_date.setBounds(0, 375, 150, 25);
         current_date.setForeground(black);
-        current_time.setBounds(415, 375, 100, 25 );
+        current_time.setBounds(405, 375, 100, 25 );
         current_time.setForeground(black);
         sapienza.setBounds(0, 400, 115, 110);
         sapienza.setIcon(sapienza_img);
