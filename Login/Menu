@@ -1,6 +1,12 @@
+package Login;
+
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
 import javax.swing.*;
+import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
+
 
 /**
  * @author alessioborgi
@@ -11,7 +17,18 @@ import java.awt.event.*;
 public class Menu extends JFrame implements ActionListener{
 
     private JFrame frame = new JFrame();
-    private JPanel panel = new JPanel();
+    private JPanel panel = new JPanel(){protected void paintComponent(Graphics g) {
+        if (g instanceof Graphics2D) {
+            Paint p = new GradientPaint(0.0f, 0.0f, new Color(249, 166, 2, 150),
+                    getWidth(), getHeight(), new Color(249, 166, 2, 255), true);
+            Graphics2D g2d = (Graphics2D)g;
+            g2d.setPaint(p);
+            g2d.fillRect(0, 0, getWidth(), getHeight());
+        } else {
+            super.paintComponent(g);
+        }
+    }};
+    private JFXPanel fxPanel = new JFXPanel();
 
     private ImageIcon java = new ImageIcon("img/java_2.png");
     private ImageIcon cat = new ImageIcon("img/Programming_1.jpeg");
@@ -24,86 +41,70 @@ public class Menu extends JFrame implements ActionListener{
     private JLabel sapienza_1 = new JLabel();
     private JLabel java_item = new JLabel();
     private JLabel java_item_1 = new JLabel();
-
-    private JMenuBar menu = new JMenuBar();
-    private JMenu Create = new JMenu("Create");
-    private JMenu Draw = new JMenu("Draw");
-    private JMenu Help = new JMenu("Help");
-    private JMenuItem Exit = new JMenuItem("Exit");
-    private JMenuItem Object = new JMenuItem("New Object");
-    private JMenuItem Morphism = new JMenuItem("New Morphism");
-    private JMenuItem Composition = new JMenuItem("Composition");
-    private JTextArea text = new JTextArea();
-
     private JLabel current_date = new JLabel();
     private JLabel current_time = new JLabel();
+
+
 
     public Menu() {
         setter();
         adder();
         addListeners();
         clock();
+
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                JavaFX.initFX(fxPanel);
+            }
+        });
         pack();
     }
 
-
     private void setter(){
         frame.setBounds(10, 10,800, 800);
-        panel.setBackground(Login_Start.bordeaux);
+        //panel.setBackground(Login_Start.bordeaux);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Login");
+        frame.setTitle("Category Theory's Menu");
         panel.setLayout(null);
 
-        java_item.setBounds(0, 20, 160, 75);
+        java_item.setBounds(0, 0, 160, 75);
         java_item.setIcon(java);
-        cat_label.setBounds(160, 20, 480, 75);
+        cat_label.setBounds(160, 0, 480, 75);
         cat_label.setIcon(cat);
-        java_item_1.setBounds(640, 20, 160, 75);
+        java_item_1.setBounds(640, 0, 160, 75);
         java_item_1.setIcon(java);
 
-
-        current_date.setBounds(0, 625, 150, 25);
+        current_date.setBounds(0, 650, 150, 25);
         current_date.setForeground(Login_Start.black);
-        current_time.setBounds(700, 625, 100, 25 );
+        current_time.setBounds(700, 650, 100, 25 );
         current_time.setForeground(Login_Start.black);
-        sapienza.setBounds(0, 650, 160, 100);
+        sapienza.setBounds(0, 675, 160, 100);
         sapienza.setIcon(sapienza_img);
-        acsai.setBounds(160, 650, 480, 100);
+        acsai.setBounds(160, 675, 480, 100);
         acsai.setIcon(acs);
-        sapienza_1.setBounds(640, 650, 160, 100);
+        sapienza_1.setBounds(640, 675, 160, 100);
         sapienza_1.setIcon(sapienza_img);
 
-        text.setBounds(5,5,360,320);
-        frame.setJMenuBar(menu);
+        fxPanel.setBounds(0, 75, 800, 620);
         frame.setVisible(true);
 
     }
 
     private void adder(){
-        frame.add(panel);
-        panel.add(menu);
-
         panel.add(java_item);
         panel.add(cat_label);
         panel.add(java_item_1);
 
-        Create.add(Object);
-        Create.add(Morphism);
-        Create.add(Composition);
-        Create.addSeparator();
-        Create.add(Exit);
-
-        menu.add(Create);
-        menu.add(Draw);
-        menu.add(Help);
-
         panel.add(sapienza);
         panel.add(acsai);
         panel.add(sapienza_1);
-
         panel.add(current_date);
         panel.add(current_time);
 
+        panel.add(fxPanel);
+        frame.add(panel);
     }
 
     public void clock(){
@@ -121,7 +122,7 @@ public class Menu extends JFrame implements ActionListener{
                         int hour = cal.get(Calendar.HOUR);
                         current_time.setText("Time " + hour + ":" + minute + ":" + second);
                         current_date.setText(" Date: " + months[month] + "/" + day + "/" + year);
-                        sleep(1000);
+                        sleep(100);
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -130,30 +131,11 @@ public class Menu extends JFrame implements ActionListener{
         };
         clock.start();
     }
+
     private void addListeners(){
-        Exit.addActionListener(this);
-        Object.addActionListener(this);
-        Morphism.addActionListener(this);
-        Composition.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String comStr = e.getActionCommand();
-        if(e.getSource()== Exit){
-            if (JOptionPane.showConfirmDialog(frame, "Confirm that you want to Exit :(", "Exit", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION){
-                System.exit(0);
-
-            }
-        }
-        if(e.getSource()== Object)
-            text.cut();
-        //Object o = new Object();
-        if(e.getSource()== Composition)
-            text.paste();
-        //Compose c = new Compose();
-        if(e.getSource()== Morphism)
-            text.copy();
-        //Morphism m = new Morphism();
     }
 }
