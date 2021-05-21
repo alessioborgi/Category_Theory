@@ -16,7 +16,7 @@ import java.awt.event.*;
 
 public class Menu extends JFrame implements ActionListener{
 
-    private JFrame frame = new JFrame();
+    protected static JFrame frame = new JFrame();
     private JPanel panel = new JPanel(){protected void paintComponent(Graphics g) {
         if (g instanceof Graphics2D) {
             Paint p = new GradientPaint(0.0f, 0.0f, new Color(249, 166, 2, 150),
@@ -29,11 +29,6 @@ public class Menu extends JFrame implements ActionListener{
         }
     }};
     private JFXPanel fxPanel = new JFXPanel();
-
-    private ImageIcon java = new ImageIcon("img/java_2.png");
-    private ImageIcon cat = new ImageIcon("img/Programming_1.jpeg");
-    private ImageIcon sapienza_img = new ImageIcon("img/Sapienza.png");
-    private ImageIcon acs = new ImageIcon("img/ACSAI_1.jpeg");
 
     private JLabel cat_label = new JLabel();
     private JLabel acsai = new JLabel();
@@ -70,26 +65,25 @@ public class Menu extends JFrame implements ActionListener{
         panel.setLayout(null);
 
         java_item.setBounds(0, 0, 160, 75);
-        java_item.setIcon(java);
+        java_item.setIcon(new ImageIcon("img/java_2.png"));
         cat_label.setBounds(160, 0, 480, 75);
-        cat_label.setIcon(cat);
+        cat_label.setIcon(new ImageIcon("img/Programming_1.jpeg"));
         java_item_1.setBounds(640, 0, 160, 75);
-        java_item_1.setIcon(java);
+        java_item_1.setIcon(new ImageIcon("img/java_2.png"));
 
         current_date.setBounds(0, 650, 150, 25);
         current_date.setForeground(Login_Start.black);
         current_time.setBounds(700, 650, 100, 25 );
         current_time.setForeground(Login_Start.black);
         sapienza.setBounds(0, 675, 160, 100);
-        sapienza.setIcon(sapienza_img);
+        sapienza.setIcon(new ImageIcon("img/Sapienza.png"));
         acsai.setBounds(160, 675, 480, 100);
-        acsai.setIcon(acs);
+        acsai.setIcon(new ImageIcon("img/ACSAI_1.jpeg"));
         sapienza_1.setBounds(640, 675, 160, 100);
-        sapienza_1.setIcon(sapienza_img);
+        sapienza_1.setIcon(new ImageIcon("img/Sapienza.png"));
 
         fxPanel.setBounds(0, 75, 800, 620);
         frame.setVisible(true);
-
     }
 
     private void adder(){
