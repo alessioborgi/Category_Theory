@@ -1,7 +1,6 @@
 package Login;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
 
@@ -18,20 +17,8 @@ public class Login_Start extends JFrame implements ActionListener {
     public static java.awt.Color bordeaux = new java.awt.Color(110, 34, 44);
     public static java.awt.Color black = new java.awt.Color(0, 0, 0);
     public static java.awt.Color orange = new java.awt.Color(249,166, 2);
-    public static java.awt.Color white = new java.awt.Color(255,255,255);
-    private JFrame frame = new JFrame();
-    private JPanel panel = new JPanel(){protected void paintComponent(Graphics g) {
-        if (g instanceof Graphics2D) {
-
-            Paint p = new GradientPaint(0.0f, 0.0f, new Color(110, 34, 44, 220),
-                            getWidth(), getHeight(), new Color(110, 34, 44, 255), true);
-            Graphics2D g2d = (Graphics2D)g;
-            g2d.setPaint(p);
-            g2d.fillRect(0, 0, getWidth(), getHeight());
-        } else {
-            super.paintComponent(g);
-        }
-    }};;
+    protected static JFrame frame = new JFrame();
+    private JPanel panel = new JPanel();
     private JLabel user = new JLabel("User: ");
     private JLabel password = new JLabel("Password: ");
     private JTextField username = new JTextField(20);
@@ -39,11 +26,6 @@ public class Login_Start extends JFrame implements ActionListener {
     private JCheckBox show_password = new JCheckBox("Show Password");
     private JButton login = new JButton("Login");
     private JButton clear = new JButton("Clear");
-
-    private ImageIcon java = new ImageIcon("img/java_2.jpeg");
-    private ImageIcon cat = new ImageIcon("img/Programming.jpeg");
-    private ImageIcon sapienza_img = new ImageIcon("img/Sapienza_2.png");
-    private ImageIcon acs = new ImageIcon("img/ACSAI_2.jpeg");
 
     private JLabel cat_label = new JLabel();
     private JLabel acsai = new JLabel();
@@ -68,17 +50,17 @@ public class Login_Start extends JFrame implements ActionListener {
 
     private void setter(){
         frame.setBounds(200, 200,500, 540);
-        panel.setBackground(bordeaux);
+        panel.setBackground(orange);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Login");
         panel.setLayout(null);
 
         java_item.setBounds(0, 0, 115, 75);
-        java_item.setIcon(java);
+        java_item.setIcon(new ImageIcon("img/java_2.jpeg"));
         cat_label.setBounds(115, 0, 270, 75);
-        cat_label.setIcon(cat);
+        cat_label.setIcon(new ImageIcon("img/Programming.jpeg"));
         java_item_1.setBounds(385, 0, 115, 75);
-        java_item_1.setIcon(java);
+        java_item_1.setIcon(new ImageIcon("img/java_2.jpeg"));
 
         user.setBounds(85, 180, 80, 25);
         user.setForeground(black);
@@ -86,6 +68,7 @@ public class Login_Start extends JFrame implements ActionListener {
         password.setForeground(black);
         username.setBounds(180, 180, 165, 25);
         password_text.setBounds(180, 210, 165, 25);
+        show_password.setBackground(bordeaux);
         show_password.setBounds(350,210,150,25);
         show_password.setForeground(black);
         login.setBounds(275, 250, 70, 25);
@@ -97,11 +80,11 @@ public class Login_Start extends JFrame implements ActionListener {
         current_time.setBounds(405, 375, 100, 25 );
         current_time.setForeground(black);
         sapienza.setBounds(0, 400, 115, 110);
-        sapienza.setIcon(sapienza_img);
+        sapienza.setIcon(new ImageIcon("img/Sapienza_2.png"));
         acsai.setBounds(115, 400, 270, 110);
-        acsai.setIcon(acs);
+        acsai.setIcon(new ImageIcon("img/ACSAI_2.jpeg"));
         sapienza_1.setBounds(385, 400, 115, 110);
-        sapienza_1.setIcon(sapienza_img);
+        sapienza_1.setIcon(new ImageIcon("img/Sapienza_2.png"));
         frame.setVisible(true);
     }
 
