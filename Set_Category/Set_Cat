@@ -1,38 +1,331 @@
-import java.util.*;
+import java.util.*; //import every primitive Java library that begins with("java.util.")
 
 
-public class SetCat extends HashSet {
+public class SetCat extends HashSet { // declare the class as public that extends the primitive class HashSet
 
-    private Set set;
+    private Set set; //define as SetCat's field an object of type Set
 
-    public SetCat() {
-        this.set = new HashSet<>();
+    public SetCat() { //define the constructor
+        this.set = new HashSet(); //since Set is an interface, we have to assign our object to an instance,
+                                    // we have chosen the HashSet
     }
 
 
-     public static Set<Set<Object>> CartesianProduct(SetCat... sets) {
-        if (sets.length < 2)
-            throw new IllegalArgumentException(
-                "Can't have a product of fewer than two sets (got " +
-                    sets.length + ")");
+    /** Define  a new class representing the Symmetric Difference operation of Sets, which is described as (a-b)||(b-a),
+     *  so it takes the two sets merged.
+     * The class extends its outer class, SetCat
+     */
+         public static class SetSymmetricDifference extends SetCat {
 
-     return cartesianProduct(0, sets);
-     }
+        /**
+         * define the element that applied to a certains object of type SetSymmetricDifference, returns the object himself
+         */
+        public static SetCat SymDiffIdentity() {//the class is public, will return an object of type HashSet
 
-     private static Set<Set<Object>> cartesianProduct(int index, SetCat... sets) {
-        Set<Set<Object>> prod = new HashSet<Set<Object>>();
-        if (index == sets.length) {
-            prod.add(new HashSet<Object>());
-        } else {
-            for (Object obj : sets[index]) {
-                for (Set<Object> set : cartesianProduct(index+1, sets)) {
-                    set.add(obj);
-                    prod.add(set);
-     }
-     }
-     }
-     return prod;
- }
+            SetCat EmptySet = new SetCat();//define an
+            // emptySet of type HashSet
+            return EmptySet; //return it
+        }
+
+        /**
+         * this method is the heart of the class, in it is defined the morphism applied between the two object, which means that
+         * it explains the operation that will work between the two Objects of type SetCat.
+         * The method defined is public and will return an obect of type Setcat, its two parameters are two
+         * objects of type SetCat
+         */
+        public static SetCat applySymDif(SetCat a, SetCat b) {
+            SetCat c = new SetCat(); // instantiate a new object of type HashSet
+            SetCat d = new SetCat(); //instantiate a new object of type HashSet
+            SetCat e = new SetCat(); // instantiate a new object of type HashSet
+            for (Object ob : a) { //for every element in a
+                if (!b.contains(ob)) { //if the element is NOT contained in b
+                    c.add(ob); //add it to c -> a-b-> c
+                }
+            }
+            for (Object object : b) { //for every element in b
+                if (!a.contains(object)) { //if the element is NOT contained in a
+                    d.add(object); //add it to d -> b-a-> d
+                }
+            }
+            for (Object obj : c) { //for every object in set c
+                if (d.contains(obj)) { //if the object is present in d
+                    e.add(obj); //add it to e -> c||d -> e
+                }
+            }
+            return e;
+        }
+
+        /**
+         * This method will check if the identity works, which is the first of the two fundamental properties of categories
+         * it will check it by using the application of the operation on a certain object of type SetCat
+         * and the object returned by the method identity(), which, in this case, returns an EmptySet.
+         * This method is defined as public and it returns a boolean(true or false) basing on the correctness of the statement
+         * furthermore we set, an automatic answer given by the program, and gets as parameter an object of type
+         * HashSet
+         */
+
+
+        public static boolean tryIdentitySymDiff(SetCat x) {
+            if (applySymDif(x, SymDiffIdentity()) == x) {  //if applying the symmetric difference between the starting set and the
+                // identity()
+                //method, the result has the same content of the starting set, it works
+                System.out.println("Identity checked: works"); //output printed
+            } else {
+                System.out.println("Identity checked: error");//if (x-EmptySet) has different content from x, print this
+            }
+            return false;
+        }
+
+        /**
+         * This method will apply the second fundamental property of Categories, the associativity, which means that
+         * f(gh) == (fg)h, this is done by the application of applySymDif() at various level of the category, so using the
+         * various variables as parameters
+         * the function is public, static and returns a boolean(true or false), and a default print, the parameters are
+         * three Objects of type SetCat
+         */
+        public static boolean associativitySymDif(SetCat a, SetCat b, SetCat c) {
+            SetSymmetricDifference d = new SetSymmetricDifference(); //create a new object of type SetSymmetricDifference
+            SetSymmetricDifference e = new SetSymmetricDifference();//create a new object of type SetSymmetricDifference
+            SetSymmetricDifference f = new SetSymmetricDifference();//create a new object of type SetSymmetricDifference
+            SetSymmetricDifference g = new SetSymmetricDifference();//create a new object of type SetSymmetricDifference
+            d.applySymDif(a, b);//contains aΔb
+            e.applySymDif(c, d);//contains (aΔb)Δc
+            f.applySymDif(b, c); //contains bΔc
+            g.applySymDif(f, a); // contains aΔ(bΔc)
+            if (e.equals(g)) { //if the content of (aΔb)Δc is equal to the content of aΔ(bΔc), it works
+                System.out.println("Associativity checked: it works");
+            } else {
+                System.out.println("Associativity checked: error");
+            }
+            return false;
+
+
+        }
+
+    }
+
+    /**
+     * Define  a new class representing the Union operation of Sets, which is described as a||b, so it takes the
+     * two sets merged.
+     * The class extends its outer class, SetCat
+     */
+    public static class SetUnion extends SetCat {
+
+        /**
+         * this method defines the element that applied to an object of type SetCat with the method applyUnion(),
+         * will return the object itself, in this case it will return an EmptySet
+         */
+        public static SetCat unionIdentity() {
+            SetCat EmptySet = new SetCat();
+            return EmptySet;
+        }
+
+        /**
+         *this method applies the effective operation between two sets.
+         * It is defined as static and public, its output is an object of type SetCat, and it has as parameters
+         * two Objects of type SetCat
+         */
+        public static SetCat applyUnion(SetCat a, SetCat b){
+
+            SetCat c = new SetCat();
+            for (Object obj : a) {c.add(obj);}
+
+            for (Object object : b) {c.add(object);}
+            return  c; //there will be no repetitions since Sets already have the primitive propriety
+                        // of not having repetitions in them
+        }
+
+        /**
+         *This method will check if the identity works, which is the first of the two fundamental properties of categories
+         *it will check it by using the application of the operation on a certain object of type SetCat
+         *and the object returned by the method identity(), which, in this case, returns an EmptySet.
+         *This method is defined as public and it returns a boolean(true or false) basing on the correctness of the statement
+         *furthermore we set, an automatic answer given by the program, and gets as parameter an object of type
+         *SetCat
+         */
+        public static boolean tryIdentityUnion(SetCat object){
+            //if object||EmptySet has the same content of object, it works
+            if (applyUnion(object, unionIdentity()).equals(object)){
+                System.out.println("Identity checked: works");}
+            else{ //if object||EmptySet != of object
+                System.out.println("Identity checked: error");
+            }
+            return false;
+        }
+
+        /**
+         *This method will apply the second fundamental property of Categories, the associativity, which means that
+         *f(gh) == (fg)h, this is done by the application of applySymDif() at various level of the category, so using the
+         *various variables as parameters
+         *the function is public, static and returns a boolean(true or false), and a default print, the parameters are
+         *three Objects of type SetCat
+         */
+        public static boolean associativityUnion(SetCat x, SetCat y, SetCat z){
+
+            SetUnion d = new SetUnion();
+            SetUnion e = new SetUnion();
+            SetUnion f = new SetUnion();
+            SetUnion g = new SetUnion();
+            d.applyUnion(x, y);//contains x||y
+            e.applyUnion(z,d);//contains (x||y)||z
+            f.applyUnion(y, z); //contains y||z
+            g.applyUnion(f, x); // contains x||(y||z)
+            if(e.equals(g)){ //if (x||y)||z has the same content of x||(y||z), it works
+                System.out.println("Associativity checked: it works");
+            }else{
+                System.out.println("Associativity checked: error");
+            }
+            return false;
+        }
+    }
+
+
+    /**
+     * this class will implement the operation of Intersection between two sets, which is mathematically described as
+     * a&&b. This means that we create a new set which will contain as elements only those in common between the two
+     * sets.
+     */
+    public static class SetIntersection extends SetCat {
+
+        /**
+         *this methods finds the object that intersected with a certain set, returns the set itself.
+         * It is set as public and static, takes as input an object of type SetCat and returns an object of the same
+         * type
+         */
+        public static SetCat interIdentity(SetCat a) { return a;}//in this case the object is the set itself
+
+
+        /**
+         *This method links the applyInter() method and the interIdentity() one. It applies the intersection
+         * between a set and the identity object (in this case, the object itself) and checks if the content of the set after
+         *the application of the intersection and the set itself is equal.
+         * Takes as parameter an object of type SetCat and returns a boolean (true or false), if the first
+         * property of categories is satisfied or not.
+         */
+        public static boolean tryIdentity(SetCat b){
+            //if the identity works print this
+            if (applyInter(b, interIdentity(b)).equals(b)){
+                System.out.println("Identity checked: works");}
+            else{ //if it doesn't print this
+                System.out.println("Identity checked: error");
+            }
+
+            return false; //return the boolean representing the result
+        }
+
+        /**
+         * This method applies the intersection between the two set given as parameters and returns the set containing
+         * the elements in common between them
+         */
+        public static SetCat applyInter(SetCat x, SetCat y) {
+
+            SetCat z = new SetCat(); //create the object where the element in common will be added
+            for (Object obj : x) { //for every objet in the set x
+                if (y.contains(obj)) { //if it is also contained in y
+                    z.add(obj); //add it to z
+
+                }
+            }
+            return z;
+        }
+
+        /**
+         * This method checks if the second property of Categories is applicable with this operation, so it checks
+         * whether  a&&(b&&c) == (a&&b)&&c.
+         * It is defined as public and static, gets as parameter the three sets that will be compared and returns a
+         * boolean
+         */
+        public static boolean associativityInter(SetCat a, SetCat b, SetCat c){
+
+            SetIntersection d = new SetIntersection();
+            SetIntersection e = new SetIntersection();
+            SetIntersection f = new SetIntersection();
+            SetIntersection g = new SetIntersection();
+            d.applyInter(a,b);//contains x&&y
+            e.applyInter(c,d);//contains (x&&y)&&z
+            f.applyInter(b,c); //contains y&&z
+            g.applyInter(f,a); // contains x&&(y&&z)
+            if(e.equals(g) ){ //if it is applicable
+                System.out.println("Associativity checked: it works");
+            }else{ //if it is not
+                System.out.println("Associativity checked: error");
+            }
+            return false;
+
+        }
+    }
+
+    /**
+     * This class will check whether the operation difference (a-b) maintains the properties of Categories,
+     * it extends class SetCat. The difference operation takes away all the elements not in common in one of the two set
+     * with the other, and puts them in a third empty set.
+     */
+    public static class SetDifference extends SetCat {
+        /**
+         * This method defines the identity element, which, applied to a set (using the difference operation),
+         * will return the set itself. In this case the identity is represented by an EmptySet
+         */
+        public static SetCat diffIdentity(){
+            SetCat EmptySet = new SetCat();
+            return EmptySet;
+        }
+
+        /**
+         *This method applies the difference between the two set given as parameters and returns the set containing
+         * the elements in common between them
+         */
+        public static SetCat applyDifference(SetCat a, SetCat b){
+            SetCat c = new SetCat();
+            for(Object object : a){
+                if(!b.contains(object)){
+                    c.add(object);
+                }
+            }
+            return c;
+        }
+
+        /**
+         *This method links the applyDifference() method and the diffIdentity() one. It applies the difference
+         * between a set and the identity object (in this case, an empty set) and checks if the content of the set after
+         * the application of the difference and the set itself is equal.
+         * Takes as parameter an object of type SetCat and returns a boolean (true or false), if the first
+         * property of categories is satisfied or not.
+         */
+        public static boolean tryIdentityDiff(SetCat set){
+            if (applyDifference(set, diffIdentity()).equals(set)) {
+                System.out.println("Identity checked: it works");
+            }else{
+                System.out.println("Identity Checked: error");
+            }
+            return false;
+        }
+
+        /**
+         *This method checks if the second property of Categories is applicable with this operation, so it checks
+         *whether  a-(b-c) == (a-b)-c.
+         *It is defined as public and static, gets as parameter the three sets that will be compared and returns a
+         *boolean
+         */
+        public static boolean associativityDifference(SetCat x, SetCat y, SetCat z){
+
+            SetDifference a = new SetDifference();
+            SetDifference b = new SetDifference();
+            SetDifference c = new SetDifference();
+            SetDifference d = new SetDifference();
+            a.applyDifference(x,y); //x-y
+            b.applyDifference(a,z); //(x-y)-z
+            c.applyDifference(y,z); //y-z
+            d.applyDifference(x,c); //x-(y-z)
+            if(b.equals(d)){
+                System.out.println("Associativity checked: it works");
+            }else{
+                System.out.println("Associativity checked: error");
+            }
+            return false;
+        }
+    }
+
+
+
 
 }
-
