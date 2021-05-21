@@ -1,0 +1,50 @@
+package Login;
+
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.scene.Scene;
+import javafx.scene.layout.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+public class Choice extends Application {
+    // Launch the application
+    public void start(Stage stage) {
+        // Set title for the stage
+        stage.setTitle("creating combo box ");
+        // Create a tile pane
+        TilePane r = new TilePane();
+        // Create a label
+        Label description_label =
+                new Label("This is a combo box example ");
+        String week_days[] =
+                {"Integer","boolean","String"};
+        String week_days2[] =
+                {"+","-","*","/","%","^"};
+        ComboBox combo_box1 =
+                new ComboBox(FXCollections
+                        .observableArrayList(week_days));
+
+        ComboBox combo_box =
+                new ComboBox(FXCollections
+                        .observableArrayList(week_days2));
+        // Label to display the selected menuitem
+        Label selected = new Label("default item selected");
+        Label selected2 = new Label("default item selected");
+        // Create action event
+        EventHandler<ActionEvent> event =
+                new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent e) {
+                        selected.setText(combo_box.getValue() + " selected");
+                        selected2.setText(combo_box1.getValue() + " selected");
+                    }
+                };
+        combo_box.setOnAction(event);
+        combo_box1.setOnAction(event);
+        TilePane tile_pane = new TilePane(combo_box,selected,combo_box1,selected2);
+        Scene scene = new Scene(tile_pane, 200, 200);
+        stage.setScene(scene);
+        stage.show();
+    }
+}
