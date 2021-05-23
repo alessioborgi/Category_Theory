@@ -1,0 +1,22 @@
+.button-red{
+       -fx-background-color: #8B0000;
+        -fx-text-fill: #FFFFFF;
+        -fx-background-radus: 4;
+}
+
+.button-green{
+    -fx-background-color: #7cafc2;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radus: 4;
+}
+
+.button-logout{
+    -fx-background-color: #FF8C00;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radus: 4;
+}
+
+
+.label{
+    -fx-font-weight: bold;
+}
