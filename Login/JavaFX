@@ -229,6 +229,8 @@ public class JavaFX {
         vector.setScene(vectorScene);
 
         //************************************+++++++++++++++++
+        //MONOID CATEGORY
+
 
         New_Semigroup.setOnAction(e->{ semigroup.show();});
         New_Group.setOnAction(e->{ group.show();});
@@ -383,7 +385,7 @@ public class JavaFX {
 
         //*********************************************************************
 
-
+        //SET CATEGORY
 
         HBox morphHBoxSet = new HBox();
         morphHBoxSet.setMinHeight(100);
@@ -412,10 +414,11 @@ public class JavaFX {
 
         Label identityTextSet = new Label("    Identity:   ");
         identityTextSet.setStyle("-fx-font-size: 30 px");
-        TextField inputTextSet = new TextField("Type the identity...");
+        TextField inputTextSet = new TextField("");
         inputTextSet.setMinHeight(30);
         Label space = new Label("           ");
-        Button prova = new Button("Test");
+
+        Button prova = new Button("Test"); //test identity button
         prova.setStyle("-fx-font-size: 22 px");
 
 
@@ -465,80 +468,147 @@ public class JavaFX {
         ///////////////////////////
 
         Alert alertAssSet = new Alert(Alert.AlertType.INFORMATION);
+        Alert alertidSet = new Alert(Alert.AlertType.INFORMATION);
         ////////////////
 
-        uni.setOnAction(e->{
-            morphSet.setText("U");
-            associativityText1.setText("U");
-            associativityText2.setText("U");
-            associativityText3.setText("U");
-            associativityText4.setText("U");
+        uni.setOnAction(e-> {
+                    morphSet.setText("U");
+                    associativityText1.setText("U");
+                    associativityText2.setText("U");
+                    associativityText3.setText("U");
+                    associativityText4.setText("U");
 
-            SetCat.SetUnion obj = new SetCat.SetUnion();
-            alertAssSet.setTitle("Prove Associativity");
-            alertAssSet.setHeaderText("Associativity Checked");
-            String x = obj.associativity();
-            alertAssSet.setContentText(x);
-        });
+                    SetCat.SetUnion obj = new SetCat.SetUnion();
+                    alertAssSet.setTitle("Prove Associativity");
+                    alertAssSet.setHeaderText("Associativity Checked");
+                    String x = obj.associativity();
+                    alertAssSet.setContentText(x);
 
-        inter.setOnAction(e->{
-            morphSet.setText("∩");
-            associativityText1.setText("∩");
-            associativityText2.setText("∩");
-            associativityText3.setText("∩");
-            associativityText4.setText("∩");
 
-            SetCat.SetIntersection obj = new SetCat.SetIntersection();
-            alertAssSet.setTitle("Prove Associativity");
-            alertAssSet.setHeaderText("Associativity Checked");
-            String x = obj.associativity();
-            alertAssSet.setContentText(x);
+                });
 
-        });
+        inter.setOnAction(hh-> {
+                    morphSet.setText("∩");
+                    associativityText1.setText("∩");
+                    associativityText2.setText("∩");
+                    associativityText3.setText("∩");
+                    associativityText4.setText("∩");
 
-        subt.setOnAction(e->{
+                    SetCat.SetIntersection gne = new SetCat.SetIntersection();
+                    alertAssSet.setTitle("Prove Associativity");
+                    alertAssSet.setHeaderText("Associativity Checked");
+                    String bb = gne.associativity();
+                    alertAssSet.setContentText(bb);
+                });
+
+        subt.setOnAction(fun->{
             morphSet.setText("-");
             associativityText1.setText("-");
             associativityText2.setText("-");
             associativityText3.setText("-");
             associativityText4.setText("-");
 
-            SetCat.SetDifference obj = new SetCat.SetDifference();
+            SetCat.SetDifference ogg = new SetCat.SetDifference();
             alertAssSet.setTitle("Prove Associativity");
             alertAssSet.setHeaderText("Associativity Checked");
-            String x = obj.associativity();
-            alertAssSet.setContentText(x);
-        });
-
-        symsub.setOnAction(e->{
-
-            morphSet.setText("Δ");
-            associativityText1.setText("Δ");
-            associativityText2.setText("Δ");
-            associativityText3.setText("Δ");
-            associativityText4.setText("Δ");
-
-            SetCat.SetSymmetricDifference obj = new SetCat.SetSymmetricDifference();
-
-
-            alertAssSet.setTitle("Prove Associativity");
-            alertAssSet.setHeaderText("Associativity Checked");
-            String x = obj.associativity();
-            alertAssSet.setContentText(x);
-
+            String z = ogg.associativity();
+            alertAssSet.setContentText(z);
 
         });
+
+        symsub.setOnAction(f-> {
+
+                    morphSet.setText("Δ");
+                    associativityText1.setText("Δ");
+                    associativityText2.setText("Δ");
+                    associativityText3.setText("Δ");
+                    associativityText4.setText("Δ");
+
+                    SetCat.SetSymmetricDifference object = new SetCat.SetSymmetricDifference();
+
+                    alertAssSet.setTitle("Prove Associativity");
+                    alertAssSet.setHeaderText("Associativity Checked");
+                    String y = object.associativity();
+                    alertAssSet.setContentText(y);
+
+
+                });
 
 
         ///////////////////////
-        prove.setOnAction(e->{
+        prove.setOnAction(g->{
             alertAssSet.show();
 
         });
 
 
 
+        prova.setOnAction(h->{
+            if (morphSet.getText().equals("U")) {
+                SetCat.SetUnion w = new SetCat.SetUnion();
+                if (inputTextSet.getText().equals("[]")) {
+                    alertidSet.setTitle("Prove Identity");
+                    alertidSet.setHeaderText("Identity Checked");
+                    String s = w.tryIdentity();
+                    alertidSet.setContentText(s);
+                    alertidSet.show();
+                } else {
+                    String falso = "ERROR, the Identity should be an element that applied to the Set returns the set itself, be careful!";
+                    alertidSet.setTitle("Prove Identity");
+                    alertidSet.setHeaderText("Identity Checked");
+                    alertidSet.setContentText(falso);
+                    alertidSet.show();
+                }
+            }
+
+            if(morphSet.getText().equals("-")){
+                SetCat.SetDifference ogg = new SetCat.SetDifference();
+                if (inputTextSet.getText() .equals("[]")){
+                    alertidSet.setTitle("Prove Identity");
+                    alertidSet.setHeaderText("Identity Checked");
+                    String s = ogg.tryIdentity();
+                    alertidSet.setContentText(s);
+
+                }else{
+                    String falso = "ERROR, the Identity should be an element that applied to the Set returns the set itself, be careful!";
+                    alertidSet.setTitle("Prove Identity");
+                    alertidSet.setHeaderText("Identity Checked");
+                    alertidSet.setContentText(falso);
+                    alertidSet.show();
+                }
+            }
+
+            if(morphSet.getText().equals("Δ")){
+               SetCat.SetSymmetricDifference m = new SetCat.SetSymmetricDifference();
+                if (inputTextSet.getText().equals("[]")) {
+                    alertidSet.setTitle("Prove Identity");
+                    alertidSet.setHeaderText("Identity Checked");
+                    String s = m.tryIdentity();
+                    alertidSet.setContentText(s);
+                    alertidSet.show();
+                } else {
+                    String falso = "ERROR, the Identity should be an element that applied to the Set returns the set itself, be careful!";
+                    alertidSet.setTitle("Prove Identity");
+                    alertidSet.setHeaderText("Identity Checked");
+                    alertidSet.setContentText(falso);
+                    alertidSet.show();
+
+                }
+            }
+
+            if( morphSet.getText().equals("∩")){
+                SetCat.SetIntersection k = new SetCat.SetIntersection();
+                alertidSet.setTitle("Prove Identity");
+                alertidSet.setHeaderText("Identity Checked");
+                String s = k.tryIdentity();
+                alertidSet.setContentText(s);
+                alertidSet.show();
+            }
+
+        });
+
         ////////////////////////////////////////
+
         morphSet.getItems().addAll(uni, inter, subt, symsub);
         morphHBoxSet.getChildren().addAll(morphTextSet, morphSet, endMorphSet);
         identityHBoxSet.getChildren().addAll(identityTextSet, inputTextSet, space,  prova);
