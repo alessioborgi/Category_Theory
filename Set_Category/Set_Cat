@@ -1,3 +1,5 @@
+package Set_Category;
+
 import java.util.*; //import every primitive Java library that begins with("java.util.")
 
 
@@ -7,18 +9,19 @@ public class SetCat extends HashSet { // declare the class as public that extend
 
     public SetCat() { //define the constructor
         this.set = new HashSet(); //since Set is an interface, we have to assign our object to an instance,
-                                    // we have chosen the HashSet
+        // we have chosen the HashSet
     }
 
 
-    /** Define  a new class representing the Symmetric Difference operation of Sets, which is described as (a-b)||(b-a),
-     *  so it takes the two sets merged.
+    /**
+     * Define  a new class representing the Symmetric Difference operation of Sets, which is described as (a-b)||(b-a),
+     * so it takes the two sets merged.
      * The class extends its outer class, SetCat
      */
-         public static class SetSymmetricDifference extends SetCat {
+    public static class SetSymmetricDifference extends SetCat {
 
         /**
-         * define the element that applied to a certains object of type SetSymmetricDifference, returns the object himself
+         * define the element that applied to a certain object of type SetCat, returns the object himself
          */
         public static SetCat SymDiffIdentity() {//the class is public, will return an object of type HashSet
 
@@ -76,6 +79,23 @@ public class SetCat extends HashSet { // declare the class as public that extend
             return false;
         }
 
+        public static String tryIdentity() {
+            String vero = "Correct Insertion";
+
+            SetIntersection set = new SetIntersection();
+            set.add(6);
+            set.add(3);
+            set.add(11);
+            set.add(5);
+            set.add(7);
+            set.add(0);
+            set.add(2);
+
+            return vero; //output printed
+
+
+        }
+
         /**
          * This method will apply the second fundamental property of Categories, the associativity, which means that
          * f(gh) == (fg)h, this is done by the application of applySymDif() at various level of the category, so using the
@@ -98,6 +118,49 @@ public class SetCat extends HashSet { // declare the class as public that extend
                 System.out.println("Associativity checked: error");
             }
             return false;
+        }
+
+        public static String associativity() {
+            String vero = "Symmetric Difference is a valid operation";
+            String falso = "ERROR, Symmetric Difference is not a valid operation";
+            SetSymmetricDifference gne = new SetSymmetricDifference();
+            gne.add(6);
+            gne.add(3);
+            gne.add(11);
+            gne.add(5);
+            gne.add(7);
+            gne.add(0);
+            gne.add(2);
+            SetSymmetricDifference vv = new SetSymmetricDifference();
+            vv.add(15);
+            vv.add(9);
+            vv.add(1);
+            vv.add(85);
+            vv.add(5);
+            vv.add(3);
+            vv.add(4);
+            SetSymmetricDifference xx = new SetSymmetricDifference();
+            xx.add(15);
+            xx.add(9);
+            xx.add(1);
+            xx.add(85);
+            xx.add(5);
+            xx.add(3);
+            xx.add(4);
+
+            SetSymmetricDifference dd = new SetSymmetricDifference(); //create a new object of type SetSymmetricDifference
+            SetSymmetricDifference ee = new SetSymmetricDifference();//create a new object of type SetSymmetricDifference
+            SetSymmetricDifference ff = new SetSymmetricDifference();//create a new object of type SetSymmetricDifference
+            SetSymmetricDifference gg = new SetSymmetricDifference();//create a new object of type SetSymmetricDifference
+            dd.applySymDif(gne, vv);//contains aΔb
+            ee.applySymDif(xx, dd);//contains (aΔb)Δc
+            ff.applySymDif(vv, xx); //contains bΔc
+            gg.applySymDif(ff, gne); // contains aΔ(bΔc)
+            if (ee.equals(gg)) { //if the content of (aΔb)Δc is equal to the content of aΔ(bΔc), it works
+                return vero;
+            } else {
+                return falso;
+            }
 
 
         }
@@ -121,62 +184,126 @@ public class SetCat extends HashSet { // declare the class as public that extend
         }
 
         /**
-         *this method applies the effective operation between two sets.
+         * this method applies the effective operation between two sets.
          * It is defined as static and public, its output is an object of type SetCat, and it has as parameters
          * two Objects of type SetCat
          */
-        public static SetCat applyUnion(SetCat a, SetCat b){
+        public static SetCat applyUnion(SetCat a, SetCat b) {
 
             SetCat c = new SetCat();
-            for (Object obj : a) {c.add(obj);}
+            for (Object obj : a) {
+                c.add(obj);
+            }
 
-            for (Object object : b) {c.add(object);}
-            return  c; //there will be no repetitions since Sets already have the primitive propriety
-                        // of not having repetitions in them
+            for (Object object : b) {
+                c.add(object);
+            }
+            return c; //there will be no repetitions since Sets already have the primitive propriety
+            // of not having repetitions in them
         }
 
         /**
-         *This method will check if the identity works, which is the first of the two fundamental properties of categories
-         *it will check it by using the application of the operation on a certain object of type SetCat
-         *and the object returned by the method identity(), which, in this case, returns an EmptySet.
-         *This method is defined as public and it returns a boolean(true or false) basing on the correctness of the statement
-         *furthermore we set, an automatic answer given by the program, and gets as parameter an object of type
-         *SetCat
+         * This method will check if the identity works, which is the first of the two fundamental properties of categories
+         * it will check it by using the application of the operation on a certain object of type SetCat
+         * and the object returned by the method identity(), which, in this case, returns an EmptySet.
+         * This method is defined as public and it returns a boolean(true or false) basing on the correctness of the statement
+         * furthermore we set, an automatic answer given by the program, and gets as parameter an object of type
+         * SetCat
          */
-        public static boolean tryIdentityUnion(SetCat object){
+        public static boolean tryIdentityUnion(SetCat object) {
             //if object||EmptySet has the same content of object, it works
-            if (applyUnion(object, unionIdentity()).equals(object)){
-                System.out.println("Identity checked: works");}
-            else{ //if object||EmptySet != of object
+            if (applyUnion(object, unionIdentity()).equals(object)) {
+                System.out.println("Identity checked: works");
+            } else { //if object||EmptySet != of object
                 System.out.println("Identity checked: error");
             }
             return false;
         }
 
-        /**
-         *This method will apply the second fundamental property of Categories, the associativity, which means that
-         *f(gh) == (fg)h, this is done by the application of applySymDif() at various level of the category, so using the
-         *various variables as parameters
-         *the function is public, static and returns a boolean(true or false), and a default print, the parameters are
-         *three Objects of type SetCat
-         */
-        public static boolean associativityUnion(SetCat x, SetCat y, SetCat z){
+        public static String tryIdentity() {
+            String vero = "Correct Insertion";
+            SetIntersection set = new SetIntersection();
+            set.add(6);
+            set.add(3);
+            set.add(11);
+            set.add(5);
+            set.add(7);
+            set.add(0);
+            set.add(2);
+            //if object||EmptySet has the same content of object, it works
 
-            SetUnion d = new SetUnion();
-            SetUnion e = new SetUnion();
-            SetUnion f = new SetUnion();
-            SetUnion g = new SetUnion();
-            d.applyUnion(x, y);//contains x||y
-            e.applyUnion(z,d);//contains (x||y)||z
-            f.applyUnion(y, z); //contains y||z
-            g.applyUnion(f, x); // contains x||(y||z)
-            if(e.equals(g)){ //if (x||y)||z has the same content of x||(y||z), it works
-                System.out.println("Associativity checked: it works");
-            }else{
-                System.out.println("Associativity checked: error");
-            }
-            return false;
+            return vero;
         }
+
+
+    }
+
+    /**
+     * This method will apply the second fundamental property of Categories, the associativity, which means that
+     * f(gh) == (fg)h, this is done by the application of applySymDif() at various level of the category, so using the
+     * various variables as parameters
+     * the function is public, static and returns a boolean(true or false), and a default print, the parameters are
+     * three Objects of type SetCat
+     */
+    public static boolean associativityUnion(SetCat x, SetCat y, SetCat z) {
+
+        SetUnion d = new SetUnion();
+        SetUnion e = new SetUnion();
+        SetUnion f = new SetUnion();
+        SetUnion g = new SetUnion();
+        d.applyUnion(x, y);//contains x||y
+        e.applyUnion(z, d);//contains (x||y)||z
+        f.applyUnion(y, z); //contains y||z
+        g.applyUnion(f, x); // contains x||(y||z)
+        if (e.equals(g)) { //if (x||y)||z has the same content of x||(y||z), it works
+            System.out.println("Associativity checked: it works");
+        } else {
+            System.out.println("Associativity checked: error");
+        }
+        return false;
+    }
+
+    public static String associativity() {
+        String vero = "Union is a valid operation";
+        String falso = "ERROR, Union is not a valid operation";
+        SetSymmetricDifference gne = new SetSymmetricDifference();
+        gne.add(6);
+        gne.add(3);
+        gne.add(11);
+        gne.add(5);
+        gne.add(7);
+        gne.add(0);
+        gne.add(2);
+        SetSymmetricDifference vv = new SetSymmetricDifference();
+        vv.add(15);
+        vv.add(9);
+        vv.add(1);
+        vv.add(85);
+        vv.add(5);
+        vv.add(3);
+        vv.add(4);
+        SetSymmetricDifference xx = new SetSymmetricDifference();
+        xx.add(15);
+        xx.add(9);
+        xx.add(1);
+        xx.add(85);
+        xx.add(5);
+        xx.add(3);
+        xx.add(4);
+        SetUnion dd = new SetUnion();
+        SetUnion ee = new SetUnion();
+        SetUnion ff = new SetUnion();
+        SetUnion gg = new SetUnion();
+        dd.applyUnion(gne, vv);//contains x||y
+        ee.applyUnion(xx, dd);//contains (x||y)||z
+        ff.applyUnion(vv, xx); //contains y||z
+        gg.applyUnion(gne, ff); // contains x||(y||z)
+        if (ee.equals(gg)) { //if (x||y)||z has the same content of x||(y||z), it works
+            return vero;
+        } else {
+            return falso;
+        }
+
     }
 
 
@@ -188,29 +315,47 @@ public class SetCat extends HashSet { // declare the class as public that extend
     public static class SetIntersection extends SetCat {
 
         /**
-         *this methods finds the object that intersected with a certain set, returns the set itself.
+         * this methods finds the object that intersected with a certain set, returns the set itself.
          * It is set as public and static, takes as input an object of type SetCat and returns an object of the same
          * type
          */
-        public static SetCat interIdentity(SetCat a) { return a;}//in this case the object is the set itself
+        public static SetCat interIdentity(SetCat a) {
+            return a;
+        }//in this case the object is the set itself
 
 
         /**
-         *This method links the applyInter() method and the interIdentity() one. It applies the intersection
+         * This method links the applyInter() method and the interIdentity() one. It applies the intersection
          * between a set and the identity object (in this case, the object itself) and checks if the content of the set after
-         *the application of the intersection and the set itself is equal.
+         * the application of the intersection and the set itself is equal.
          * Takes as parameter an object of type SetCat and returns a boolean (true or false), if the first
          * property of categories is satisfied or not.
          */
-        public static boolean tryIdentity(SetCat b){
+        public static boolean tryIdentityInter(SetCat b) {
             //if the identity works print this
-            if (applyInter(b, interIdentity(b)).equals(b)){
-                System.out.println("Identity checked: works");}
-            else{ //if it doesn't print this
+            if (applyInter(b, interIdentity(b)).equals(b)) {
+                System.out.println("Identity checked: works");
+            } else { //if it doesn't print this
                 System.out.println("Identity checked: error");
             }
 
             return false; //return the boolean representing the result
+        }
+
+        public static String tryIdentity() {
+            String insertion = "Identity cannot be checked in this representation, please change operation! ";
+            SetIntersection set = new SetIntersection();
+            set.add(6);
+            set.add(3);
+            set.add(11);
+            set.add(5);
+            set.add(7);
+            set.add(0);
+            set.add(2);
+            //if the identity works print this
+            return insertion;
+
+
         }
 
         /**
@@ -235,97 +380,198 @@ public class SetCat extends HashSet { // declare the class as public that extend
          * It is defined as public and static, gets as parameter the three sets that will be compared and returns a
          * boolean
          */
-        public static boolean associativityInter(SetCat a, SetCat b, SetCat c){
+        public static boolean associativityInter(SetCat a, SetCat b, SetCat c) {
 
             SetIntersection d = new SetIntersection();
             SetIntersection e = new SetIntersection();
             SetIntersection f = new SetIntersection();
             SetIntersection g = new SetIntersection();
-            d.applyInter(a,b);//contains x&&y
-            e.applyInter(c,d);//contains (x&&y)&&z
-            f.applyInter(b,c); //contains y&&z
-            g.applyInter(f,a); // contains x&&(y&&z)
-            if(e.equals(g) ){ //if it is applicable
+            d.applyInter(a, b);//contains x&&y
+            e.applyInter(c, d);//contains (x&&y)&&z
+            f.applyInter(b, c); //contains y&&z
+            g.applyInter(f, a); // contains x&&(y&&z)
+            if (e.equals(g)) { //if it is applicable
                 System.out.println("Associativity checked: it works");
-            }else{ //if it is not
+            } else { //if it is not
                 System.out.println("Associativity checked: error");
             }
             return false;
 
         }
+
+        public static String associativity() {
+            String vero = "Intersection is a valid operation";
+
+            SetSymmetricDifference gne = new SetSymmetricDifference();
+            gne.add(6);
+            gne.add(3);
+            gne.add(11);
+            gne.add(5);
+            gne.add(7);
+            gne.add(0);
+            gne.add(2);
+            SetSymmetricDifference vv = new SetSymmetricDifference();
+            vv.add(15);
+            vv.add(9);
+            vv.add(1);
+            vv.add(85);
+            vv.add(5);
+            vv.add(3);
+            vv.add(4);
+            SetSymmetricDifference xx = new SetSymmetricDifference();
+            xx.add(15);
+            xx.add(9);
+            xx.add(1);
+            xx.add(85);
+            xx.add(5);
+            xx.add(3);
+            xx.add(4);
+            SetIntersection dd = new SetIntersection();
+            SetIntersection ee = new SetIntersection();
+            SetIntersection ff = new SetIntersection();
+            SetIntersection gg = new SetIntersection();
+            dd.applyInter(gne, vv);//contains x&&y
+            ee.applyInter(xx, dd);//contains (x&&y)&&z
+            ff.applyInter(vv, xx); //contains y&&z
+            gg.applyInter(ff, gne); // contains x&&(y&&z)
+
+            return vero;
+
+
+        }
     }
 
-    /**
-     * This class will check whether the operation difference (a-b) maintains the properties of Categories,
-     * it extends class SetCat. The difference operation takes away all the elements not in common in one of the two set
-     * with the other, and puts them in a third empty set.
-     */
-    public static class SetDifference extends SetCat {
-        /**
-         * This method defines the identity element, which, applied to a set (using the difference operation),
-         * will return the set itself. In this case the identity is represented by an EmptySet
-         */
-        public static SetCat diffIdentity(){
-            SetCat EmptySet = new SetCat();
-            return EmptySet;
-        }
+        public static class SetDifference extends SetCat {
+            /**
+             * This method defines the identity element, which, applied to a set (using the difference operation),
+             * will return the set itself. In this case the identity is represented by an EmptySet
+             */
+            public static SetCat diffIdentity() {
+                SetCat EmptySet = new SetCat();
+                return EmptySet;
+            }
 
-        /**
-         *This method applies the difference between the two set given as parameters and returns the set containing
-         * the elements in common between them
-         */
-        public static SetCat applyDifference(SetCat a, SetCat b){
-            SetCat c = new SetCat();
-            for(Object object : a){
-                if(!b.contains(object)){
-                    c.add(object);
+            /**
+             * This method applies the difference between the two set given as parameters and returns the set containing
+             * the elements in common between them
+             */
+            public static SetCat applyDifference(SetCat a, SetCat b) {
+                SetCat c = new SetCat();
+                for (Object object : a) {
+                    if (!b.contains(object)) {
+                        c.add(object);
+                    }
                 }
+                return c;
             }
-            return c;
+
+            /**
+             * This method links the applyDifference() method and the diffIdentity() one. It applies the difference
+             * between a set and the identity object (in this case, an empty set) and checks if the content of the set after
+             * the application of the difference and the set itself is equal.
+             * Takes as parameter an object of type SetCat and returns a boolean (true or false), if the first
+             * property of categories is satisfied or not.
+             */
+            public static boolean tryIdentityDiff(SetCat set) {
+                if (applyDifference(set, diffIdentity()).equals(set)) {
+                    System.out.println("Identity checked: it works");
+                } else {
+                    System.out.println("Identity Checked: error");
+                }
+                return false;
+            }
+
+            public static String tryIdentity() {
+                String vero = "Correct Insertion";
+                SetSymmetricDifference set = new SetSymmetricDifference();
+                set.add(6);
+                set.add(3);
+                set.add(11);
+                set.add(5);
+                set.add(7);
+                set.add(0);
+                set.add(2);
+
+                return vero;
+
+
+            }
+
+            /**
+             * This method checks if the second property of Categories is applicable with this operation, so it checks
+             * whether  a-(b-c) == (a-b)-c.
+             * It is defined as public and static, gets as parameter the three sets that will be compared and returns a
+             * boolean
+             */
+            public static boolean associativityDifference(SetCat x, SetCat y, SetCat z) {
+
+                SetDifference a = new SetDifference();
+                SetDifference b = new SetDifference();
+                SetDifference c = new SetDifference();
+                SetDifference d = new SetDifference();
+                a.applyDifference(x, y); //x-y
+                b.applyDifference(a, z); //(x-y)-z
+                c.applyDifference(y, z); //y-z
+                d.applyDifference(x, c); //x-(y-z)
+                if (b.equals(d)) {
+                    System.out.println("Associativity checked: it works");
+                } else {
+                    System.out.println("Associativity checked: error");
+                }
+                return false;
+            }
+
+            public static String associativity() {
+                String vero = "Difference is a valid operation";
+                String falso = "ERROR, Difference is not a valid operation";
+                SetSymmetricDifference gne = new SetSymmetricDifference();
+                gne.add(6);
+                gne.add(3);
+                gne.add(11);
+                gne.add(5);
+                gne.add(7);
+                gne.add(0);
+                gne.add(2);
+                SetSymmetricDifference vv = new SetSymmetricDifference();
+                vv.add(15);
+                vv.add(9);
+                vv.add(1);
+                vv.add(85);
+                vv.add(5);
+                vv.add(3);
+                vv.add(4);
+                SetSymmetricDifference xx = new SetSymmetricDifference();
+                xx.add(15);
+                xx.add(9);
+                xx.add(1);
+                xx.add(85);
+                xx.add(5);
+                xx.add(3);
+                xx.add(4);
+                SetDifference aa = new SetDifference();
+                SetDifference bb = new SetDifference();
+                SetDifference cc = new SetDifference();
+                SetDifference dd = new SetDifference();
+                aa.applyDifference(gne, vv); //x-y
+                bb.applyDifference(aa, xx); //(x-y)-z
+                cc.applyDifference(vv, xx); //y-z
+                dd.applyDifference(gne, cc); //x-(y-z)
+                if (bb.equals(dd)) {
+                    return vero;
+                } else {
+                    return falso;
+                }
+
+            }
         }
 
-        /**
-         *This method links the applyDifference() method and the diffIdentity() one. It applies the difference
-         * between a set and the identity object (in this case, an empty set) and checks if the content of the set after
-         * the application of the difference and the set itself is equal.
-         * Takes as parameter an object of type SetCat and returns a boolean (true or false), if the first
-         * property of categories is satisfied or not.
-         */
-        public static boolean tryIdentityDiff(SetCat set){
-            if (applyDifference(set, diffIdentity()).equals(set)) {
-                System.out.println("Identity checked: it works");
-            }else{
-                System.out.println("Identity Checked: error");
-            }
-            return false;
-        }
-
-        /**
-         *This method checks if the second property of Categories is applicable with this operation, so it checks
-         *whether  a-(b-c) == (a-b)-c.
-         *It is defined as public and static, gets as parameter the three sets that will be compared and returns a
-         *boolean
-         */
-        public static boolean associativityDifference(SetCat x, SetCat y, SetCat z){
-
-            SetDifference a = new SetDifference();
-            SetDifference b = new SetDifference();
-            SetDifference c = new SetDifference();
-            SetDifference d = new SetDifference();
-            a.applyDifference(x,y); //x-y
-            b.applyDifference(a,z); //(x-y)-z
-            c.applyDifference(y,z); //y-z
-            d.applyDifference(x,c); //x-(y-z)
-            if(b.equals(d)){
-                System.out.println("Associativity checked: it works");
-            }else{
-                System.out.println("Associativity checked: error");
-            }
-            return false;
-        }
     }
 
 
 
 
-}
+
+
+
+
+
