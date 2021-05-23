@@ -1,6 +1,7 @@
 package Login;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
 
@@ -15,6 +16,7 @@ import java.awt.event.*;
 public class Login_Start extends JFrame implements ActionListener {
 
     public static java.awt.Color bordeaux = new java.awt.Color(110, 34, 44);
+    public static java.awt.Color darkgreen = new java.awt.Color(0, 150, 36);
     public static java.awt.Color black = new java.awt.Color(0, 0, 0);
     public static java.awt.Color orange = new java.awt.Color(249,166, 2);
     protected static JFrame frame = new JFrame();
@@ -51,6 +53,7 @@ public class Login_Start extends JFrame implements ActionListener {
     private void setter(){
         frame.setBounds(200, 200,500, 540);
         panel.setBackground(orange);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Login");
         panel.setLayout(null);
@@ -64,20 +67,29 @@ public class Login_Start extends JFrame implements ActionListener {
 
         user.setBounds(85, 180, 80, 25);
         user.setForeground(black);
+        Font f = user.getFont();
+        user.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
         password.setBounds(85, 210, 80, 25);
         password.setForeground(black);
+        password.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
         username.setBounds(180, 180, 165, 25);
         password_text.setBounds(180, 210, 165, 25);
-        show_password.setBackground(bordeaux);
+        show_password.setBackground(orange);
         show_password.setBounds(350,210,150,25);
         show_password.setForeground(black);
+        show_password.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
+
         login.setBounds(275, 250, 70, 25);
         login.setForeground(black);
+        login.setIcon(new ImageIcon("img/login.png"));
         clear.setBounds(180, 250, 70, 25);
         clear.setForeground(black);
+        clear.setIcon(new ImageIcon("img/clear1.png"));
         current_date.setBounds(0, 375, 150, 25);
         current_date.setForeground(black);
-        current_time.setBounds(405, 375, 100, 25 );
+        current_date.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
+        current_time.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
+        current_time.setBounds(400, 375, 100, 25 );
         current_time.setForeground(black);
         sapienza.setBounds(0, 400, 115, 110);
         sapienza.setIcon(new ImageIcon("img/Sapienza_2.png"));
@@ -120,7 +132,7 @@ public class Login_Start extends JFrame implements ActionListener {
                         int second = cal.get(Calendar.SECOND);
                         int minute = cal.get(Calendar.MINUTE);
                         int hour = cal.get(Calendar.HOUR);
-                        current_time.setText("Time " + hour + ":" + minute + ":" + second);
+                        current_time.setText("Time:" + hour + ":" + minute + ":" + second);
                         current_date.setText(" Date: " + months[month] + "/" + day + "/" + year);
                         sleep(1000);
                     }
