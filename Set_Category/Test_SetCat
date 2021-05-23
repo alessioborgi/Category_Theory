@@ -44,7 +44,7 @@ public class Test_SetCat {
         test2.add(4);
 
         SetCat test3 = new SetCat();
-        System.out.println(test3.CartesianProduct(test1, test2));
+     
 
 
     }
