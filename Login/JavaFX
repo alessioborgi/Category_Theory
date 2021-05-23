@@ -51,7 +51,7 @@ public class JavaFX {
     private static MenuItem New_Monoid = new MenuItem("New Monoid");
     private static MenuItem New_Group = new MenuItem("New Group");
     private static MenuItem New_Ring = new MenuItem("New Ring");
-    private static MenuItem new_Set = new MenuItem("New Set");
+    private static MenuItem New_Set = new MenuItem("New Set");
     private static MenuItem New_Vector = new MenuItem("New Vector");
     private static MenuItem About = new MenuItem("About");
     private static SeparatorMenuItem separator = new SeparatorMenuItem();
@@ -60,7 +60,7 @@ public class JavaFX {
     private static GraphicsContext gc = canvas.getGraphicsContext2D();
     private static Button exit = new Button("Exit");
     private static Button clear_all = new Button("Clear");
-    private static Button back = new Button("Back");
+    private static Button back = new Button("Logout");
     private static HBox box = new HBox(clear_all, exit, back);
 
     public static void initFX(JFXPanel fxPanel) {
@@ -72,7 +72,7 @@ public class JavaFX {
     public static Scene createScene() {
         Help.getItems().add(About);
         Create.getItems().addAll(New_Object,  New_Morphism);
-        New_Object.getItems().addAll(New_Semigroup, New_Monoid, New_Group, New_Ring, new_Set, New_Vector);
+        New_Object.getItems().addAll(New_Semigroup, New_Monoid, New_Group, New_Ring, New_Set, New_Vector);
 
         main_menu.getMenus().addAll(Create, Draw, Cancel, Help);
         Cancel.getItems().addAll(Clear_all, Back_now, separator, Exit_now);
@@ -90,16 +90,23 @@ public class JavaFX {
     }
 
     private static void setter(){
-        /**
-        New_Integer_Category.setAccelerator(KeyCombination.keyCombination("shortcut+I"));
-        New_Boolean_Category.setAccelerator(KeyCombination.keyCombination("shortcut+O"));
-        New_Vector_Category.setAccelerator(KeyCombination.keyCombination("shortcut+V"));
-         New_Set_Category.setAccelerator(KeyCombination.keyCombination("shortcut+S"));
-        */
+        scene.getStylesheets().add("Styles.css");
 
-         Exit_now.setAccelerator(KeyCombination.keyCombination("shortcut+E"));
+        //Mnemonics used up to now: (a, b, c, e, g, k, m, r, s, v)
+        About.setAccelerator(KeyCombination.keyCombination("shortcut+A"));
         Back_now.setAccelerator(KeyCombination.keyCombination("shortcut+B"));
         Clear_all.setAccelerator(KeyCombination.keyCombination("shortcut+C"));
+        Exit_now.setAccelerator(KeyCombination.keyCombination("shortcut+E"));
+        New_Group.setAccelerator(KeyCombination.keyCombination("shortcut+G"));
+        New_Semigroup.setAccelerator(KeyCombination.keyCombination("shortcut+K"));
+        New_Monoid.setAccelerator(KeyCombination.keyCombination("shortcut+M"));
+        New_Ring.setAccelerator(KeyCombination.keyCombination("shortcut+R"));
+        New_Set.setAccelerator(KeyCombination.keyCombination("shortcut+S"));
+        New_Vector.setAccelerator(KeyCombination.keyCombination("shortcut+V"));
+
+        exit.getStyleClass().add("button-red");
+        clear_all.getStyleClass().add("button-green");
+        back.getStyleClass().add("button-logout");
 
         box.setSpacing(10);
         box.setAlignment(Pos.CENTER_LEFT);
@@ -123,14 +130,14 @@ public class JavaFX {
         };
 
         /**
-        EventHandler form_event = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Stage stage1 = new Stage();
-                new Choice().start(stage1);
-            }
+         EventHandler form_event = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+        Stage stage1 = new Stage();
+        new Choice().start(stage1);
+        }
         };
-        */
+         */
         EventHandler go_back = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -234,7 +241,7 @@ public class JavaFX {
 
         New_Semigroup.setOnAction(e->{ semigroup.show();});
         New_Group.setOnAction(e->{ group.show();});
-        new_Set.setOnAction(e->{ set.show();});
+        New_Set.setOnAction(e->{ set.show();});
         New_Vector.setOnAction(e->{ vector.show();});
         New_Ring.setOnAction(e->{ ring.show();});
         New_Monoid.setOnAction(e->{ monoid.show();});
@@ -472,34 +479,34 @@ public class JavaFX {
         ////////////////
 
         uni.setOnAction(e-> {
-                    morphSet.setText("U");
-                    associativityText1.setText("U");
-                    associativityText2.setText("U");
-                    associativityText3.setText("U");
-                    associativityText4.setText("U");
+            morphSet.setText("U");
+            associativityText1.setText("U");
+            associativityText2.setText("U");
+            associativityText3.setText("U");
+            associativityText4.setText("U");
 
-                    SetCat.SetUnion obj = new SetCat.SetUnion();
-                    alertAssSet.setTitle("Prove Associativity");
-                    alertAssSet.setHeaderText("Associativity Checked");
-                    String x = obj.associativity();
-                    alertAssSet.setContentText(x);
+            SetCat.SetUnion obj = new SetCat.SetUnion();
+            alertAssSet.setTitle("Prove Associativity");
+            alertAssSet.setHeaderText("Associativity Checked");
+            String x = obj.associativity();
+            alertAssSet.setContentText(x);
 
 
-                });
+        });
 
         inter.setOnAction(hh-> {
-                    morphSet.setText("∩");
-                    associativityText1.setText("∩");
-                    associativityText2.setText("∩");
-                    associativityText3.setText("∩");
-                    associativityText4.setText("∩");
+            morphSet.setText("∩");
+            associativityText1.setText("∩");
+            associativityText2.setText("∩");
+            associativityText3.setText("∩");
+            associativityText4.setText("∩");
 
-                    SetCat.SetIntersection gne = new SetCat.SetIntersection();
-                    alertAssSet.setTitle("Prove Associativity");
-                    alertAssSet.setHeaderText("Associativity Checked");
-                    String bb = gne.associativity();
-                    alertAssSet.setContentText(bb);
-                });
+            SetCat.SetIntersection gne = new SetCat.SetIntersection();
+            alertAssSet.setTitle("Prove Associativity");
+            alertAssSet.setHeaderText("Associativity Checked");
+            String bb = gne.associativity();
+            alertAssSet.setContentText(bb);
+        });
 
         subt.setOnAction(fun->{
             morphSet.setText("-");
@@ -518,21 +525,21 @@ public class JavaFX {
 
         symsub.setOnAction(f-> {
 
-                    morphSet.setText("Δ");
-                    associativityText1.setText("Δ");
-                    associativityText2.setText("Δ");
-                    associativityText3.setText("Δ");
-                    associativityText4.setText("Δ");
+            morphSet.setText("Δ");
+            associativityText1.setText("Δ");
+            associativityText2.setText("Δ");
+            associativityText3.setText("Δ");
+            associativityText4.setText("Δ");
 
-                    SetCat.SetSymmetricDifference object = new SetCat.SetSymmetricDifference();
+            SetCat.SetSymmetricDifference object = new SetCat.SetSymmetricDifference();
 
-                    alertAssSet.setTitle("Prove Associativity");
-                    alertAssSet.setHeaderText("Associativity Checked");
-                    String y = object.associativity();
-                    alertAssSet.setContentText(y);
+            alertAssSet.setTitle("Prove Associativity");
+            alertAssSet.setHeaderText("Associativity Checked");
+            String y = object.associativity();
+            alertAssSet.setContentText(y);
 
 
-                });
+        });
 
 
         ///////////////////////
@@ -579,7 +586,7 @@ public class JavaFX {
             }
 
             if(morphSet.getText().equals("Δ")){
-               SetCat.SetSymmetricDifference m = new SetCat.SetSymmetricDifference();
+                SetCat.SetSymmetricDifference m = new SetCat.SetSymmetricDifference();
                 if (inputTextSet.getText().equals("[]")) {
                     alertidSet.setTitle("Prove Identity");
                     alertidSet.setHeaderText("Identity Checked");
@@ -613,7 +620,7 @@ public class JavaFX {
         morphHBoxSet.getChildren().addAll(morphTextSet, morphSet, endMorphSet);
         identityHBoxSet.getChildren().addAll(identityTextSet, inputTextSet, space,  prova);
         associativityHBoxSet.getChildren().addAll(spazio, prove, associativitySet1, associativityText1,associativitySet2, associativityText2,
-        associativitySet3, associativityText3, associativitySet4, associativityText4, associativitySet5);
+                associativitySet3, associativityText3, associativitySet4, associativityText4, associativitySet5);
         endHBoxSet.getChildren().addAll(createSet);
         setVBox.getChildren().addAll(morphHBoxSet, identityHBoxSet, associativityHBoxSet, endHBoxSet);
 
