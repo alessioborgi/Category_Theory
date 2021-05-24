@@ -52,9 +52,12 @@ public class JavaFX {
     private static MenuItem New_Group = new MenuItem("New Group");
     private static MenuItem New_Ring = new MenuItem("New Ring");
     private static MenuItem New_Set = new MenuItem("New Set");
-    private static MenuItem New_Vector = new MenuItem("New Vector");
+    private static Menu New_Vector = new Menu("New Vector");
     private static MenuItem About = new MenuItem("About");
     private static SeparatorMenuItem separator = new SeparatorMenuItem();
+
+    private static MenuItem Add_Sub_Vector = new MenuItem("Add/Sub Vectors");
+    private static MenuItem Mul_Div_Vector = new MenuItem("Mul/Div Vectors");
 
     private static Canvas canvas = new Canvas(800, 620);
     private static GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -70,12 +73,6 @@ public class JavaFX {
     }
 
     public static Scene createScene() {
-        Help.getItems().add(About);
-        Create.getItems().addAll(New_Object,  New_Morphism);
-        New_Object.getItems().addAll(New_Semigroup, New_Monoid, New_Group, New_Ring, New_Set, New_Vector);
-
-        main_menu.getMenus().addAll(Create, Draw, Cancel, Help);
-        Cancel.getItems().addAll(Clear_all, Back_now, separator, Exit_now);
 
         scene.setFill(new LinearGradient(0, 0, 1, 1, true,    //sizing
                 CycleMethod.NO_CYCLE,                  //cycling
@@ -90,7 +87,13 @@ public class JavaFX {
     }
 
     private static void setter(){
-        scene.getStylesheets().add("Styles.css");
+        scene.getStylesheets().add("Login/Styles.css");
+        Help.getItems().add(About);
+        Create.getItems().addAll(New_Object,  New_Morphism);
+        New_Object.getItems().addAll(New_Semigroup, New_Monoid, New_Group, New_Ring, New_Set, New_Vector);
+        New_Vector.getItems().addAll(Add_Sub_Vector, Mul_Div_Vector);
+        main_menu.getMenus().addAll(Create, Draw, Cancel, Help);
+        Cancel.getItems().addAll(Clear_all, Back_now, separator, Exit_now);
 
         //Mnemonics used up to now: (a, b, c, e, g, k, m, r, s, v)
         About.setAccelerator(KeyCombination.keyCombination("shortcut+A"));
@@ -111,6 +114,7 @@ public class JavaFX {
         box.setSpacing(10);
         box.setAlignment(Pos.CENTER_LEFT);
         box.setPadding(new Insets(570, 0, 0, 340));
+
     }
 
     private static void addActions(){
@@ -129,15 +133,63 @@ public class JavaFX {
             }
         };
 
-        /**
-         EventHandler form_event = new EventHandler<ActionEvent>() {
+
+         EventHandler new_monoid = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-        Stage stage1 = new Stage();
-        new Choice().start(stage1);
+        Stage monoid = new Stage();
+        new New_Monoid().start(monoid);
         }
         };
-         */
+
+        EventHandler new_set = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Stage set = new Stage();
+                new New_Set().start(set);
+            }
+        };
+
+        EventHandler new_group = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Stage group = new Stage();
+                new New_Group().start(group);
+            }
+        };
+
+        EventHandler new_semigroup = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Stage semigroup = new Stage();
+                new New_SemiGroup().start(semigroup);
+            }
+        };
+
+        EventHandler new_ring = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Stage ring = new Stage();
+                new New_Ring().start(ring);
+            }
+        };
+
+        EventHandler muldiv_vec = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Stage muldivVec = new Stage();
+                new Mul_Div_Vec().start(muldivVec);
+            }
+        };
+
+        EventHandler subadd_Vec = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Stage addsubVec = new Stage();
+                new Add_Sub_Vec().start(addsubVec);
+            }
+        };
+
         EventHandler go_back = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -183,447 +235,14 @@ public class JavaFX {
         back.setOnAction(go_back);
 
         //****************************************************
-        Stage group = new Stage();
-        group.setWidth(700);
-        group.setHeight(500);
 
-        Stage monoid = new Stage();
-        monoid.setWidth(700);
-        monoid.setHeight(500);
-
-        Stage ring = new Stage();
-        ring.setWidth(700);
-        ring.setHeight(500);
-
-        Stage semigroup = new Stage();
-        semigroup.setWidth(700);
-        semigroup.setHeight(500);
-
-        Stage set = new Stage();
-        set.setWidth(700);
-        set.setHeight(500);
-
-        Stage vector = new Stage();
-        vector.setWidth(700);
-        set.setHeight(500);
-
-        group.setTitle("Group Category");
-        monoid.setTitle("Monoid Category");
-        ring.setTitle("Ring Category");
-        semigroup.setTitle("Semigroup Category");
-        set.setTitle("Set Category");
-        vector.setTitle("Vector Category");
-
-        VBox groupVBox = new VBox();
-        VBox monoidVBox = new VBox();
-        VBox ringVBox = new VBox();
-        VBox semigroupVBox = new VBox();
-        VBox setVBox = new VBox();
-        VBox vectorVBox = new VBox();
-
-        Scene groupScene = new Scene(groupVBox);
-        Scene monoidScene = new Scene(monoidVBox);
-        Scene ringScene = new Scene(ringVBox);
-        Scene semigroupScene = new Scene(semigroupVBox);
-        Scene setScene = new Scene(setVBox);
-        Scene vectorScene = new Scene(vectorVBox);
-
-        group.setScene(groupScene);
-        monoid.setScene(monoidScene);
-        ring.setScene(ringScene);
-        semigroup.setScene(semigroupScene);
-        set.setScene(setScene);
-        vector.setScene(vectorScene);
-
-        //************************************+++++++++++++++++
-        //MONOID CATEGORY
-
-
-        New_Semigroup.setOnAction(e->{ semigroup.show();});
-        New_Group.setOnAction(e->{ group.show();});
-        New_Set.setOnAction(e->{ set.show();});
-        New_Vector.setOnAction(e->{ vector.show();});
-        New_Ring.setOnAction(e->{ ring.show();});
-        New_Monoid.setOnAction(e->{ monoid.show();});
-
-
-        ////////////////////////////////////
-
-        HBox typeHBox = new HBox();
-        typeHBox.setMinHeight(100);
-        typeHBox.setMinWidth(700);
-        typeHBox.setAlignment(Pos.CENTER_LEFT);
-        HBox morphHBox = new HBox();
-        morphHBox.setMinHeight(100);
-        morphHBox.setMinWidth(700);
-        morphHBox.setAlignment(Pos.CENTER_LEFT);
-        HBox identityHBox = new HBox();
-        identityHBox.setMinHeight(100);
-        identityHBox.setMinWidth(700);
-        identityHBox.setAlignment(Pos.CENTER_LEFT);
-        HBox endHBox = new HBox();
-        endHBox.setMinHeight(100);
-        endHBox.setMinWidth(700);
-        endHBox.setAlignment(Pos.CENTER);
-
-
-
-        Label typeText = new Label("    Type:   ");
-        typeText.setStyle("-fx-font-size: 30 px");
-        Label morphText = new Label("    Morphism:  A   ");
-        morphText.setStyle("-fx-font-size: 30 px");
-        Label endMorph = new Label ("   B");
-        endMorph.setStyle("-fx-font-size: 30 px");
-        Label identityText = new Label("    Identity:   ");
-        identityText.setStyle("-fx-font-size: 30 px");
-
-        TextField inputText = new TextField("Type the identity...");
-        inputText.setMinHeight(30);
-
-        MenuButton type = new MenuButton("Choose the type");
-        type.setStyle("-fx-font-size: 22 px");
-        type.setFont(new Font("Book Antiqua", 30));
-
-        MenuButton morph = new MenuButton("Choose the morphism");
-        morph.setStyle("-fx-font-size: 22 px");
-
-
-
-        MenuItem integer = new MenuItem("Integer");
-        MenuItem string = new MenuItem("String");
-        MenuItem bool = new MenuItem("Boolean");
-        type.getItems().addAll(bool, integer, string);
-
-        Button test = new Button("Test");
-        test.setStyle("-fx-font-size: 22 px");
-        Label empty = new Label("           ");
-        Button create = new Button("Create");
-        create.setStyle("-fx-font-size: 22 px");
-
-
-        ////////////
-
-        MenuItem add = new MenuItem("+");
-        MenuItem sub = new MenuItem("-");
-        MenuItem mul = new MenuItem("*");
-        MenuItem div = new MenuItem("/");
-        MenuItem per = new MenuItem("%");
-        MenuItem pow = new MenuItem("^");
-
-
-
-
-        /////////
-
-        MenuItem and = new MenuItem("∧");
-        MenuItem or = new MenuItem("V");
-        MenuItem xor = new MenuItem("⊕");
-        MenuItem nand = new MenuItem("¬∧");
-        MenuItem nor = new MenuItem("¬V");
-        MenuItem xnor = new MenuItem("¬⊕");
-
-        integer.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                morph.getItems().clear();
-                morph.getItems().addAll(add, sub, mul, div, per, pow);
-                type.setText("Integer");
-            }
-        });
-
-        bool.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                morph.getItems().clear();
-                morph.getItems().addAll(and, or, xor, nand, nor, xnor);
-                type.setText("Boolean");
-            }
-        });
-
-        ///////////
-
-        add.setOnAction(e->{
-            morph.setText("+");
-        });
-
-        sub.setOnAction(e->{
-            morph.setText("-");
-        });
-
-        mul.setOnAction(e->{
-            morph.setText("*");
-        });
-
-        div.setOnAction(e->{
-            morph.setText("/");
-        });
-
-        per.setOnAction(e->{
-            morph.setText("%");
-        });
-
-        pow.setOnAction(e->{
-            morph.setText("^");
-        });
-
-        //////////////
-
-        and.setOnAction(e-> {morph.setText("∧"); });
-
-        or.setOnAction(e->{ morph.setText("V"); });
-
-        xor.setOnAction(e->{morph.setText("⊕");});
-
-        nand.setOnAction(e->{morph.setText("¬∧");});
-
-        nor.setOnAction(e->{morph.setText("¬V");});
-
-        xnor.setOnAction(e->{morph.setText("¬⊕");});
-
-
-
-        typeHBox.getChildren().addAll(typeText, type);
-        morphHBox.getChildren().addAll(morphText, morph, endMorph);
-        identityHBox.getChildren().addAll(identityText, inputText);
-        endHBox.getChildren().addAll(test, empty, create);
-
-        monoidVBox.getChildren().addAll(typeHBox, morphHBox, identityHBox, endHBox);
-
-
-        //*********************************************************************
-
-        //SET CATEGORY
-
-        HBox morphHBoxSet = new HBox();
-        morphHBoxSet.setMinHeight(100);
-        morphHBoxSet.setMinWidth(700);
-        morphHBoxSet.setAlignment(Pos.CENTER_LEFT);
-        HBox identityHBoxSet = new HBox();
-        identityHBoxSet.setMinHeight(100);
-        identityHBoxSet.setMinWidth(700);
-        identityHBoxSet.setAlignment(Pos.CENTER_LEFT);
-        HBox associativityHBoxSet = new HBox();
-        associativityHBoxSet.setMinHeight(100);
-        associativityHBoxSet.setMinWidth(700);
-        associativityHBoxSet.setAlignment(Pos.CENTER_LEFT);
-        HBox endHBoxSet = new HBox();
-        endHBoxSet.setMinHeight(100);
-        endHBoxSet.setMinWidth(700);
-        endHBoxSet.setAlignment(Pos.CENTER);
-
-
-
-        Label morphTextSet = new Label("    Morphism:  A   ");
-        morphTextSet.setStyle("-fx-font-size: 30 px");
-        Label endMorphSet = new Label ("   B");
-        endMorphSet.setStyle("-fx-font-size: 30 px");
-
-
-        Label identityTextSet = new Label("    Identity:   ");
-        identityTextSet.setStyle("-fx-font-size: 30 px");
-        TextField inputTextSet = new TextField("");
-        inputTextSet.setMinHeight(30);
-        Label space = new Label("           ");
-
-        Button prova = new Button("Test"); //test identity button
-        prova.setStyle("-fx-font-size: 22 px");
-
-
-
-        Label spazio = new Label("    ");
-        Button prove = new Button("Prove associativity");
-        prove.setStyle("-fx-font-size: 22 px");
-
-        Label associativitySet1 = new Label("    A  ");
-        associativitySet1.setStyle("-fx-font-size: 20 px");
-        TextField associativityText1 = new TextField("");
-        associativityText1.setMaxSize(30,30);
-
-        Label associativitySet2 = new Label("   (B   ");
-        associativitySet2.setStyle("-fx-font-size: 20 px");
-        TextField associativityText2 = new TextField("");
-        associativityText2.setMaxSize(30,30);
-
-        Label associativitySet3 = new Label("   C)  ==  (A    ");
-        associativitySet3.setStyle("-fx-font-size: 20 px");
-        TextField associativityText3 = new TextField("");
-        associativityText3.setMaxSize(30,30);
-
-        Label associativitySet4 = new Label ("  B)  ");
-        associativitySet4.setStyle("-fx-font-size: 20 px");
-        TextField associativityText4 = new TextField("");
-        associativityText4.setMaxSize(30,30);
-
-        Label associativitySet5 = new Label ("   C  ");
-        associativitySet5.setStyle("-fx-font-size: 20 px");
-
-
-
-        MenuButton morphSet = new MenuButton("Choose the morphism");
-        morphSet.setStyle("-fx-font-size: 22 px");
-
-        Button createSet = new Button("Create");
-        createSet.setStyle("-fx-font-size: 22 px");
-
-        ////////////////
-
-        MenuItem uni = new MenuItem("U");
-        MenuItem inter = new MenuItem ("∩");
-        MenuItem subt = new MenuItem("-");
-        MenuItem symsub = new MenuItem("Δ");
-
-        ///////////////////////////
-
-        Alert alertAssSet = new Alert(Alert.AlertType.INFORMATION);
-        Alert alertidSet = new Alert(Alert.AlertType.INFORMATION);
-        ////////////////
-
-        uni.setOnAction(e-> {
-            morphSet.setText("U");
-            associativityText1.setText("U");
-            associativityText2.setText("U");
-            associativityText3.setText("U");
-            associativityText4.setText("U");
-
-            SetCat.SetUnion obj = new SetCat.SetUnion();
-            alertAssSet.setTitle("Prove Associativity");
-            alertAssSet.setHeaderText("Associativity Checked");
-            String x = obj.associativity();
-            alertAssSet.setContentText(x);
-
-
-        });
-
-        inter.setOnAction(hh-> {
-            morphSet.setText("∩");
-            associativityText1.setText("∩");
-            associativityText2.setText("∩");
-            associativityText3.setText("∩");
-            associativityText4.setText("∩");
-
-            SetCat.SetIntersection gne = new SetCat.SetIntersection();
-            alertAssSet.setTitle("Prove Associativity");
-            alertAssSet.setHeaderText("Associativity Checked");
-            String bb = gne.associativity();
-            alertAssSet.setContentText(bb);
-        });
-
-        subt.setOnAction(fun->{
-            morphSet.setText("-");
-            associativityText1.setText("-");
-            associativityText2.setText("-");
-            associativityText3.setText("-");
-            associativityText4.setText("-");
-
-            SetCat.SetDifference ogg = new SetCat.SetDifference();
-            alertAssSet.setTitle("Prove Associativity");
-            alertAssSet.setHeaderText("Associativity Checked");
-            String z = ogg.associativity();
-            alertAssSet.setContentText(z);
-
-        });
-
-        symsub.setOnAction(f-> {
-
-            morphSet.setText("Δ");
-            associativityText1.setText("Δ");
-            associativityText2.setText("Δ");
-            associativityText3.setText("Δ");
-            associativityText4.setText("Δ");
-
-            SetCat.SetSymmetricDifference object = new SetCat.SetSymmetricDifference();
-
-            alertAssSet.setTitle("Prove Associativity");
-            alertAssSet.setHeaderText("Associativity Checked");
-            String y = object.associativity();
-            alertAssSet.setContentText(y);
-
-
-        });
-
-
-        ///////////////////////
-        prove.setOnAction(g->{
-            alertAssSet.show();
-
-        });
-
-
-
-        prova.setOnAction(h->{
-            if (morphSet.getText().equals("U")) {
-                SetCat.SetUnion w = new SetCat.SetUnion();
-                if (inputTextSet.getText().equals("[]")) {
-                    alertidSet.setTitle("Prove Identity");
-                    alertidSet.setHeaderText("Identity Checked");
-                    String s = w.tryIdentity();
-                    alertidSet.setContentText(s);
-                    alertidSet.show();
-                } else {
-                    String falso = "ERROR, the Identity should be an element that applied to the Set returns the set itself, be careful!";
-                    alertidSet.setTitle("Prove Identity");
-                    alertidSet.setHeaderText("Identity Checked");
-                    alertidSet.setContentText(falso);
-                    alertidSet.show();
-                }
-            }
-
-            if(morphSet.getText().equals("-")){
-                SetCat.SetDifference ogg = new SetCat.SetDifference();
-                if (inputTextSet.getText() .equals("[]")){
-                    alertidSet.setTitle("Prove Identity");
-                    alertidSet.setHeaderText("Identity Checked");
-                    String s = ogg.tryIdentity();
-                    alertidSet.setContentText(s);
-
-                }else{
-                    String falso = "ERROR, the Identity should be an element that applied to the Set returns the set itself, be careful!";
-                    alertidSet.setTitle("Prove Identity");
-                    alertidSet.setHeaderText("Identity Checked");
-                    alertidSet.setContentText(falso);
-                    alertidSet.show();
-                }
-            }
-
-            if(morphSet.getText().equals("Δ")){
-                SetCat.SetSymmetricDifference m = new SetCat.SetSymmetricDifference();
-                if (inputTextSet.getText().equals("[]")) {
-                    alertidSet.setTitle("Prove Identity");
-                    alertidSet.setHeaderText("Identity Checked");
-                    String s = m.tryIdentity();
-                    alertidSet.setContentText(s);
-                    alertidSet.show();
-                } else {
-                    String falso = "ERROR, the Identity should be an element that applied to the Set returns the set itself, be careful!";
-                    alertidSet.setTitle("Prove Identity");
-                    alertidSet.setHeaderText("Identity Checked");
-                    alertidSet.setContentText(falso);
-                    alertidSet.show();
-
-                }
-            }
-
-            if( morphSet.getText().equals("∩")){
-                SetCat.SetIntersection k = new SetCat.SetIntersection();
-                alertidSet.setTitle("Prove Identity");
-                alertidSet.setHeaderText("Identity Checked");
-                String s = k.tryIdentity();
-                alertidSet.setContentText(s);
-                alertidSet.show();
-            }
-
-        });
-
-        ////////////////////////////////////////
-
-        morphSet.getItems().addAll(uni, inter, subt, symsub);
-        morphHBoxSet.getChildren().addAll(morphTextSet, morphSet, endMorphSet);
-        identityHBoxSet.getChildren().addAll(identityTextSet, inputTextSet, space,  prova);
-        associativityHBoxSet.getChildren().addAll(spazio, prove, associativitySet1, associativityText1,associativitySet2, associativityText2,
-                associativitySet3, associativityText3, associativitySet4, associativityText4, associativitySet5);
-        endHBoxSet.getChildren().addAll(createSet);
-        setVBox.getChildren().addAll(morphHBoxSet, identityHBoxSet, associativityHBoxSet, endHBoxSet);
-
+        New_Semigroup.setOnAction(new_semigroup);
+        New_Group.setOnAction(new_group);
+        New_Set.setOnAction(new_set);
+        New_Ring.setOnAction(new_ring);
+        New_Monoid.setOnAction(new_monoid);
+        Add_Sub_Vector.setOnAction(subadd_Vec);
+        Mul_Div_Vector.setOnAction(muldiv_vec);
 
 
 
