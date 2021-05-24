@@ -1,6 +1,11 @@
 package Login;
 
-import Set_Category.SetCat;
+/**
+ * @author alessioborgi
+ * @created 14 / 05 / 2021 - 18:27
+ * @project CATEGORY_THEORY
+ */
+
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,26 +16,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.Menu;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 import java.util.*;
 
-
-/**
- * @author alessioborgi
- * @created 14 / 05 / 2021 - 18:27
- * @project CATEGORY_THEORY
- */
 public class JavaFX {
     private static Group root  =  new  Group();
-    //private static StackPane root  =  new StackPane();
     private static Scene  scene  =  new  Scene(root);
 
     private static MenuBar main_menu = new MenuBar();
@@ -44,8 +39,6 @@ public class JavaFX {
     private static MenuItem Exit_now = new MenuItem("Exit");
     private static MenuItem Clear_all = new MenuItem("Clear All");
     private static MenuItem Back_now = new MenuItem("Back");
-
-
     private static MenuItem New_Morphism = new MenuItem("New Morphism");
     private static MenuItem New_Semigroup = new MenuItem("New Semigroup");
     private static MenuItem New_Monoid = new MenuItem("New Monoid");
@@ -55,7 +48,6 @@ public class JavaFX {
     private static Menu New_Vector = new Menu("New Vector");
     private static MenuItem About = new MenuItem("About");
     private static SeparatorMenuItem separator = new SeparatorMenuItem();
-
     private static MenuItem Add_Sub_Vector = new MenuItem("Add/Sub Vectors");
     private static MenuItem Mul_Div_Vector = new MenuItem("Mul/Div Vectors");
 
@@ -66,6 +58,12 @@ public class JavaFX {
     private static Button back = new Button("Logout");
     private static HBox box = new HBox(clear_all, exit, back);
 
+    public static LinearGradient background = new LinearGradient(0, 0, 1, 1, true,    //sizing
+            CycleMethod.NO_CYCLE,                  //cycling
+            new Stop(0, Color.GOLD),            //colors
+            new Stop(1, Color.ORANGE)
+    );
+
     public static void initFX(JFXPanel fxPanel) {
         // This method is invoked on the JavaFX thread
         Scene scene = createScene();
@@ -74,11 +72,7 @@ public class JavaFX {
 
     public static Scene createScene() {
 
-        scene.setFill(new LinearGradient(0, 0, 1, 1, true,    //sizing
-                CycleMethod.NO_CYCLE,                  //cycling
-                new Stop(0, Color.GOLD),            //colors
-                new Stop(1, Color.ORANGE)
-        ));
+        scene.setFill(background);
 
         addActions();
         setter();
@@ -134,12 +128,12 @@ public class JavaFX {
         };
 
 
-         EventHandler new_monoid = new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-        Stage monoid = new Stage();
-        new New_Monoid().start(monoid);
-        }
+        EventHandler new_monoid = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Stage monoid = new Stage();
+                new New_Monoid().start(monoid);
+            }
         };
 
         EventHandler new_set = new EventHandler<ActionEvent>() {
@@ -243,9 +237,5 @@ public class JavaFX {
         New_Monoid.setOnAction(new_monoid);
         Add_Sub_Vector.setOnAction(subadd_Vec);
         Mul_Div_Vector.setOnAction(muldiv_vec);
-
-
-
-
     }
 }
