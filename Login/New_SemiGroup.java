@@ -1,5 +1,10 @@
 package Login;
 
+/**
+ * @author alessioborgi
+ * @created 24 / 05 / 2021 - 15:54
+ * @project CATEGORY_THEORY
+ */
 
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
@@ -33,8 +38,9 @@ public class New_SemiGroup extends Application {
         semigroup.setTitle("Semigroup Category");
 
         VBox semigroupVBox = new VBox();
-
+        semigroupVBox.getStyleClass().add("background");
         Scene semigroupScene = new Scene(semigroupVBox);
+        semigroupScene.getStylesheets().add("Login/Styles.css");
 
         semigroup.setScene(semigroupScene);
 
@@ -67,21 +73,28 @@ public class New_SemiGroup extends Application {
 
 
         MenuButton typeSG = new MenuButton("Choose the type");
+        typeSG.getStyleClass().add("menu-create");
         typeSG.setStyle("-fx-font-size: 22 px");
         typeSG.setFont(new Font("Book Antiqua", 30));
 
         MenuButton morphSG = new MenuButton("Choose the function");
+        morphSG.getStyleClass().add("menu-create");
         morphSG.setStyle("-fx-font-size: 22 px");
 
         MenuItem integer = new MenuItem("Integer");
+        morphSG.getStyleClass().add("menu-create");
         MenuItem string = new MenuItem("String");
+        morphSG.getStyleClass().add("menu-create");
         MenuItem bool = new MenuItem("Boolean");
+        morphSG.getStyleClass().add("menu-create");
         typeSG.getItems().addAll(bool, integer, string);
 
         Button test = new Button("Test");
+        test.getStyleClass().add("button-create");
         test.setStyle("-fx-font-size: 22 px");
         Label empty = new Label("           ");
         Button create = new Button("Create");
+        create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
 
 
@@ -172,11 +185,5 @@ public class New_SemiGroup extends Application {
 
         semigroupVBox.getChildren().addAll(typeHBoxSG, morphHBoxSG, endHBoxSG);
         semigroup.show();
-
-
-
-
-
-
     }
 }
