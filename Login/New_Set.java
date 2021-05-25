@@ -77,6 +77,7 @@ public class New_Set extends Application {
         identityTextSet.setStyle("-fx-font-size: 30 px");
         TextField inputTextSet = new TextField("");
         inputTextSet.setMinHeight(30);
+        inputTextSet.setPromptText("Type Identity"); //to set the hint text
         Label space = new Label("           ");
 
         Button prova = new Button("Test"); //test identity button
@@ -286,7 +287,7 @@ public class New_Set extends Application {
 
         set.show();
 
-      ///////////////////
+        ///////////////////
         createSet.setOnAction(e->{
             if (morphSet.getText().equals("U")){
 
@@ -503,7 +504,3 @@ public class New_Set extends Application {
             }
         });
     }}
-
-
-
-
