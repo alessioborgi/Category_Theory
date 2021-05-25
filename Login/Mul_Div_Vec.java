@@ -86,12 +86,16 @@ public class Mul_Div_Vec extends Application {
         Label resultCheck = new Label();
 
         TextField xText = new TextField();
+        xText.setPromptText("Vector's Y"); //to set the hint text
         xText.setMinHeight(25);
         TextField yText = new TextField();
+        yText.setPromptText("Vector's Y"); //to set the hint text
         yText.setMinHeight(25);
         TextField kText = new TextField();
+        kText.setPromptText("Scalar Integer"); //to set the hint text
         kText.setMinHeight(25);
         TextField idMulText = new TextField();
+        idMulText.setPromptText("Type Identity"); //to set the hint text
         idMulText.setMinHeight(25);
 
         MenuButton operation = new MenuButton("Choose the operation");
