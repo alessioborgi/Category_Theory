@@ -87,12 +87,16 @@ public class Add_Sub_Vec extends Application {
 
 
         TextField x1Text = new TextField();
+        x1Text.setPromptText("First Vector's X"); //to set the hint text
         x1Text.setMinHeight(25);
         TextField y1Text = new TextField();
+        y1Text.setPromptText("First Vector's Y"); //to set the hint text
         y1Text.setMinHeight(25);
         TextField x2Text = new TextField();
+        x2Text.setPromptText("Second Vector's X"); //to set the hint text
         x2Text.setMinHeight(25);
         TextField y2Text = new TextField();
+        y2Text.setPromptText("second Vector's Y"); //to set the hint text
         y2Text.setMinHeight(25);
 
         MenuButton operation = new MenuButton("Choose the operation");
