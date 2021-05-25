@@ -1,5 +1,11 @@
 package Login;
 
+/**
+ * @author alessioborgi
+ * @created 24 / 05 / 2021 - 15:56
+ * @project CATEGORY_THEORY
+ */
+
 import Vector_Category.Vector;
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
@@ -33,7 +39,9 @@ public class Add_Sub_Vec extends Application {
         addsubVec.setHeight(500);
 
         VBox addsubVBox = new VBox();
+        addsubVBox.getStyleClass().add("background");
         Scene addsubScene = new Scene(addsubVBox);
+        addsubScene.getStylesheets().add("Login/Styles.css");
         addsubVec.setScene(addsubScene);
 
 
@@ -88,24 +96,25 @@ public class Add_Sub_Vec extends Application {
         y2Text.setMinHeight(25);
 
         MenuButton operation = new MenuButton("Choose the operation");
+        operation.getStyleClass().add("menu-create");
         operation.setStyle("-fx-font-size: 22 px");
 
         MenuItem add = new MenuItem("+");
+        add.getStyleClass().add("menu-create");
         MenuItem sub = new MenuItem("-");
-
+        sub.getStyleClass().add("menu-create");
 
         Button test = new Button("Test");
+        test.getStyleClass().add("button-create");
         test.setStyle("-fx-font-size: 22 px");
         Label nul = new Label("     ");
         Button result = new Button("Result");
+        result.getStyleClass().add("button-create");
         result.setStyle("-fx-font-size: 22 px");
         Label empty = new Label("    ");
         Button create = new Button("Create");
+        create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
-
-
-
-
 
         ///////////////////
 
@@ -129,8 +138,8 @@ public class Add_Sub_Vec extends Application {
             v2.add(y2);
 
             if (operation.getText().equals("+")){
-            resultCheck.setText("" + v1.addition(v2));
-            resultCheck.setStyle("-fx-font-size: 22 px");}
+                resultCheck.setText("" + v1.addition(v2));
+                resultCheck.setStyle("-fx-font-size: 22 px");}
             else{
                 resultCheck.setText(v1.subtraction(v2).toString());
                 resultCheck.setStyle("-fx-font-size: 22 px");
