@@ -1,5 +1,10 @@
 package Login;
 
+/**
+ * @author alessioborgi
+ * @created 24 / 05 / 2021 - 15:52
+ * @project CATEGORY_THEORY
+ */
 import Vector_Category.Vector;
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
@@ -31,7 +36,9 @@ public class Mul_Div_Vec extends Application {
         muldivVec.setHeight(500);
 
         VBox muldivVBox = new VBox();
+        muldivVBox.getStyleClass().add("background");
         Scene muldivScene = new Scene(muldivVBox);
+        muldivScene.getStylesheets().add("Login/Styles.css");
         muldivVec.setScene(muldivScene);
 
         HBox vHBox = new HBox();
@@ -88,21 +95,25 @@ public class Mul_Div_Vec extends Application {
         idMulText.setMinHeight(25);
 
         MenuButton operation = new MenuButton("Choose the operation");
+        operation.getStyleClass().add("menu-create");
         operation.setStyle("-fx-font-size: 22 px");
 
         MenuItem mul = new MenuItem("*");
+        mul.getStyleClass().add("menu-create");
         MenuItem div = new MenuItem("/");
+        div.getStyleClass().add("menu-create");
 
         Button test = new Button("Test");
+        test.getStyleClass().add("button-create");
         test.setStyle("-fx-font-size: 22 px");
         Label nul = new Label("     ");
         Button result = new Button("Result");
+        result.getStyleClass().add("button-create");
         result.setStyle("-fx-font-size: 22 px");
         Label empty = new Label("    ");
         Button create = new Button("Create");
+        create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
-
-
 
         Alert alertidMul = new Alert(Alert.AlertType.INFORMATION);
 
@@ -135,24 +146,24 @@ public class Mul_Div_Vec extends Application {
 
 
                 }}else{
-                    if ((boolean) Vector.IdDiv(v, id)) {
-                        alertidMul.setTitle("Prove Identity");
-                        alertidMul.setHeaderText("Identity Checked:");
-                        String s = "CORRECT insertion";
-                        alertidMul.setContentText(s);
-                        alertidMul.show();
-                    } else {
-                        alertidMul.setTitle("Prove Identity");
-                        alertidMul.setHeaderText("Identity Checked:");
-                        String s = "WRONG insertion";
-                        alertidMul.setContentText(s);
-                        alertidMul.show();
-
-                    }
-
+                if ((boolean) Vector.IdDiv(v, id)) {
+                    alertidMul.setTitle("Prove Identity");
+                    alertidMul.setHeaderText("Identity Checked:");
+                    String s = "CORRECT insertion";
+                    alertidMul.setContentText(s);
+                    alertidMul.show();
+                } else {
+                    alertidMul.setTitle("Prove Identity");
+                    alertidMul.setHeaderText("Identity Checked:");
+                    String s = "WRONG insertion";
+                    alertidMul.setContentText(s);
+                    alertidMul.show();
 
                 }
-            });
+
+
+            }
+        });
 
 
 
