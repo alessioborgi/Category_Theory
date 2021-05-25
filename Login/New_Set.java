@@ -1,39 +1,26 @@
 package Login;
 
-/**
- * @author alessioborgi
- * @created 24 / 05 / 2021 - 15:55
- * @project CATEGORY_THEORY
- */
 import Set_Category.SetCat;
 import javafx.application.Application;
-import javafx.embed.swing.JFXPanel;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.*;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.control.Menu;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
-import javafx.scene.text.Font;
+
 import javafx.stage.Stage;
 
-import java.util.*;
+
 
 
 public class New_Set extends Application {
 
     public void start(Stage set) {
+
         set.setTitle("Set Category");
         set.setWidth(700);
         set.setHeight(500);
@@ -76,13 +63,15 @@ public class New_Set extends Application {
         Label identityTextSet = new Label("    Identity:   ");
         identityTextSet.setStyle("-fx-font-size: 30 px");
         TextField inputTextSet = new TextField("");
-        inputTextSet.setMinHeight(30);
         inputTextSet.setPromptText("Type Identity"); //to set the hint text
+        inputTextSet.setMinHeight(30);
         Label space = new Label("           ");
 
         Button prova = new Button("Test"); //test identity button
         prova.setStyle("-fx-font-size: 22 px");
         prova.getStyleClass().add("button-create");
+
+
 
         Label spazio = new Label("    ");
         Button prove = new Button("Prove associativity");
@@ -93,21 +82,29 @@ public class New_Set extends Application {
         associativitySet1.setStyle("-fx-font-size: 20 px");
         TextField associativityText1 = new TextField("");
         associativityText1.setMaxSize(30,30);
+        associativityText1.setDisable(true);
+        associativityText1.setEditable(false);
 
         Label associativitySet2 = new Label("   (B   ");
         associativitySet2.setStyle("-fx-font-size: 20 px");
         TextField associativityText2 = new TextField("");
         associativityText2.setMaxSize(30,30);
+        associativityText2.setDisable(true);
+        associativityText2.setEditable(false);
 
         Label associativitySet3 = new Label("   C)  ==  (A    ");
         associativitySet3.setStyle("-fx-font-size: 20 px");
         TextField associativityText3 = new TextField("");
         associativityText3.setMaxSize(30,30);
+        associativityText3.setDisable(true);
+        associativityText3.setEditable(false);
 
         Label associativitySet4 = new Label ("  B)  ");
         associativitySet4.setStyle("-fx-font-size: 20 px");
         TextField associativityText4 = new TextField("");
         associativityText4.setMaxSize(30,30);
+        associativityText4.setDisable(true);
+        associativityText4.setEditable(false);
 
         Label associativitySet5 = new Label ("   C  ");
         associativitySet5.setStyle("-fx-font-size: 20 px");
@@ -115,7 +112,6 @@ public class New_Set extends Application {
 
 
         MenuButton morphSet = new MenuButton("Choose the function");
-        morphSet.getStyleClass().add("menu-create");
         morphSet.setStyle("-fx-font-size: 22 px");
 
         Button createSet = new Button("Create");
@@ -132,7 +128,6 @@ public class New_Set extends Application {
         subt.getStyleClass().add("menu-create");
         MenuItem symsub = new MenuItem("Δ");
         symsub.getStyleClass().add("menu-create");
-
         ///////////////////////////
 
         Alert alertAssSet = new Alert(Alert.AlertType.INFORMATION);
@@ -141,9 +136,13 @@ public class New_Set extends Application {
 
         uni.setOnAction(e-> {
             morphSet.setText("U");
+            associativityText1.setDisable(false);
             associativityText1.setText("U");
+            associativityText2.setDisable(false);
             associativityText2.setText("U");
+            associativityText3.setDisable(false);
             associativityText3.setText("U");
+            associativityText4.setDisable(false);
             associativityText4.setText("U");
 
             SetCat.SetUnion obj = new SetCat.SetUnion();
@@ -157,9 +156,13 @@ public class New_Set extends Application {
 
         inter.setOnAction(hh-> {
             morphSet.setText("∩");
+            associativityText1.setDisable(false);
             associativityText1.setText("∩");
+            associativityText2.setDisable(false);
             associativityText2.setText("∩");
+            associativityText3.setDisable(false);
             associativityText3.setText("∩");
+            associativityText4.setDisable(false);
             associativityText4.setText("∩");
 
             SetCat.SetIntersection gne = new SetCat.SetIntersection();
@@ -171,10 +174,15 @@ public class New_Set extends Application {
 
         subt.setOnAction(fun->{
             morphSet.setText("-");
+            associativityText1.setDisable(false);
             associativityText1.setText("-");
+            associativityText2.setDisable(false);
             associativityText2.setText("-");
+            associativityText3.setDisable(false);
             associativityText3.setText("-");
+            associativityText4.setDisable(false);
             associativityText4.setText("-");
+
 
             SetCat.SetDifference ogg = new SetCat.SetDifference();
             alertAssSet.setTitle("Prove Associativity");
@@ -187,9 +195,13 @@ public class New_Set extends Application {
         symsub.setOnAction(f-> {
 
             morphSet.setText("Δ");
+            associativityText1.setDisable(false);
             associativityText1.setText("Δ");
+            associativityText2.setDisable(false);
             associativityText2.setText("Δ");
+            associativityText3.setDisable(false);
             associativityText3.setText("Δ");
+            associativityText4.setDisable(false);
             associativityText4.setText("Δ");
 
             SetCat.SetSymmetricDifference object = new SetCat.SetSymmetricDifference();
