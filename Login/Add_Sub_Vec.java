@@ -1,5 +1,6 @@
 package Login;
 
+import Vector_Category.Vector;
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Insets;
@@ -27,7 +28,7 @@ public class Add_Sub_Vec extends Application {
 
     public void start(Stage addsubVec) {
 
-        addsubVec.setTitle("Addition and Subtraction Vector");
+        addsubVec.setTitle("Group Category");
         addsubVec.setWidth(700);
         addsubVec.setHeight(500);
 
@@ -92,6 +93,7 @@ public class Add_Sub_Vec extends Application {
         MenuItem add = new MenuItem("+");
         MenuItem sub = new MenuItem("-");
 
+
         Button test = new Button("Test");
         test.setStyle("-fx-font-size: 22 px");
         Label nul = new Label("     ");
@@ -102,12 +104,38 @@ public class Add_Sub_Vec extends Application {
         create.setStyle("-fx-font-size: 22 px");
 
 
+
+
+
         ///////////////////
 
         add.setOnAction(e->{operation.setText("+");});
         sub.setOnAction(e->{operation.setText("-");});
 
         ///////////////////
+
+
+        result.setOnAction(e->{
+            int x1 = Integer.parseInt(x1Text.getText());
+            int y1 = Integer.parseInt(y1Text.getText());
+            int x2 = Integer.parseInt(x2Text.getText());
+            int y2 = Integer.parseInt(y2Text.getText());
+
+            Vector<Integer> v1 = new Vector<>();
+            v1.add(x1);
+            v1.add(y1);
+            Vector<Integer> v2 = new Vector<>();
+            v2.add(x2);
+            v2.add(y2);
+
+            if (operation.getText().equals("+")){
+            resultCheck.setText("" + v1.addition(v2));
+            resultCheck.setStyle("-fx-font-size: 22 px");}
+            else{
+                resultCheck.setText(v1.subtraction(v2).toString());
+                resultCheck.setStyle("-fx-font-size: 22 px");
+            }
+        });
 
 
 
