@@ -1,7 +1,10 @@
 package Login;
 
+import Integer_Category.IntegerCategory;
 import Set_Category.SetCat;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,6 +24,8 @@ import javafx.event.EventHandler;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.lang.reflect.Array;
 import java.util.*;
 
 
@@ -40,19 +45,23 @@ public class New_Monoid extends Application {
 
 
         HBox typeHBox = new HBox();
-        typeHBox.setMinHeight(100);
+        typeHBox.setMinHeight(80);
         typeHBox.setMinWidth(700);
         typeHBox.setAlignment(Pos.CENTER_LEFT);
         HBox morphHBox = new HBox();
-        morphHBox.setMinHeight(100);
+        morphHBox.setMinHeight(80);
         morphHBox.setMinWidth(700);
         morphHBox.setAlignment(Pos.CENTER_LEFT);
         HBox identityHBox = new HBox();
-        identityHBox.setMinHeight(100);
+        identityHBox.setMinHeight(80);
         identityHBox.setMinWidth(700);
         identityHBox.setAlignment(Pos.CENTER_LEFT);
+        HBox checkHBox = new HBox();
+        checkHBox.setMinHeight(80);
+        checkHBox.setMinWidth(100);
+        checkHBox.setAlignment(Pos.CENTER_LEFT);
         HBox endHBox = new HBox();
-        endHBox.setMinHeight(100);
+        endHBox.setMinHeight(80);
         endHBox.setMinWidth(700);
         endHBox.setAlignment(Pos.CENTER);
 
@@ -68,17 +77,16 @@ public class New_Monoid extends Application {
         endMorph.setStyle("-fx-font-size: 22 px");
         Label identityText = new Label("    Identity:   ");
         identityText.setStyle("-fx-font-size: 30 px");
+        Label fine = new Label();
 
         TextField inputText = new TextField("Type the identity...");
         inputText.setMinHeight(30);
 
         MenuButton type = new MenuButton("Choose the type");
         type.setStyle("-fx-font-size: 22 px");
-        type.setFont(new Font("Book Antiqua", 30));
+        
 
-        MenuButton morph = new MenuButton("Choose the function");
-        morph.setStyle("-fx-font-size: 22 px");
-
+        
 
 
         MenuItem integer = new MenuItem("Integer");
@@ -86,6 +94,10 @@ public class New_Monoid extends Application {
         MenuItem bool = new MenuItem("Boolean");
         type.getItems().addAll(bool, integer, string);
 
+
+
+
+        Label spazio = new Label("      ");
         Button test = new Button("Test");
         test.setStyle("-fx-font-size: 22 px");
         Label empty = new Label("           ");
@@ -95,30 +107,39 @@ public class New_Monoid extends Application {
 
         ////////////
 
-        MenuItem add = new MenuItem("+");
-        MenuItem sub = new MenuItem("-");
-        MenuItem mul = new MenuItem("*");
-        MenuItem div = new MenuItem("/");
-        MenuItem per = new MenuItem("%");
-        MenuItem pow = new MenuItem("^");
 
 
 
 
-        /////////
+        ComboBox comboBox = new ComboBox();
+        comboBox.setPrefHeight(30);
+        comboBox.setMinWidth(30);
+        ObservableList<String> options =
+                FXCollections.observableArrayList(
+                        "+",
+                        "-",
+                        "*",
+                        "/",
+                        "%",
+                        "^"
+                );
 
-        MenuItem and = new MenuItem("∧");
-        MenuItem or = new MenuItem("V");
-        MenuItem xor = new MenuItem("⊕");
-        MenuItem nand = new MenuItem("¬∧");
-        MenuItem nor = new MenuItem("¬V");
-        MenuItem xnor = new MenuItem("¬⊕");
+        ObservableList<String> selezione =
+                FXCollections.observableArrayList(
+                        "∧",
+                        "V",
+                        "⊕",
+                        "¬∧",
+                        "¬V",
+                        "¬⊕"
+                );
+
 
         integer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                morph.getItems().clear();
-                morph.getItems().addAll(add, sub, mul, div, per, pow);
+                comboBox.getItems().addAll(options);
+
                 type.setText("Integer");
             }
         });
@@ -126,60 +147,37 @@ public class New_Monoid extends Application {
         bool.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                morph.getItems().clear();
-                morph.getItems().addAll(and, or, xor, nand, nor, xnor);
+                comboBox.getItems().addAll(selezione);
                 type.setText("Boolean");
             }
         });
 
-        ///////////
 
-        add.setOnAction(e->{
-            morph.setText("+");
+        ////////////
+
+        test.setOnAction(e->{
+            if (type.getText().equals("Integer")){
+                int id = Integer.parseInt(inputText.getText());
+                if (new Integer_Category.IntegerCategory.newMonoid(id, (String)comboBox.getValue()).test()){
+                    fine.setText("                              TEST PASSED!");
+                    fine.setStyle("-fx-font-size: 22 px");
+                }
+                else{
+                    fine.setText("                          ERROR!");
+                    fine.setStyle("-fx-font-size: 22 px");
+                }
+
+            }
+
         });
-
-        sub.setOnAction(e->{
-            morph.setText("-");
-        });
-
-        mul.setOnAction(e->{
-            morph.setText("*");
-        });
-
-        div.setOnAction(e->{
-            morph.setText("/");
-        });
-
-        per.setOnAction(e->{
-            morph.setText("%");
-        });
-
-        pow.setOnAction(e->{
-            morph.setText("^");
-        });
-
-        //////////////
-
-        and.setOnAction(e-> {morph.setText("∧"); });
-
-        or.setOnAction(e->{ morph.setText("V"); });
-
-        xor.setOnAction(e->{morph.setText("⊕");});
-
-        nand.setOnAction(e->{morph.setText("¬∧");});
-
-        nor.setOnAction(e->{morph.setText("¬V");});
-
-        xnor.setOnAction(e->{morph.setText("¬⊕");});
-
 
 
         typeHBox.getChildren().addAll(typeText, type);
-        morphHBox.getChildren().addAll(morphText, sourceText, morph, endMorph);
+        morphHBox.getChildren().addAll(morphText, sourceText, comboBox,  endMorph);
         identityHBox.getChildren().addAll(identityText, inputText);
-        endHBox.getChildren().addAll(test, empty, create);
-
-        monoidVBox.getChildren().addAll(typeHBox, morphHBox, identityHBox, endHBox);
+        checkHBox.getChildren().addAll(fine);
+        endHBox.getChildren().addAll( test, empty, create);
+        monoidVBox.getChildren().addAll(typeHBox, morphHBox, identityHBox, checkHBox, endHBox);
         monoid.show();
     }
     }
