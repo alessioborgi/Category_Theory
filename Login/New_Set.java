@@ -1,10 +1,5 @@
 package Login;
 
-/**
- * @author alessioborgi
- * @created 24 / 05 / 2021 - 15:55
- * @project CATEGORY_THEORY
- */
 import Set_Category.SetCat;
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
@@ -23,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -37,12 +34,12 @@ public class New_Set extends Application {
         set.setHeight(500);
 
         VBox setVBox = new VBox();
-        //
         setVBox.getStyleClass().add("background");
+
         Scene setScene = new Scene(setVBox);
-        //
         setScene.getStylesheets().add("Login/Styles.css");
         set.setScene(setScene);
+
 
         HBox morphHBoxSet = new HBox();
         morphHBoxSet.setMinHeight(100);
@@ -61,12 +58,15 @@ public class New_Set extends Application {
         endHBoxSet.setMinWidth(700);
         endHBoxSet.setAlignment(Pos.CENTER);
 
+
+
         Label morphTextSet = new Label("    Function:  ");
         morphTextSet.setStyle("-fx-font-size: 30 px");
         Label sourceTextSet = new Label("Source  A   ");
         sourceTextSet.setStyle("-fx-font-size: 22 px");
         Label endMorphSet = new Label ("   Source B");
         endMorphSet.setStyle("-fx-font-size: 22 px");
+
 
         Label identityTextSet = new Label("    Identity:   ");
         identityTextSet.setStyle("-fx-font-size: 30 px");
@@ -75,15 +75,15 @@ public class New_Set extends Application {
         Label space = new Label("           ");
 
         Button prova = new Button("Test"); //test identity button
-        //
-        prova.getStyleClass().add("button-create");
         prova.setStyle("-fx-font-size: 22 px");
+        prova.getStyleClass().add("button-create");
+
+
 
         Label spazio = new Label("    ");
         Button prove = new Button("Prove associativity");
-        //
-        prove.getStyleClass().add("button-create");
         prove.setStyle("-fx-font-size: 22 px");
+        prove.getStyleClass().add("button-create");
 
         Label associativitySet1 = new Label("    A  ");
         associativitySet1.setStyle("-fx-font-size: 20 px");
@@ -108,13 +108,14 @@ public class New_Set extends Application {
         Label associativitySet5 = new Label ("   C  ");
         associativitySet5.setStyle("-fx-font-size: 20 px");
 
+
+
         MenuButton morphSet = new MenuButton("Choose the function");
         morphSet.setStyle("-fx-font-size: 22 px");
 
         Button createSet = new Button("Create");
-        //
-        createSet.getStyleClass().add("button-create");
         createSet.setStyle("-fx-font-size: 22 px");
+        createSet.getStyleClass().add("button-create");
 
         ////////////////
 
@@ -141,6 +142,8 @@ public class New_Set extends Application {
             alertAssSet.setHeaderText("Associativity Checked");
             String x = obj.associativity();
             alertAssSet.setContentText(x);
+
+
         });
 
         inter.setOnAction(hh-> {
@@ -274,5 +277,168 @@ public class New_Set extends Application {
         setVBox.getChildren().addAll(morphHBoxSet, identityHBoxSet, associativityHBoxSet, endHBoxSet);
 
         set.show();
-    }
-}
+
+        ///////////////////
+        createSet.setOnAction(e->{
+            if (morphSet.getText().equals("U")){
+                Circle circle1 = new Circle();
+
+                //Setting the position of the circle
+                circle1.setCenterX(350.0f);
+                circle1.setCenterY(250.0f);
+
+                //Setting the radius of the circle
+                circle1.setRadius(100.0f);
+
+                //Setting the color of the circle
+                circle1.setFill(Color.DARKSLATEBLUE);
+
+                //Drawing Circle2
+                Circle circle2 = new Circle();
+
+                //Setting the position of the circle
+                circle2.setCenterX(450.0f);
+                circle2.setCenterY(250.0f);
+
+                //Setting the radius of the circle
+                circle2.setRadius(100.0f);
+
+                //Setting the color of the circle
+                circle2.setFill(Color.BLUE);
+                //Performing union operation on the circle
+                Shape shape = Shape.union(circle1, circle2);
+
+                //Setting the fill color to the result
+                shape.setFill(Color.CORNFLOWERBLUE);
+
+                Shape forma = Shape.intersect(circle1, circle2);
+                forma.setStroke(Color.WHITE);
+                forma.setFill(Color.CORNFLOWERBLUE);
+
+                JavaFX.root.getChildren().addAll(shape, forma);}
+
+
+            if(morphSet.getText().equals("∩")){
+
+                Circle circle1 = new Circle();
+
+                //Setting the position of the circle
+                circle1.setCenterX(350.0f);
+                circle1.setCenterY(250.0f);
+
+                //Setting the radius of the circle
+                circle1.setRadius(100.0f);
+
+                //Setting the color of the circle
+                circle1.setFill(Color.DARKSLATEBLUE);
+
+                //Drawing Circle2
+                Circle circle2 = new Circle();
+
+                //Setting the position of the circle
+                circle2.setCenterX(450.0f);
+                circle2.setCenterY(250.0f);
+
+                //Setting the radius of the circle
+                circle2.setRadius(100.0f);
+
+                //Setting the color of the circle
+                circle2.setFill(Color.BLUE);
+
+                //Performing intersection operation on the circle
+                Shape shape = Shape.intersect(circle1, circle2);
+
+                //Setting the fill color to the result
+                shape.setFill(Color.CORNFLOWERBLUE);
+
+                Shape forma = Shape.union(circle1, circle2);
+                forma.setFill(JavaFX.background);
+                forma.setStroke(Color.WHITE);
+
+                JavaFX.root.getChildren().addAll(forma, shape);
+            }
+
+            if(morphSet.getText().equals("-")){
+                //Drawing Circle1
+                Circle circle1 = new Circle();
+
+                //Setting the position of the circle
+                circle1.setCenterX(350.0f);
+                circle1.setCenterY(250.0f);
+
+                //Setting the radius of the circle
+                circle1.setRadius(100.0f);
+
+                //Setting the color of the circle
+                circle1.setFill(Color.DARKSLATEBLUE);
+
+                //Drawing Circle2
+                Circle circle2 = new Circle();
+
+                //Setting the position of the circle
+                circle2.setCenterX(450.0f);
+                circle2.setCenterY(250.0f);
+
+                //Setting the radius of the circle
+                circle2.setRadius(100.0f);
+
+                //Setting the color of the circle
+                circle2.setFill(Color.BLUE);
+
+                //Performing subtraction operation on the circle
+                Shape shape = Shape.subtract(circle1, circle2);
+
+                //Setting the fill color to the result
+                shape.setFill(Color.CORNFLOWERBLUE);
+
+                Shape forma   = Shape.subtract(circle2, circle1);
+                forma.setFill(JavaFX.background);
+                forma.setStroke(Color.WHITE);
+
+                JavaFX.root.getChildren().addAll(shape, forma);
+
+
+            }
+            if(morphSet.getText().equals("Δ")){
+                Circle circle1 = new Circle();
+
+                //Setting the position of the circle
+                circle1.setCenterX(350.0f);
+                circle1.setCenterY(250.0f);
+
+                //Setting the radius of the circle
+                circle1.setRadius(100.0f);
+
+                //Setting the color of the circle
+                circle1.setFill(Color.DARKSLATEBLUE);
+
+                //Drawing Circle2
+                Circle circle2 = new Circle();
+
+                //Setting the position of the circle
+                circle2.setCenterX(450.0f);
+                circle2.setCenterY(250.0f);
+
+                //Setting the radius of the circle
+                circle2.setRadius(100.0f);
+
+                //Setting the color of the circle
+                circle2.setFill(Color.BLUE);
+
+                //Performing subtraction operation on the circle
+                Shape shape = Shape.subtract(circle1, circle2);
+
+                //Setting the fill color to the result
+                shape.setFill(Color.CORNFLOWERBLUE);
+
+                Shape forma = Shape.subtract(circle2, circle1);
+                forma.setFill(Color.CORNFLOWERBLUE);
+
+                Shape cerchio = Shape.intersect(circle1, circle2);
+                cerchio.setStroke(Color.WHITE);
+                cerchio.setFill(JavaFX.background);
+                JavaFX.root.getChildren().addAll(shape, cerchio, forma);
+
+            }
+        });
+    }}
