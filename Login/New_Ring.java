@@ -1,5 +1,10 @@
 package Login;
 
+/**
+ * @author alessioborgi
+ * @created 24 / 05 / 2021 - 15:54
+ * @project CATEGORY_THEORY
+ */
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Insets;
@@ -32,10 +37,11 @@ public class New_Ring extends Application{
         ring.setHeight(500);
 
         VBox ringVBox = new VBox();
+        ringVBox.getStyleClass().add("background");
         Scene ringScene = new Scene(ringVBox);
+        ringScene.getStylesheets().add("Login/Styles.css");
 
         ring.setScene(ringScene);
-
         HBox typeHBox = new HBox();
         typeHBox.setMinHeight(70);
         typeHBox.setMinWidth(700);
@@ -91,26 +97,38 @@ public class New_Ring extends Application{
 
 
         MenuButton type = new MenuButton("Choose the type");
+        type.getStyleClass().add("menu-create");
         type.setStyle("-fx-font-size: 22 px");
         MenuButton Add = new MenuButton("Choose the addFunction");
+        Add.getStyleClass().add("menu-create");
         Add.setStyle("-fx-font-size: 22 px");
         MenuButton Mul = new MenuButton("Choose the mulFunction");
+        Mul.getStyleClass().add("menu-create");
         Mul.setStyle("-fx-font-size: 22 px");
 
         Button test = new Button("Test");
+        test.getStyleClass().add("button-create");
         test.setStyle("-fx-font-size: 22 px");
         Label empty = new Label("           ");
         Button create = new Button("Create");
+        create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
 
         MenuItem Int = new MenuItem("Integer");
+        Int.getStyleClass().add("menu-create");
         MenuItem St = new MenuItem("String");
+        St.getStyleClass().add("menu-create");
         MenuItem Boo = new MenuItem("Boolean");
+        Boo.getStyleClass().add("menu-create");
 
         MenuItem add = new MenuItem("+");
+        add.getStyleClass().add("menu-create");
         MenuItem sub = new MenuItem("-");
+        sub.getStyleClass().add("menu-create");
         MenuItem mul = new MenuItem("*");
+        mul.getStyleClass().add("menu-create");
         MenuItem div = new MenuItem("/");
+        div.getStyleClass().add("menu-create");
 
         //////////////////////
 
