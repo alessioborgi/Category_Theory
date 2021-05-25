@@ -286,9 +286,20 @@ public class New_Set extends Application {
 
         set.show();
 
-        ///////////////////
+      ///////////////////
         createSet.setOnAction(e->{
             if (morphSet.getText().equals("U")){
+
+                Label A = new Label("A");
+                A.setTranslateX(330.0f);
+                A.setTranslateY(225.0f);
+                A.setStyle("-fx-font-size: 22 px");
+
+                Label B = new Label("B");
+                B.setTranslateX(455.0f);
+                B.setTranslateY(225.0f);
+                B.setStyle("-fx-font-size: 22 px");
+
                 Circle circle1 = new Circle();
 
                 //Setting the position of the circle
@@ -303,6 +314,7 @@ public class New_Set extends Application {
 
                 //Drawing Circle2
                 Circle circle2 = new Circle();
+
 
                 //Setting the position of the circle
                 circle2.setCenterX(450.0f);
@@ -322,11 +334,22 @@ public class New_Set extends Application {
                 Shape forma = Shape.intersect(circle1, circle2);
                 forma.setStroke(Color.WHITE);
                 forma.setFill(Color.CORNFLOWERBLUE);
-
-                JavaFX.root.getChildren().addAll(shape, forma);}
+                JavaFX.draw.getChildren().clear();
+                JavaFX.draw.getChildren().addAll( shape, forma,A, B);}
 
 
             if(morphSet.getText().equals("∩")){
+
+                Label A = new Label("A");
+                A.setTranslateX(330.0f);
+                A.setTranslateY(225.0f);
+                A.setStyle("-fx-font-size: 22 px");
+
+                Label B = new Label("B");
+                B.setTranslateX(455.0f);
+                B.setTranslateY(225.0f);
+                B.setStyle("-fx-font-size: 22 px");
+
 
                 Circle circle1 = new Circle();
 
@@ -362,11 +385,23 @@ public class New_Set extends Application {
                 Shape forma = Shape.union(circle1, circle2);
                 forma.setFill(JavaFX.background);
                 forma.setStroke(Color.WHITE);
-
-                JavaFX.root.getChildren().addAll(forma, shape);
+                JavaFX.draw.getChildren().clear();
+                JavaFX.draw.getChildren().addAll(forma,  shape, A, B);
             }
 
             if(morphSet.getText().equals("-")){
+
+                Label A = new Label("A");
+                A.setTranslateX(330.0f);
+                A.setTranslateY(225.0f);
+                A.setStyle("-fx-font-size: 22 px");
+
+                Label B = new Label("B");
+                B.setTranslateX(455.0f);
+                B.setTranslateY(225.0f);
+                B.setStyle("-fx-font-size: 22 px");
+
+
                 //Drawing Circle1
                 Circle circle1 = new Circle();
 
@@ -399,15 +434,32 @@ public class New_Set extends Application {
                 //Setting the fill color to the result
                 shape.setFill(Color.CORNFLOWERBLUE);
 
+                Shape cerchio = Shape.intersect(circle1, circle2);
+                cerchio.setStroke(Color.WHITE);
+                cerchio.setFill(JavaFX.background);
+
+
                 Shape forma   = Shape.subtract(circle2, circle1);
                 forma.setFill(JavaFX.background);
                 forma.setStroke(Color.WHITE);
-
-                JavaFX.root.getChildren().addAll(shape, forma);
+                JavaFX.draw.getChildren().clear();
+                JavaFX.draw.getChildren().addAll(shape, cerchio, forma, A, B);
 
 
             }
             if(morphSet.getText().equals("Δ")){
+
+                Label A = new Label("A");
+                A.setTranslateX(330.0f);
+                A.setTranslateY(225.0f);
+                A.setStyle("-fx-font-size: 22 px");
+
+                Label B = new Label("B");
+                B.setTranslateX(455.0f);
+                B.setTranslateY(225.0f);
+                B.setStyle("-fx-font-size: 22 px");
+
+
                 Circle circle1 = new Circle();
 
                 //Setting the position of the circle
@@ -445,8 +497,13 @@ public class New_Set extends Application {
                 Shape cerchio = Shape.intersect(circle1, circle2);
                 cerchio.setStroke(Color.WHITE);
                 cerchio.setFill(JavaFX.background);
-                JavaFX.root.getChildren().addAll(shape, cerchio, forma);
+                JavaFX.draw.getChildren().clear();
+                JavaFX.draw.getChildren().addAll(shape, cerchio, forma, A, B);
 
             }
         });
     }}
+
+
+
+
