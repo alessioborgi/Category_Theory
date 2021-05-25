@@ -1,5 +1,10 @@
 package Login;
 
+/**
+ * @author alessioborgi
+ * @created 24 / 05 / 2021 - 15:55
+ * @project CATEGORY_THEORY
+ */
 import Set_Category.SetCat;
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
@@ -32,11 +37,12 @@ public class New_Set extends Application {
         set.setHeight(500);
 
         VBox setVBox = new VBox();
-
+        //
+        setVBox.getStyleClass().add("background");
         Scene setScene = new Scene(setVBox);
-
+        //
+        setScene.getStylesheets().add("Login/Styles.css");
         set.setScene(setScene);
-
 
         HBox morphHBoxSet = new HBox();
         morphHBoxSet.setMinHeight(100);
@@ -55,15 +61,12 @@ public class New_Set extends Application {
         endHBoxSet.setMinWidth(700);
         endHBoxSet.setAlignment(Pos.CENTER);
 
-
-
         Label morphTextSet = new Label("    Function:  ");
         morphTextSet.setStyle("-fx-font-size: 30 px");
         Label sourceTextSet = new Label("Source  A   ");
         sourceTextSet.setStyle("-fx-font-size: 22 px");
         Label endMorphSet = new Label ("   Source B");
         endMorphSet.setStyle("-fx-font-size: 22 px");
-
 
         Label identityTextSet = new Label("    Identity:   ");
         identityTextSet.setStyle("-fx-font-size: 30 px");
@@ -72,12 +75,14 @@ public class New_Set extends Application {
         Label space = new Label("           ");
 
         Button prova = new Button("Test"); //test identity button
+        //
+        prova.getStyleClass().add("button-create");
         prova.setStyle("-fx-font-size: 22 px");
-
-
 
         Label spazio = new Label("    ");
         Button prove = new Button("Prove associativity");
+        //
+        prove.getStyleClass().add("button-create");
         prove.setStyle("-fx-font-size: 22 px");
 
         Label associativitySet1 = new Label("    A  ");
@@ -103,12 +108,12 @@ public class New_Set extends Application {
         Label associativitySet5 = new Label ("   C  ");
         associativitySet5.setStyle("-fx-font-size: 20 px");
 
-
-
         MenuButton morphSet = new MenuButton("Choose the function");
         morphSet.setStyle("-fx-font-size: 22 px");
 
         Button createSet = new Button("Create");
+        //
+        createSet.getStyleClass().add("button-create");
         createSet.setStyle("-fx-font-size: 22 px");
 
         ////////////////
@@ -136,8 +141,6 @@ public class New_Set extends Application {
             alertAssSet.setHeaderText("Associativity Checked");
             String x = obj.associativity();
             alertAssSet.setContentText(x);
-
-
         });
 
         inter.setOnAction(hh-> {
@@ -271,9 +274,5 @@ public class New_Set extends Application {
         setVBox.getChildren().addAll(morphHBoxSet, identityHBoxSet, associativityHBoxSet, endHBoxSet);
 
         set.show();
-
-
-
-
     }
 }
