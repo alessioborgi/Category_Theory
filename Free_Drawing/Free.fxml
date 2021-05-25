@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:controller="Free_Drawing.Controller"
+            xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@MyStyles.css">
+<top>
+    <VBox id="vbox"
+          xmlns:fx="http://javafx.com/fxml">
+        <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput">
+            <menus>
+                <Menu text="Create">
+                    <items>
+                        <MenuItem text="New Vertex"   onAction="#NewVertexClicked"/>
+                        <MenuItem text="New Morphism" onAction="#NewMorphism"/>
+                        <MenuItem text="Composition"  onAction="#NewComposition"/>
+                        <SeparatorMenuItem  />
+                        <MenuItem text="Cancel"       onAction="#CancelVertex"/>
+                    </items>
+                </Menu>
+                <Menu text="Edit">
+                    <items>
+                        <MenuItem text="Clear"        onAction="#ClearAll"/>
+                        <MenuItem text="Logout"       onAction="#Logout"/>
+                        <SeparatorMenuItem  />
+                        <MenuItem text="Exit"         onAction="#ExitNow"/>
+                    </items>
+                </Menu>
+                <Menu text="Help">
+                    <items>
+                        <MenuItem text="Search" disable="true"/>
+                        <MenuItem text="Online Manual" visible="false"/>
+                        <SeparatorMenuItem />
+                        <MenuItem text="About" onAction="#handleAboutAction"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </VBox>
+</top>
+<center>
+    <AnchorPane fx:id="graph" style="-fx-background-color:linear-gradient(to right, gold , orange);"
+                onMousePressed="#onGraphPressed"
+                onDragDetected="#onGraphDragDetected"
+                onMouseDragged="#onGraphDragged"
+                onMouseReleased="#onGraphReleased"/>
+</center>
+
+
+<bottom>
+    <GridPane fx:id="Bottom">
+
+        <HBox id="vbox2" xmlns:fx="http://javafx.com/fxml" GridPane.rowIndex="0" GridPane.columnIndex="2">
+            <Button text ="Clear" fx:id ="button" onAction="#SubmitPressed"></Button>
+        </HBox>
+        <HBox id="vbox" xmlns:fx="http://javafx.com/fxml" GridPane.rowIndex="1" GridPane.columnIndex="0">
+            <Label fx:id="label1" text="Sapienza1" ></Label>
+
+            <Label text="ACSAI" ></Label>
+            <Label text="Sapienza1"></Label>
+        </HBox>
+    </GridPane>
+</bottom>
+</BorderPane>
+
+
