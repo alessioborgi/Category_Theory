@@ -84,7 +84,8 @@ public class New_Monoid extends Application {
         identityText.setStyle("-fx-font-size: 30 px");
         Label fine = new Label();
 
-        TextField inputText = new TextField("Type the identity...");
+        TextField inputText = new TextField();
+        inputText.setPromptText("Type Identity"); //to set the hint text
         inputText.setMinHeight(30);
 
         MenuButton type = new MenuButton("Choose the type");
