@@ -6,7 +6,9 @@ package Login;
  * @project CATEGORY_THEORY
  */
 
+import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
@@ -34,19 +36,19 @@ public class JavaFX {
     private static Menu Cancel = new Menu("Cancel");
     private static Menu Help = new Menu("Help");
     private static Menu New_Object = new Menu("New Object");
-
+    private static Menu New_Vector = new Menu("New Vector");
 
     private static MenuItem Exit_now = new MenuItem("Exit");
     private static MenuItem Clear_all = new MenuItem("Clear All");
-    private static MenuItem Back_now = new MenuItem("Back");
+    private static MenuItem Back_now = new MenuItem("Logout");
     private static MenuItem New_Morphism = new MenuItem("New Morphism");
     private static MenuItem New_Semigroup = new MenuItem("New Semigroup");
     private static MenuItem New_Monoid = new MenuItem("New Monoid");
     private static MenuItem New_Group = new MenuItem("New Group");
     private static MenuItem New_Ring = new MenuItem("New Ring");
     private static MenuItem New_Set = new MenuItem("New Set");
-    private static Menu New_Vector = new Menu("New Vector");
     private static MenuItem About = new MenuItem("About");
+    private static MenuItem Free = new MenuItem("Free Drawing");
     private static SeparatorMenuItem separator = new SeparatorMenuItem();
     private static MenuItem Add_Sub_Vector = new MenuItem("Add/Sub Vectors");
     private static MenuItem Mul_Div_Vector = new MenuItem("Mul/Div Vectors");
@@ -71,9 +73,7 @@ public class JavaFX {
     }
 
     public static Scene createScene() {
-
         scene.setFill(background);
-
         addActions();
         setter();
         root.getChildren().addAll(canvas, box, main_menu);
@@ -82,25 +82,29 @@ public class JavaFX {
 
     private static void setter(){
         scene.getStylesheets().add("Login/Styles.css");
+
         Help.getItems().add(About);
         Create.getItems().addAll(New_Object,  New_Morphism);
         New_Object.getItems().addAll(New_Semigroup, New_Monoid, New_Group, New_Ring, New_Set, New_Vector);
         New_Vector.getItems().addAll(Add_Sub_Vector, Mul_Div_Vector);
         main_menu.getMenus().addAll(Create, Draw, Cancel, Help);
         Cancel.getItems().addAll(Clear_all, Back_now, separator, Exit_now);
+        Draw.getItems().add(Free);
 
-        //Mnemonics used up to now: (a, b, c, e, g, k, m, r, s, v)
+        //Mnemonics used up to now: (a, c, d, e, f, g, k, l, m, r, s, v)
         About.setAccelerator(KeyCombination.keyCombination("shortcut+A"));
-        Back_now.setAccelerator(KeyCombination.keyCombination("shortcut+B"));
         Clear_all.setAccelerator(KeyCombination.keyCombination("shortcut+C"));
+        Mul_Div_Vector.setAccelerator(KeyCombination.keyCombination("shortcut+D"));
         Exit_now.setAccelerator(KeyCombination.keyCombination("shortcut+E"));
+        Free.setAccelerator(KeyCombination.keyCombination("shortcut+F"));
         New_Group.setAccelerator(KeyCombination.keyCombination("shortcut+G"));
         New_Semigroup.setAccelerator(KeyCombination.keyCombination("shortcut+K"));
+        Back_now.setAccelerator(KeyCombination.keyCombination("shortcut+L"));
         New_Monoid.setAccelerator(KeyCombination.keyCombination("shortcut+M"));
         New_Ring.setAccelerator(KeyCombination.keyCombination("shortcut+R"));
         New_Set.setAccelerator(KeyCombination.keyCombination("shortcut+S"));
-        New_Vector.setAccelerator(KeyCombination.keyCombination("shortcut+V"));
-
+        Add_Sub_Vector.setAccelerator(KeyCombination.keyCombination("shortcut+V"));
+        
         exit.getStyleClass().add("button-red");
         clear_all.getStyleClass().add("button-green");
         back.getStyleClass().add("button-logout");
@@ -112,6 +116,18 @@ public class JavaFX {
     }
 
     private static void addActions(){
+        EventHandler free_event = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Stage vis = new Stage();
+                try {
+                    new sample.Main().start(vis);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
         EventHandler exit_event = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -227,6 +243,8 @@ public class JavaFX {
         exit.setOnAction(exit_event);
         Back_now.setOnAction(go_back);
         back.setOnAction(go_back);
+        //
+        Draw.setOnAction(free_event);
 
         //****************************************************
 
