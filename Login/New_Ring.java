@@ -90,9 +90,11 @@ public class New_Ring extends Application{
         Label idMulText = new Label("    IdMul:   ");
         idMulText.setStyle("-fx-font-size: 30 px");
 
-        TextField idAddTxt = new TextField("Type the IdAdd...");
+        TextField idAddTxt = new TextField();
+        idAddTxt.setPromptText("Type the Add's ID"); //to set the hint text
         idAddTxt.setMinHeight(30);
-        TextField idMulTxt = new TextField("Type the IdMul...");
+        TextField idMulTxt = new TextField();
+        idMulTxt.setPromptText("Type the Mul's ID"); //to set the hint text
         idMulTxt.setMinHeight(30);
 
 
