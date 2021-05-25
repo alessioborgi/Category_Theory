@@ -1,6 +1,10 @@
 package Login;
 
-
+/**
+ * @author alessioborgi
+ * @created 24 / 05 / 2021 - 15:53
+ * @project CATEGORY_THEORY
+ */
 
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
@@ -33,9 +37,9 @@ public class New_Group extends Application {
         group.setHeight(500);
 
         VBox groupVBox = new VBox();
-
+        groupVBox.getStyleClass().add("background");
         Scene groupScene = new Scene(groupVBox);
-
+        groupScene.getStylesheets().add("Login/Styles.css");
         group.setScene(groupScene);
 
 
@@ -79,25 +83,33 @@ public class New_Group extends Application {
 
 
         MenuButton type = new MenuButton("Choose the type");
+        type.getStyleClass().add("menu-create");
         type.setStyle("-fx-font-size: 22 px");
 
 
         MenuButton morph = new MenuButton("Choose the function");
+        morph.getStyleClass().add("menu-create");
         morph.setStyle("-fx-font-size: 22 px");
 
         MenuButton inv = new MenuButton("Choose the inverse");
+        inv.getStyleClass().add("menu-create");
         type.setStyle("-fx-font-size: 22 px");
 
 
         MenuItem integer = new MenuItem("Integer");
+        integer.getStyleClass().add("menu-create");
         MenuItem string = new MenuItem("String");
+        string.getStyleClass().add("menu-create");
         MenuItem bool = new MenuItem("Boolean");
+        bool.getStyleClass().add("menu-create");
         type.getItems().addAll(bool, integer, string);
 
         Button test = new Button("Test");
+        test.getStyleClass().add("button-create");
         test.setStyle("-fx-font-size: 22 px");
         Label empty = new Label("           ");
         Button create = new Button("Create");
+        create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
 
         ////////////
