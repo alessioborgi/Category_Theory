@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 import java.util.*;
 
 public class JavaFX {
-    private static Group root  =  new  Group();
+    public static Group root  =  new  Group();
     private static Scene  scene  =  new  Scene(root);
 
     private static MenuBar main_menu = new MenuBar();
