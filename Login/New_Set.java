@@ -1,5 +1,10 @@
 package Login;
 
+/**
+ * @author alessioborgi
+ * @created 24 / 05 / 2021 - 15:55
+ * @project CATEGORY_THEORY
+ */
 import Set_Category.SetCat;
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
@@ -78,8 +83,6 @@ public class New_Set extends Application {
         prova.setStyle("-fx-font-size: 22 px");
         prova.getStyleClass().add("button-create");
 
-
-
         Label spazio = new Label("    ");
         Button prove = new Button("Prove associativity");
         prove.setStyle("-fx-font-size: 22 px");
@@ -111,6 +114,7 @@ public class New_Set extends Application {
 
 
         MenuButton morphSet = new MenuButton("Choose the function");
+        morphSet.getStyleClass().add("menu-create");
         morphSet.setStyle("-fx-font-size: 22 px");
 
         Button createSet = new Button("Create");
@@ -120,9 +124,13 @@ public class New_Set extends Application {
         ////////////////
 
         MenuItem uni = new MenuItem("U");
+        uni.getStyleClass().add("menu-create");
         MenuItem inter = new MenuItem ("∩");
+        inter.getStyleClass().add("menu-create");
         MenuItem subt = new MenuItem("-");
+        subt.getStyleClass().add("menu-create");
         MenuItem symsub = new MenuItem("Δ");
+        symsub.getStyleClass().add("menu-create");
 
         ///////////////////////////
 
