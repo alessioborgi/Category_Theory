@@ -1,5 +1,11 @@
 package Login;
 
+/**
+ * @author alessioborgi
+ * @created 24 / 05 / 2021 - 15:53
+ * @project CATEGORY_THEORY
+ */
+
 import Integer_Category.IntegerCategory;
 import Set_Category.SetCat;
 import javafx.application.Application;
@@ -36,11 +42,10 @@ public class New_Monoid extends Application {
         monoid.setHeight(500);
         monoid.setTitle("Monoid Category");
 
-
         VBox monoidVBox = new VBox();
-
+        monoidVBox.getStyleClass().add("background");
         Scene monoidScene = new Scene(monoidVBox);
-
+        monoidScene.getStylesheets().add("Login/Styles.css");
         monoid.setScene(monoidScene);
 
 
@@ -83,15 +88,19 @@ public class New_Monoid extends Application {
         inputText.setMinHeight(30);
 
         MenuButton type = new MenuButton("Choose the type");
+        type.getStyleClass().add("menu-create");
         type.setStyle("-fx-font-size: 22 px");
-        
 
-        
+
+
 
 
         MenuItem integer = new MenuItem("Integer");
+        integer.getStyleClass().add("menu-create");
         MenuItem string = new MenuItem("String");
+        string.getStyleClass().add("menu-create");
         MenuItem bool = new MenuItem("Boolean");
+        bool.getStyleClass().add("menu-create");
         type.getItems().addAll(bool, integer, string);
 
 
@@ -99,9 +108,11 @@ public class New_Monoid extends Application {
 
         Label spazio = new Label("      ");
         Button test = new Button("Test");
+        test.getStyleClass().add("button-create");
         test.setStyle("-fx-font-size: 22 px");
         Label empty = new Label("           ");
         Button create = new Button("Create");
+        create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
 
 
@@ -180,4 +191,4 @@ public class New_Monoid extends Application {
         monoidVBox.getChildren().addAll(typeHBox, morphHBox, identityHBox, checkHBox, endHBox);
         monoid.show();
     }
-    }
+}
