@@ -29,19 +29,17 @@ import java.util.*;
 public class JavaFX {
     public static Group root  =  new  Group();
     private static Scene  scene  =  new  Scene(root);
-    public static Group draw = new Group(); //
+    public static Group draw = new Group();
     private static MenuBar main_menu = new MenuBar();
     private static Menu Create = new Menu("Create");
     private static Menu Draw = new Menu("Draw");
     private static Menu Cancel = new Menu("Cancel");
     private static Menu Help = new Menu("Help");
-    private static Menu New_Object = new Menu("New Object");
     private static Menu New_Vector = new Menu("New Vector");
 
     private static MenuItem Exit_now = new MenuItem("Exit");
     private static MenuItem Clear_all = new MenuItem("Clear All");
     private static MenuItem Back_now = new MenuItem("Logout");
-    private static MenuItem New_Morphism = new MenuItem("New Morphism");
     private static MenuItem New_Semigroup = new MenuItem("New Semigroup");
     private static MenuItem New_Monoid = new MenuItem("New Monoid");
     private static MenuItem New_Group = new MenuItem("New Group");
@@ -53,7 +51,7 @@ public class JavaFX {
     private static MenuItem Add_Sub_Vector = new MenuItem("Add/Sub Vectors");
     private static MenuItem Mul_Div_Vector = new MenuItem("Mul/Div Vectors");
 
-   
+
     private static Button exit = new Button("Exit");
     private static Button clear_all = new Button("Clear");
     private static Button back = new Button("Logout");
@@ -75,7 +73,7 @@ public class JavaFX {
         scene.setFill(background);
         addActions();
         setter();
-        
+
         root.getChildren().addAll(box, main_menu, draw);//
         return (scene);
     }
@@ -84,8 +82,7 @@ public class JavaFX {
         scene.getStylesheets().add("Login/Styles.css");
 
         Help.getItems().add(About);
-        Create.getItems().addAll(New_Object,  New_Morphism);
-        New_Object.getItems().addAll(New_Semigroup, New_Monoid, New_Group, New_Ring, New_Set, New_Vector);
+        Create.getItems().addAll(New_Semigroup, New_Monoid, New_Group, New_Ring, New_Set, New_Vector);
         New_Vector.getItems().addAll(Add_Sub_Vector, Mul_Div_Vector);
         main_menu.getMenus().addAll(Create, Draw, Cancel, Help);
         Cancel.getItems().addAll(Clear_all, Back_now, separator, Exit_now);
@@ -221,13 +218,13 @@ public class JavaFX {
         EventHandler clear_event = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                
+
                 draw.getChildren().clear();
             }
         };
 
 
-        
+
 
         clear_all.setOnAction(clear_event);
         Clear_all.setOnAction(clear_event);
@@ -235,7 +232,6 @@ public class JavaFX {
         exit.setOnAction(exit_event);
         Back_now.setOnAction(go_back);
         back.setOnAction(go_back);
-        //
         Draw.setOnAction(free_event);
 
         //****************************************************
