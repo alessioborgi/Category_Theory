@@ -77,7 +77,8 @@ public class New_Group extends Application {
         Label inverseText = new Label("    Inverse:    ");
         inverseText.setStyle("-fx-font-size: 30 px");
 
-        TextField idText = new TextField("Type the identity...");
+        TextField idText = new TextField();
+        idText.setPromptText("Type Identity");
         idText.setMinHeight(30);
 
 
