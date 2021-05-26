@@ -1,12 +1,7 @@
 package Login.stages;
 
-/**
- * @author alessioborgi
- * @created 24 / 05 / 2021 - 15:53
- * @project CATEGORY_THEORY
- */
-
 import Integer_Category.IntegerCategory;
+import Login.JavaFX;
 import Set_Category.SetCat;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -18,7 +13,10 @@ import javafx.scene.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -27,10 +25,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -42,11 +43,13 @@ public class New_Monoid extends Application {
         monoid.setHeight(500);
         monoid.setTitle("Monoid Category");
 
+
         VBox monoidVBox = new VBox();
         monoidVBox.getStyleClass().add("background");
         Scene monoidScene = new Scene(monoidVBox);
         monoidScene.getStylesheets().add("Login/Styles.css");
         monoid.setScene(monoidScene);
+
 
 
         HBox typeHBox = new HBox();
@@ -85,8 +88,8 @@ public class New_Monoid extends Application {
         Label fine = new Label();
 
         TextField inputText = new TextField();
-        inputText.setPromptText("Type Identity"); //to set the hint text
         inputText.setMinHeight(30);
+        inputText.setPromptText("Type Identity"); //to set the hint text
 
         MenuButton type = new MenuButton("Choose the type");
         type.getStyleClass().add("menu-create");
@@ -103,6 +106,7 @@ public class New_Monoid extends Application {
         MenuItem bool = new MenuItem("Boolean");
         bool.getStyleClass().add("menu-create");
         type.getItems().addAll(bool, integer, string);
+
 
 
 
@@ -184,6 +188,78 @@ public class New_Monoid extends Application {
         });
 
 
+
+        create.setOnAction(e->{
+            Circle circle = new Circle();
+            circle.setRadius(250);
+            circle.setStroke(Color.BLACK);
+            circle.setFill(JavaFX.background);
+            circle.setCenterX(350.0f);
+            circle.setCenterY(300.0f);
+
+            Label name = new Label("NEW MONOID");
+            name.setStyle("-fx-font-size: 25 px");
+            name.setTranslateX(200.0f);
+            name.setTranslateY(150.0f);
+
+            TextField a = new TextField();
+            a.setPromptText("a...");
+            a.setMinHeight(30);
+            a.setTranslateX(125.0f);
+            a.setTranslateY(300.0f);
+
+            TextField b = new TextField();
+            b.setPromptText("b...");
+            b.setMinHeight(30);
+            b.setTranslateX(425.0f);
+            b.setTranslateY(300.0f);
+
+
+            Label leftArrow = new Label("->");
+            leftArrow.setStyle("-fx-font-size: 22 px");
+            leftArrow.setTranslateY(300.0f);
+            leftArrow.setTranslateX(275.0f);
+
+            Label rightArrow = new Label("<-");
+            rightArrow.setStyle("-fx-font-size: 22 px");
+            rightArrow.setTranslateX(400.0f);
+            rightArrow.setTranslateY(300.0f);
+
+            Label result = new Label();
+            result.setTranslateY(300.0f);
+            result.setTranslateX(330.0f);
+
+
+            Button func = new Button("f");
+            func.setStyle("-fx-font-size: 25 px");
+            func.setTranslateX(330.0f);
+            func.setTranslateY(375.0f);
+
+            String x = "Type: Monoid \n" +
+                    "Operation: " + comboBox.getValue()
+                    ;
+            Tooltip t = new Tooltip(x);
+            Button info = new Button("i");
+            info.setShape(new Circle(1.5));
+            info.setTranslateX(450.0f);
+            info.setTranslateY(125.0f);
+            info.setStyle("-fx-font-size: 30 px");
+
+            info.setTooltip(t);
+
+
+
+
+            JavaFX.draw.getChildren().clear();
+            JavaFX.draw.getChildren().addAll( circle, name, a, leftArrow, b, rightArrow, func, result, info);
+
+
+
+
+
+    });
+
+
         typeHBox.getChildren().addAll(typeText, type);
         morphHBox.getChildren().addAll(morphText, sourceText, comboBox,  endMorph);
         identityHBox.getChildren().addAll(identityText, inputText);
@@ -192,4 +268,4 @@ public class New_Monoid extends Application {
         monoidVBox.getChildren().addAll(typeHBox, morphHBox, identityHBox, checkHBox, endHBox);
         monoid.show();
     }
-}
+    }
