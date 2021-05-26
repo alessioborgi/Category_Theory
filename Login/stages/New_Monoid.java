@@ -99,6 +99,7 @@ public class New_Monoid extends Application {
 
 
 
+
         MenuItem integer = new MenuItem("Integer");
         integer.getStyleClass().add("menu-create");
         MenuItem string = new MenuItem("String");
@@ -136,7 +137,7 @@ public class New_Monoid extends Application {
                         "-",
                         "*",
                         "/"
-                       
+
                 );
 
         ObservableList<String> selezione =
@@ -183,12 +184,7 @@ public class New_Monoid extends Application {
                     fine.setText("                                         WRONG IDENTITY!");
                     fine.setStyle("-fx-font-size: 22 px");
                 }
-            if(type.getText().equals("Boolean")){
-
-
-
-            }
-
+           
             }
 
         });
@@ -203,31 +199,31 @@ public class New_Monoid extends Application {
                     circle.setRadius(250);
                     circle.setStroke(Color.BLACK);
                     circle.setFill(JavaFX.background);
-                    circle.setCenterX(350.0f);
+                    circle.setCenterX(400.0f);
                     circle.setCenterY(300.0f);
 
                     Label name = new Label("NEW MONOID");
                     name.setStyle("-fx-font-size: 25 px");
-                    name.setTranslateX(200.0f);
+                    name.setTranslateX(250.0f);
                     name.setTranslateY(150.0f);
 
                     TextField a = new TextField();
                     a.setPromptText("a...");
                     a.setMinHeight(30);
-                    a.setTranslateX(125.0f);
+                    a.setTranslateX(175.0f);
                     a.setTranslateY(300.0f);
 
                     TextField b = new TextField();
                     b.setPromptText("b...");
                     b.setMinHeight(30);
-                    b.setTranslateX(425.0f);
+                    b.setTranslateX(475.0f);
                     b.setTranslateY(300.0f);
 
 
                     Label leftArrow = new Label("->");
                     leftArrow.setStyle("-fx-font-size: 22 px");
                     leftArrow.setTranslateY(300.0f);
-                    leftArrow.setTranslateX(275.0f);
+                    leftArrow.setTranslateX(325.0f);
 
                     Label rightArrow = new Label("<-");
                     rightArrow.setStyle("-fx-font-size: 22 px");
@@ -236,12 +232,12 @@ public class New_Monoid extends Application {
 
                     Label result = new Label();
                     result.setTranslateY(300.0f);
-                    result.setTranslateX(330.0f);
+                    result.setTranslateX(380.0f);
 
 
                     Button func = new Button("f");
                     func.setStyle("-fx-font-size: 25 px");
-                    func.setTranslateX(330.0f);
+                    func.setTranslateX(380.0f);
                     func.setTranslateY(375.0f);
 
                     String x = "Type: Monoid \n" +
@@ -249,7 +245,7 @@ public class New_Monoid extends Application {
                     Tooltip t = new Tooltip(x);
                     Button info = new Button("i");
                     info.setShape(new Circle(1.5));
-                    info.setTranslateX(450.0f);
+                    info.setTranslateX(500.0f);
                     info.setTranslateY(125.0f);
                     info.setStyle("-fx-font-size: 30 px");
 
