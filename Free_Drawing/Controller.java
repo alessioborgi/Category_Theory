@@ -171,7 +171,8 @@ public class Controller {
     }
 
     public void SubmitPressed(ActionEvent actionEvent) {
-        button.setText("Stop");
+        graph.getChildren().clear();
+
     }
 
     public void NewVertexClicked(ActionEvent actionEvent) {
@@ -189,6 +190,8 @@ public class Controller {
     }
 
     public void ClearAll(ActionEvent actionEvent) {
+        graph.getChildren().clear();
+
     }
 
     public void Logout(ActionEvent actionEvent) {
