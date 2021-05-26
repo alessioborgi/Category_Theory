@@ -1,8 +1,6 @@
 package Login.stages;
 
 
-
-
 import Integer_Category.IntegerCategory;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -89,9 +87,7 @@ public class New_Group extends Application {
         type.setStyle("-fx-font-size: 22 px");
 
 
-        MenuButton inv = new MenuButton("Choose the inverse");
-        inv.getStyleClass().add("menu-create");
-        type.setStyle("-fx-font-size: 22 px");
+
 
 
         MenuItem integer = new MenuItem("Integer");
@@ -117,14 +113,21 @@ public class New_Group extends Application {
         ComboBox comboBox = new ComboBox();
         comboBox.setPrefHeight(30);
         comboBox.setMinWidth(30);
+
+
+        ComboBox comboBoxInv = new ComboBox();
+        comboBox.setPrefHeight(30);
+        comboBox.setMinWidth(30);
+
+
+
         ObservableList<String> options =
                 FXCollections.observableArrayList(
                         "+",
                         "-",
                         "*",
-                        "/",
-                        "%",
-                        "^"
+                        "/"
+                       // "^"
                 );
 
 
@@ -141,6 +144,19 @@ public class New_Group extends Application {
                         "¬∧",
                         "¬V",
                         "¬⊕"
+                );
+
+
+        ///////////////////
+
+
+        ObservableList<String> inv  =
+                FXCollections.observableArrayList(
+                        "-a",
+                        "+a",
+                        "0",
+                        "1"
+
                 );
 
         integer.setOnAction(new EventHandler<ActionEvent>() {
@@ -164,25 +180,21 @@ public class New_Group extends Application {
         test.setOnAction(e->{
             if (type.getText().equals("Integer")){
                 int id = Integer.parseInt(idText.getText());
-                if (new IntegerCategory.newMonoid(id, (String)comboBox.getValue()).test()){
-                    fine.setText("     TEST PASSED!");
-                    fine.setStyle("-fx-font-size: 22 px");
-                }
-                else{
-                    fine.setText("      ERROR!");
-                    fine.setStyle("-fx-font-size: 22 px");
-                }
+
+                fine.setText(new IntegerCategory.newGroup(id, (String)comboBox.getValue(), (String) comboBoxInv.getValue()).test());
+                fine.setStyle("-fx-font-size: 22 px");
 
             }
 
         });
 
 
+        comboBoxInv.getItems().addAll(inv);
 
         typeHBox.getChildren().addAll(typeText, type);
         morphHBox.getChildren().addAll(morphText, sourceText,comboBox , endMorph);
         identityHBox.getChildren().addAll(identityText, idText, fine);
-        inverseHBox.getChildren().addAll(inverseText, inv);
+        inverseHBox.getChildren().addAll(inverseText, comboBoxInv);
         endHBox.getChildren().addAll(test, empty, create);
         groupVBox.getChildren().addAll(typeHBox, morphHBox, identityHBox, inverseHBox, endHBox);
         group.show();
