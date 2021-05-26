@@ -1,9 +1,11 @@
+
+
 import java.util.concurrent.ThreadLocalRandom;
 import java.lang.Math;
 
 public class IntegerCategory{
 
-    static class newSemigroup implements Semigroup<Integer>{
+    public static class newSemigroup implements Semigroup<Integer>{
         String fx;
         public newSemigroup(String func){
             fx = func;
@@ -22,7 +24,7 @@ public class IntegerCategory{
         }
     }
 
-    static class newMonoid implements Monoid<Integer> {
+    public static class newMonoid implements Monoid<Integer> {
 
         int zero;
         String fx;
@@ -55,7 +57,7 @@ public class IntegerCategory{
             return true;}
     }
 
-    static class newGroup implements Group<Integer>{
+    public static class newGroup implements Group<Integer>{
 
         int zero;
         String fx;
@@ -76,13 +78,29 @@ public class IntegerCategory{
         }
 
         public Integer invert(Integer t) {
-            if (inv.equals("-")){return -t;}
-            return t;
+            return switch (inv) {
+                case "-a" -> -t;
+                case "+a" -> t;
+                case "0" -> 0;
+                case "1" -> 1;
+
+                default -> 0;
+            };
         }
 
-        public boolean test() {
-            return new newMonoid(zero, fx).test();
-        }
+
+        public String test(){
+            for (int i = 0; i < 50; i++) {
+                Integer randomN = ThreadLocalRandom.current().nextInt(0,100);
+                Integer randomM = ThreadLocalRandom.current().nextInt(-100,0);
+                try{test(randomN);
+                    test(randomM);}
+                catch(Exception e){
+                    System.out.println("Exception caught => " + e.getMessage());
+                    return e.getMessage();
+                }
+            }
+            return "TEST PASSED!";}
 
         public boolean isAbelian(){
             for(int i = 0; i < 50; i++){
@@ -94,7 +112,7 @@ public class IntegerCategory{
             return true;}
     }
 
-    static class newRing implements Ring<Integer>{
+    public static class newRing implements Ring<Integer>{
 
         int zeroAdd;
         int zeroMul;
@@ -165,6 +183,7 @@ public class IntegerCategory{
 
     }
 
+   /**
     public void met(){
         try {
             BooleanCategory.newMonoid BoolOR = new BooleanCategory.newMonoid(true,"and");
@@ -194,6 +213,6 @@ public class IntegerCategory{
         firstInt.met();
         long endTime = System.currentTimeMillis();
         System.out.println("Total execution time: " + (endTime-startTime) + "ms");
-    }
+    }*/
 
 }
