@@ -135,9 +135,8 @@ public class New_Monoid extends Application {
                         "+",
                         "-",
                         "*",
-                        "/",
-                        "%",
-                        "^"
+                        "/"
+                       
                 );
 
         ObservableList<String> selezione =
@@ -177,13 +176,18 @@ public class New_Monoid extends Application {
             if (type.getText().equals("Integer")){
                 int id = Integer.parseInt(inputText.getText());
                 if (new Integer_Category.IntegerCategory.newMonoid(id, (String)comboBox.getValue()).test()){
-                    fine.setText("                              TEST PASSED!");
+                    fine.setText("                                              TEST PASSED!");
                     fine.setStyle("-fx-font-size: 22 px");
                 }
                 else{
-                    fine.setText("                          ERROR!");
+                    fine.setText("                                         WRONG IDENTITY!");
                     fine.setStyle("-fx-font-size: 22 px");
                 }
+            if(type.getText().equals("Boolean")){
+
+
+
+            }
 
             }
 
@@ -192,74 +196,72 @@ public class New_Monoid extends Application {
 
 
         create.setOnAction(e->{
-            Circle circle = new Circle();
-            circle.setRadius(250);
-            circle.setStroke(Color.BLACK);
-            circle.setFill(JavaFX.background);
-            circle.setCenterX(350.0f);
-            circle.setCenterY(300.0f);
+                test.fire();
 
-            Label name = new Label("NEW MONOID");
-            name.setStyle("-fx-font-size: 25 px");
-            name.setTranslateX(200.0f);
-            name.setTranslateY(150.0f);
+                if(fine.getText().equals("                                              TEST PASSED!")) {
+                    Circle circle = new Circle();
+                    circle.setRadius(250);
+                    circle.setStroke(Color.BLACK);
+                    circle.setFill(JavaFX.background);
+                    circle.setCenterX(350.0f);
+                    circle.setCenterY(300.0f);
 
-            TextField a = new TextField();
-            a.setPromptText("a...");
-            a.setMinHeight(30);
-            a.setTranslateX(125.0f);
-            a.setTranslateY(300.0f);
+                    Label name = new Label("NEW MONOID");
+                    name.setStyle("-fx-font-size: 25 px");
+                    name.setTranslateX(200.0f);
+                    name.setTranslateY(150.0f);
 
-            TextField b = new TextField();
-            b.setPromptText("b...");
-            b.setMinHeight(30);
-            b.setTranslateX(425.0f);
-            b.setTranslateY(300.0f);
+                    TextField a = new TextField();
+                    a.setPromptText("a...");
+                    a.setMinHeight(30);
+                    a.setTranslateX(125.0f);
+                    a.setTranslateY(300.0f);
 
-
-            Label leftArrow = new Label("->");
-            leftArrow.setStyle("-fx-font-size: 22 px");
-            leftArrow.setTranslateY(300.0f);
-            leftArrow.setTranslateX(275.0f);
-
-            Label rightArrow = new Label("<-");
-            rightArrow.setStyle("-fx-font-size: 22 px");
-            rightArrow.setTranslateX(400.0f);
-            rightArrow.setTranslateY(300.0f);
-
-            Label result = new Label();
-            result.setTranslateY(300.0f);
-            result.setTranslateX(330.0f);
+                    TextField b = new TextField();
+                    b.setPromptText("b...");
+                    b.setMinHeight(30);
+                    b.setTranslateX(425.0f);
+                    b.setTranslateY(300.0f);
 
 
-            Button func = new Button("f");
-            func.setStyle("-fx-font-size: 25 px");
-            func.setTranslateX(330.0f);
-            func.setTranslateY(375.0f);
+                    Label leftArrow = new Label("->");
+                    leftArrow.setStyle("-fx-font-size: 22 px");
+                    leftArrow.setTranslateY(300.0f);
+                    leftArrow.setTranslateX(275.0f);
 
-            String x = "Type: Monoid \n" +
-                    "Operation: " + comboBox.getValue()
-                    ;
-            Tooltip t = new Tooltip(x);
-            Button info = new Button("i");
-            info.setShape(new Circle(1.5));
-            info.setTranslateX(450.0f);
-            info.setTranslateY(125.0f);
-            info.setStyle("-fx-font-size: 30 px");
+                    Label rightArrow = new Label("<-");
+                    rightArrow.setStyle("-fx-font-size: 22 px");
+                    rightArrow.setTranslateX(400.0f);
+                    rightArrow.setTranslateY(300.0f);
 
-            info.setTooltip(t);
+                    Label result = new Label();
+                    result.setTranslateY(300.0f);
+                    result.setTranslateX(330.0f);
 
 
+                    Button func = new Button("f");
+                    func.setStyle("-fx-font-size: 25 px");
+                    func.setTranslateX(330.0f);
+                    func.setTranslateY(375.0f);
+
+                    String x = "Type: Monoid \n" +
+                            "Operation: " + comboBox.getValue();
+                    Tooltip t = new Tooltip(x);
+                    Button info = new Button("i");
+                    info.setShape(new Circle(1.5));
+                    info.setTranslateX(450.0f);
+                    info.setTranslateY(125.0f);
+                    info.setStyle("-fx-font-size: 30 px");
+
+                    info.setTooltip(t);
 
 
-            JavaFX.draw.getChildren().clear();
-            JavaFX.draw.getChildren().addAll( circle, name, a, leftArrow, b, rightArrow, func, result, info);
+                    JavaFX.draw.getChildren().clear();
+                    JavaFX.draw.getChildren().addAll(circle, name, a, leftArrow, b, rightArrow, func, result, info);
 
 
-
-
-
-    });
+                }
+        });
 
 
         typeHBox.getChildren().addAll(typeText, type);
