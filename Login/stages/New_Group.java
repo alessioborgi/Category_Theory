@@ -162,6 +162,7 @@ public class New_Group extends Application {
         integer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                comboBox.getItems().clear();
                 comboBox.getItems().addAll(options);
                 type.setText("Integer");
             }
@@ -170,6 +171,7 @@ public class New_Group extends Application {
         bool.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                comboBox.getItems().clear();
                 comboBox.getItems().addAll(selezione);
                 type.setText("Boolean");
             }
