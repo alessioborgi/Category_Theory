@@ -1,12 +1,12 @@
 package Login.stages;
 
-/**
- * @author alessioborgi
- * @created 24 / 05 / 2021 - 15:53
- * @project CATEGORY_THEORY
- */
+package Login;
 
+
+import Integer_Category.IntegerCategory;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -78,8 +78,9 @@ public class New_Group extends Application {
         inverseText.setStyle("-fx-font-size: 30 px");
 
         TextField idText = new TextField();
-        idText.setPromptText("Type Identity");
         idText.setMinHeight(30);
+        idText.setPromptText("Type Identity");
+        Label fine = new Label();
 
 
 
@@ -87,10 +88,6 @@ public class New_Group extends Application {
         type.getStyleClass().add("menu-create");
         type.setStyle("-fx-font-size: 22 px");
 
-
-        MenuButton morph = new MenuButton("Choose the function");
-        morph.getStyleClass().add("menu-create");
-        morph.setStyle("-fx-font-size: 22 px");
 
         MenuButton inv = new MenuButton("Choose the inverse");
         inv.getStyleClass().add("menu-create");
@@ -115,30 +112,41 @@ public class New_Group extends Application {
 
         ////////////
 
-        MenuItem add = new MenuItem("+");
-        MenuItem sub = new MenuItem("-");
-        MenuItem mul = new MenuItem("*");
-        MenuItem div = new MenuItem("/");
-        MenuItem per = new MenuItem("%");
-        MenuItem pow = new MenuItem("^");
+
+
+        ComboBox comboBox = new ComboBox();
+        comboBox.setPrefHeight(30);
+        comboBox.setMinWidth(30);
+        ObservableList<String> options =
+                FXCollections.observableArrayList(
+                        "+",
+                        "-",
+                        "*",
+                        "/",
+                        "%",
+                        "^"
+                );
+
 
 
 
 
         /////////
 
-        MenuItem and = new MenuItem("∧");
-        MenuItem or = new MenuItem("V");
-        MenuItem xor = new MenuItem("⊕");
-        MenuItem nand = new MenuItem("¬∧");
-        MenuItem nor = new MenuItem("¬V");
-        MenuItem xnor = new MenuItem("¬⊕");
+        ObservableList<String> selezione =
+                FXCollections.observableArrayList(
+                        "∧",
+                        "V",
+                        "⊕",
+                        "¬∧",
+                        "¬V",
+                        "¬⊕"
+                );
 
         integer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                morph.getItems().clear();
-                morph.getItems().addAll(add, sub, mul, div, per, pow);
+                comboBox.getItems().addAll(options);
                 type.setText("Integer");
             }
         });
@@ -146,57 +154,34 @@ public class New_Group extends Application {
         bool.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                morph.getItems().clear();
-                morph.getItems().addAll(and, or, xor, nand, nor, xnor);
+                comboBox.getItems().addAll(selezione);
                 type.setText("Boolean");
             }
         });
 
-        ///////////
 
-        add.setOnAction(e->{
-            morph.setText("+");
+
+        test.setOnAction(e->{
+            if (type.getText().equals("Integer")){
+                int id = Integer.parseInt(idText.getText());
+                if (new IntegerCategory.newMonoid(id, (String)comboBox.getValue()).test()){
+                    fine.setText("     TEST PASSED!");
+                    fine.setStyle("-fx-font-size: 22 px");
+                }
+                else{
+                    fine.setText("      ERROR!");
+                    fine.setStyle("-fx-font-size: 22 px");
+                }
+
+            }
+
         });
-
-        sub.setOnAction(e->{
-            morph.setText("-");
-        });
-
-        mul.setOnAction(e->{
-            morph.setText("*");
-        });
-
-        div.setOnAction(e->{
-            morph.setText("/");
-        });
-
-        per.setOnAction(e->{
-            morph.setText("%");
-        });
-
-        pow.setOnAction(e->{
-            morph.setText("^");
-        });
-
-        //////////////
-
-        and.setOnAction(e-> {morph.setText("∧"); });
-
-        or.setOnAction(e->{ morph.setText("V"); });
-
-        xor.setOnAction(e->{morph.setText("⊕");});
-
-        nand.setOnAction(e->{morph.setText("¬∧");});
-
-        nor.setOnAction(e->{morph.setText("¬V");});
-
-        xnor.setOnAction(e->{morph.setText("¬⊕");});
 
 
 
         typeHBox.getChildren().addAll(typeText, type);
-        morphHBox.getChildren().addAll(morphText, sourceText, morph, endMorph);
-        identityHBox.getChildren().addAll(identityText, idText);
+        morphHBox.getChildren().addAll(morphText, sourceText,comboBox , endMorph);
+        identityHBox.getChildren().addAll(identityText, idText, fine);
         inverseHBox.getChildren().addAll(inverseText, inv);
         endHBox.getChildren().addAll(test, empty, create);
         groupVBox.getChildren().addAll(typeHBox, morphHBox, identityHBox, inverseHBox, endHBox);
