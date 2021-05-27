@@ -97,11 +97,9 @@ public class New_Group extends Application {
 
         MenuItem integer = new MenuItem("Integer");
         integer.getStyleClass().add("menu-create");
-        MenuItem string = new MenuItem("String");
-        string.getStyleClass().add("menu-create");
         MenuItem bool = new MenuItem("Boolean");
         bool.getStyleClass().add("menu-create");
-        type.getItems().addAll(bool, integer, string);
+        type.getItems().addAll(bool, integer);
 
         Button test = new Button("Test");
         test.getStyleClass().add("button-create");
