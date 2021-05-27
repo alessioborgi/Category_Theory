@@ -239,6 +239,7 @@ public class New_Monoid extends Application {
                     func.setStyle("-fx-font-size: 25 px");
                     func.setTranslateX(380.0f);
                     func.setTranslateY(375.0f);
+                    func.getStyleClass().add("button-create");
 
                     String x = "Type: Monoid \n" +
                             "Operation: " + comboBox.getValue();
@@ -248,6 +249,7 @@ public class New_Monoid extends Application {
                     info.setTranslateX(500.0f);
                     info.setTranslateY(125.0f);
                     info.setStyle("-fx-font-size: 30 px");
+                    info.getStyleClass().add("button-create");
 
                     info.setTooltip(t);
 
