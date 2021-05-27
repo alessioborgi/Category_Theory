@@ -1,7 +1,9 @@
 
 
 
-public class Vector<T> extends java.util.Vector {
+package Vector_Category;
+
+public class Vectors <T> extends java.util.Vector {
 
     /**
      Morphism that returns the number of elements contained in the vector,
@@ -50,6 +52,28 @@ public class Vector<T> extends java.util.Vector {
     }
 
     /**
+     Here the identity of the morphism "Vector Addition" is checked, the procedure
+     is done by additioning the vector given in input with the zero vector of the same
+     size as the input vector. The zero vector is the neutral element of vector addition.
+     */
+    public static Object IdAdd(java.util.Vector v, int k) {
+        java.util.Vector test = new java.util.Vector<Integer>(); // creates a new empty vector (test)
+        // creates an index that goes from zero to the number of elements of the vector
+        for (int i = 0; i < v.size(); i++) {
+            int a = (int) v.elementAt(i); // "a" is the i-th element of the vector
+            // the i-th element plus the neutral element (0) is added to the test vector
+            test.add(a+k);
+        }
+        // checks the identity (if the new vector test and the original vector are the same)
+        if (v.equals(test)) {
+            return true; // the identity is satisfied
+        } else {
+            // the vector test is different from the original vector, then the identity is not satisfied
+            return false;
+        }
+    }
+
+    /**
      Morphism of vector subtraction: given two vector of the same size returns a third vector
      containing the difference between the elements with the same index.
      */
@@ -69,6 +93,28 @@ public class Vector<T> extends java.util.Vector {
     }
 
     /**
+     Here the identity of the morphism "Vector Subtraction" is checked, the procedure
+     is done by subtracting the zero vector to the vector given in input.
+     The zero vector is the neutral element of vector subtraction.
+     */
+    public static Object IdDiff(java.util.Vector v, int k) {
+        java.util.Vector test = new java.util.Vector<Integer>(); // creates a new empty vector (test)
+        // creates an index that goes from zero to the number of elements of the vector
+        for (int i = 0; i < v.size(); i++) {
+            int a = (int) v.elementAt(i); // "a" is the i-th element of the vector
+            // the i-th element minus the neutral element (0) is added to the test vector
+            test.add(a-k);
+        }
+        // checks the identity (if the new vector test and the original vector are the same)
+        if (v.equals(test)) {
+            return true; // the identity is satisfied
+        } else {
+            // the vector test is different from the original vector, then the identity is not satisfied
+            return false;
+        }
+    }
+
+    /**
      Implementation of Scalar Multiplication: Morphism that takes as input a vector and a
      scalar, and returns a new vector containing the elements of the input vector
      multiplied by the scalar.
@@ -85,7 +131,7 @@ public class Vector<T> extends java.util.Vector {
 
     /**
      Here the identity of the morphism "Scalar Multiplication" is checked, the procedure
-     is done by multiplying the victor given in input by the scalar 1, that is the
+     is done by multiplying the vector given in input by the scalar 1, that is the
      neutral element of scalar multiplication.
      */
     public static Object IdMul(java.util.Vector v, int k) {
