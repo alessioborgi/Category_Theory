@@ -83,17 +83,23 @@
                     onMouseDragged="#onGraphDragged"
                     onMouseReleased="#onGraphReleased">
         </AnchorPane>
+
+
+
     </center>
 
 
     <bottom>
-        <VBox fx:id="Bottom" style="-fx-background-color:linear-gradient(to right, gold , orange);">
-            <Pane>
-                <Button text ="Clear" fx:id ="button" onAction="#SubmitPressed" layoutX="330" ></Button>
+        <VBox fx:id="Bottom" style="-fx-background-color:white;" prefHeight="160">
+            <Pane style="-fx-background-color:linear-gradient(to right, gold , orange);">
+                <Button text ="Clear" fx:id ="button" onAction="#SubmitPressed" layoutX="330" layoutY="0" alignment="BOTTOM_CENTER"
+                style = "-fx-background-color: #7cafc2;
+                -fx-background-radius: 15px;
+                -fx-text-fill: #ffffff;"></Button>
             </Pane>
 
             <Pane id="vbox" xmlns:fx="http://javafx.com/fxml" >
-                <Label fx:id="labelb1" layoutX="0" layoutY="350" prefHeight="50" prefWidth="50" >
+                <Label fx:id="labelb1" layoutX="0" layoutY="0" prefHeight="50" prefWidth="50" >
                     <graphic>
                         <ImageView fitWidth="220" fitHeight="280" preserveRatio="true" smooth="true">
                             <image>
@@ -103,17 +109,17 @@
                     </graphic>
                 </Label>
 
-                <Label fx:id="labelb2" prefHeight="25" layoutX="150"  layoutY="349" prefWidth="100">
+                <Label fx:id="labelb2" prefHeight="25" layoutX="150"  layoutY="0" prefWidth="100">
                     <graphic>
                         <ImageView fitWidth="700" fitHeight="130" preserveRatio="true" smooth="true">
                             <image>
-                                <Image url="/img/Acsai_Free.jpeg"/>
+                                <Image url="/img/ACSAI_Free2.jpeg"/>
                             </image>
                         </ImageView>
                     </graphic>
                 </Label>
 
-                <Label fx:id="labelb3" layoutX="532" layoutY="350" prefHeight="25" prefWidth="50">
+                <Label fx:id="labelb3" layoutX="532" layoutY="0" prefHeight="25" prefWidth="50">
                     <graphic>
                         <ImageView fitWidth="225" fitHeight="130" preserveRatio="true" smooth="true">
                             <image>
