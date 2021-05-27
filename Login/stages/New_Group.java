@@ -42,25 +42,29 @@ public class New_Group extends Application {
 
 
         HBox typeHBox = new HBox();
-        typeHBox.setMinHeight(75);
+        typeHBox.setPrefHeight(75);
         typeHBox.setMinWidth(700);
         typeHBox.setAlignment(Pos.CENTER_LEFT);
         HBox morphHBox = new HBox();
-        morphHBox.setMinHeight(75);
+        morphHBox.setPrefHeight(75);
         morphHBox.setMinWidth(700);
         morphHBox.setAlignment(Pos.CENTER_LEFT);
         HBox identityHBox = new HBox();
-        identityHBox.setMinHeight(75);
+        identityHBox.setPrefHeight(75);
         identityHBox.setMinWidth(700);
         identityHBox.setAlignment(Pos.CENTER_LEFT);
         HBox inverseHBox = new HBox();
-        inverseHBox.setMinHeight(75);
+        inverseHBox.setPrefHeight(75);
         inverseHBox.setMinWidth(700);
         inverseHBox.setAlignment(Pos.CENTER_LEFT);
         HBox endHBox = new HBox();
-        endHBox.setMinHeight(75);
+        endHBox.setPrefHeight(37);
         endHBox.setMinWidth(700);
-        endHBox.setAlignment(Pos.CENTER);
+        endHBox.setAlignment(Pos.BASELINE_CENTER);
+        HBox checkTest = new HBox();
+        checkTest.setPrefHeight(37);
+        checkTest.setMinWidth(700);
+        checkTest.setAlignment(Pos.CENTER);
 
         Label typeText = new Label("    Type:   ");
         typeText.setStyle("-fx-font-size: 30 px");
@@ -195,10 +199,11 @@ public class New_Group extends Application {
 
         typeHBox.getChildren().addAll(typeText, type);
         morphHBox.getChildren().addAll(morphText, sourceText,comboBox , endMorph);
-        identityHBox.getChildren().addAll(identityText, idText, fine);
+        identityHBox.getChildren().addAll(identityText, idText);
         inverseHBox.getChildren().addAll(inverseText, comboBoxInv);
         endHBox.getChildren().addAll(test, empty, create);
-        groupVBox.getChildren().addAll(typeHBox, morphHBox, identityHBox, inverseHBox, endHBox);
+        checkTest.getChildren().addAll(fine);
+        groupVBox.getChildren().addAll(typeHBox, morphHBox, identityHBox, inverseHBox, endHBox, checkTest);
         group.show();
 
     }
