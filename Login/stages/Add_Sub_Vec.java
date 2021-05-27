@@ -43,23 +43,27 @@ public class Add_Sub_Vec extends Application {
 
 
         HBox v1HBox = new HBox();
-        v1HBox.setMinHeight(100);
+        v1HBox.setMinHeight(70);
         v1HBox.setMinWidth(700);
         v1HBox.setAlignment(Pos.CENTER_LEFT);
         HBox operationHBox = new HBox();
-        operationHBox.setMinHeight(110);
+        operationHBox.setMinHeight(70);
         operationHBox.setMinWidth(700);
         operationHBox.setAlignment(Pos.CENTER_LEFT);
         HBox v2HBox = new HBox();
-        v2HBox.setMinHeight(100);
+        v2HBox.setMinHeight(70);
         v2HBox.setMinWidth(700);
         v2HBox.setAlignment(Pos.CENTER_LEFT);
         HBox resultHBox = new HBox();
-        resultHBox.setMinHeight(90);
+        resultHBox.setMinHeight(70);
         resultHBox.setMinWidth(700);
         resultHBox.setAlignment(Pos.CENTER_LEFT);
+        HBox identityHBox = new HBox();
+        identityHBox.setMinHeight(70);
+        identityHBox.setMinWidth(700);
+        identityHBox.setAlignment(Pos.CENTER_LEFT);
         HBox endHBox = new HBox();
-        endHBox.setMinHeight(70);
+        endHBox.setMinHeight(60);
         endHBox.setMinWidth(700);
         endHBox.setAlignment(Pos.BASELINE_CENTER);
 
@@ -78,6 +82,8 @@ public class Add_Sub_Vec extends Application {
         x2Label.setStyle("-fx-font-size: 22 px");
         Label y2Label = new Label("      y    ");
         y2Label.setStyle("-fx-font-size: 22 px");
+        Label id = new Label("     Identity:     ");
+        id.setStyle("-fx-font-size: 30 px");
         Label resultLabel = new Label("     Result:    ");
         resultLabel.setStyle("-fx-font-size: 30 px");
         Label resultCheck = new Label();
@@ -95,6 +101,9 @@ public class Add_Sub_Vec extends Application {
         TextField y2Text = new TextField();
         y2Text.setPromptText("second Vector's Y"); //to set the hint text
         y2Text.setMinHeight(25);
+        TextField identity = new TextField();
+        identity.setPromptText("Type the identity...");
+        identity.setMinHeight(25);
 
         MenuButton operation = new MenuButton("Choose the operation");
         operation.getStyleClass().add("menu-create");
@@ -116,6 +125,8 @@ public class Add_Sub_Vec extends Application {
         Button create = new Button("Create");
         create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
+
+
 
 
 
@@ -209,6 +220,55 @@ public class Add_Sub_Vec extends Application {
 
         });
 
+        Alert alertidAdd = new Alert(Alert.AlertType.INFORMATION);
+
+        test.setOnAction(e->{
+            int x1 = Integer.parseInt(x1Text.getText());
+            int y1 = Integer.parseInt(y1Text.getText());
+            int idScalar = Integer.parseInt(identity.getText());
+
+
+            Vector_Category.Vectors<Integer> v1 = new Vectors<>();
+            v1.add(x1);
+            v1.add(y1);
+
+
+
+            if (operation.getText().equals("+")) {
+                if (Vectors.IdAdd(v1, idScalar)) {
+                    alertidAdd.setTitle("Prove Identity");
+                    alertidAdd.setHeaderText("Identity Checked:");
+                    String s = "CORRECT insertion";
+                    alertidAdd.setContentText(s);
+                    alertidAdd.show();
+                } else {
+                    alertidAdd.setTitle("Prove Identity");
+                    alertidAdd.setHeaderText("Identity Checked:");
+                    String s = "WRONG insertion";
+                    alertidAdd.setContentText(s);
+                    alertidAdd.show();
+                }
+            }else{
+                    if (Vectors.IdDiff(v1, idScalar)) {
+                        alertidAdd.setTitle("Prove Identity");
+                        alertidAdd.setHeaderText("Identity Checked:");
+                        String s = "CORRECT insertion";
+                        alertidAdd.setContentText(s);
+                        alertidAdd.show();
+                    }
+                    else{
+                        alertidAdd.setTitle("Prove Identity");
+                        alertidAdd.setHeaderText("Identity Checked:");
+                        String s = "WRONG insertion";
+                        alertidAdd.setContentText(s);
+                        alertidAdd.show(); 
+                    }
+
+                }
+
+
+        });
+
 
 
         v1HBox.getChildren().addAll(v1Label, x1Label, x1Text, y1Label, y1Text);
@@ -217,7 +277,8 @@ public class Add_Sub_Vec extends Application {
         resultHBox.getChildren().addAll(resultLabel, resultCheck);
         endHBox.getChildren().addAll(test, nul, result, empty, create);
         operation.getItems().addAll(add, sub);
-        addsubVBox.getChildren().addAll(v1HBox, operationHBox, v2HBox, resultHBox, endHBox);
+        identityHBox.getChildren().addAll(id, identity);
+        addsubVBox.getChildren().addAll(v1HBox, operationHBox, v2HBox, identityHBox, resultHBox, endHBox);
         addsubVec.show();
 
 
