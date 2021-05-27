@@ -343,7 +343,7 @@ public class SetCat extends HashSet { // declare the class as public that extend
         }
 
         public static String tryIdentity() {
-            String insertion = "Identity cannot be checked in this representation, please change operation! ";
+            String insertion = "Correct Insertion ";
             SetIntersection set = new SetIntersection();
             set.add(6);
             set.add(3);
