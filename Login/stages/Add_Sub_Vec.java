@@ -185,7 +185,7 @@ public class Add_Sub_Vec extends Application {
                 lineSum.setStartY(300.0);
                 lineSum.setEndX(700.0);
                 lineSum.setEndY(100.0);
-
+                lineSum.setStroke(Color.RED);
 
 
                 JavaFX.draw.getChildren().clear();
@@ -209,6 +209,7 @@ public class Add_Sub_Vec extends Application {
                 lineDiff.setStartY(400.0);
                 lineDiff.setEndX(100.0);
                 lineDiff.setEndY(100.0);
+                lineDiff.setStroke(Color.RED);
 
                 JavaFX.draw.getChildren().clear();
                 JavaFX.draw.getChildren().addAll(line1d, line2d, lineDiff);
@@ -261,7 +262,7 @@ public class Add_Sub_Vec extends Application {
                         alertidAdd.setHeaderText("Identity Checked:");
                         String s = "WRONG insertion";
                         alertidAdd.setContentText(s);
-                        alertidAdd.show(); 
+                        alertidAdd.show();
                     }
 
                 }
