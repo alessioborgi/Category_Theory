@@ -1,4 +1,35 @@
-{
+package Login.stages;
+
+
+import Integer_Category.BooleanCategory;
+import Integer_Category.IntegerCategory;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.embed.swing.JFXPanel;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.*;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.*;
+import javafx.scene.control.Menu;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.*;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+
+import java.util.*;
+
+
+
+public class New_Group extends Application {
     public void start(Stage group) {
         group.setTitle("Group Category");
         group.setWidth(700);
