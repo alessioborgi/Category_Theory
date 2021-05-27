@@ -132,8 +132,8 @@ public class New_Group extends Application {
                         "+",
                         "-",
                         "*",
-                        "/"
-                       // "^"
+                        "/",
+                        "^"
                 );
 
 
@@ -188,13 +188,16 @@ public class New_Group extends Application {
         test.setOnAction(e->{
             if (type.getText().equals("Integer")){
                 int id = Integer.parseInt(idText.getText());
-
-                fine.setText(new IntegerCategory.newGroup(id, (String)comboBox.getValue(), (String) comboBoxInv.getValue()).test());
+                IntegerCategory.newGroup testgroup = new IntegerCategory.newGroup(id, (String)comboBox.getValue(), (String) comboBoxInv.getValue());
+                String tstring = testgroup.test();
+                if (testgroup.isAbelian()){fine.setText(tstring + " - Abelian Group");}
+                else{fine.setText(tstring);}
                 fine.setStyle("-fx-font-size: 22 px");
 
-            }
+                }
 
-        });
+
+            });
 
 
         comboBoxInv.getItems().addAll(inv);
