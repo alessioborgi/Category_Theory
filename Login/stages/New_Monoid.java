@@ -195,7 +195,7 @@ public class New_Monoid extends Application {
                 test.fire();
 
                 if(fine.getText().equals("                                              TEST PASSED!")) {
-                    Circle circle = new Circle();
+                       Circle circle = new Circle();
                     circle.setRadius(250);
                     circle.setStroke(Color.BLACK);
                     circle.setFill(JavaFX.background);
@@ -227,7 +227,7 @@ public class New_Monoid extends Application {
 
                     Label rightArrow = new Label("<-");
                     rightArrow.setStyle("-fx-font-size: 22 px");
-                    rightArrow.setTranslateX(400.0f);
+                    rightArrow.setTranslateX(450.0f);
                     rightArrow.setTranslateY(300.0f);
 
                     Label result = new Label();
@@ -254,8 +254,6 @@ public class New_Monoid extends Application {
 
                     JavaFX.draw.getChildren().clear();
                     JavaFX.draw.getChildren().addAll(circle, name, a, leftArrow, b, rightArrow, func, result, info);
-
-
                 }
         });
 
