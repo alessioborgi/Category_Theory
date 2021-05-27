@@ -6,8 +6,8 @@ public class TestVector {
 
     public static void main(String[] args) {
 
-        Vector<Integer> z = new Vector<Integer>();
-        Vector<Integer> x = new Vector<Integer>();
+        Vectors<Integer> z = new Vectors<Integer>();
+        Vectors<Integer> x = new Vectors<Integer>();
 
         x.add(2);
         x.add(3);
@@ -22,10 +22,10 @@ public class TestVector {
         System.out.println(x.scalarMul(-1));
         System.out.println(x.length());
         System.out.println(x.dotProduct(x.scalarMul(-1)));
-        System.out.println(x.IdMul(x));
+        System.out.println(x.IdMul(x,1));
         System.out.println(x.subtraction(z));
         //System.out.println(x.scalarDiv(0));
         System.out.println(x.scalarDiv(2));
-        System.out.println(z.IdDiv(z));
+        System.out.println(z.IdDiv(z,1));
     }
 }
