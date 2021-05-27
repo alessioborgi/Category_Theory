@@ -31,7 +31,7 @@ public class Add_Sub_Vec extends Application {
 
     public void start(Stage addsubVec) {
 
-        addsubVec.setTitle("Group Category");
+        addsubVec.setTitle("Addition Subtraction Vectors");
         addsubVec.setWidth(700);
         addsubVec.setHeight(500);
 
