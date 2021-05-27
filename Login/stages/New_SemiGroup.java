@@ -1,7 +1,11 @@
 package Login.stages;
 
 
+import Integer_Category.IntegerCategory;
+import Login.JavaFX;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,8 +22,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.*;
 
@@ -62,10 +68,8 @@ public class New_SemiGroup extends Application {
         morphTextSG.setStyle("-fx-font-size: 30 px");
         Label sourceTextSG = new Label("Source  A   ");
         sourceTextSG.setStyle("-fx-font-size: 22 px");
-        Label endMorphSG = new Label ("   Target B");
+        Label endMorphSG = new Label("   Target B");
         endMorphSG.setStyle("-fx-font-size: 22 px");
-
-
 
 
         MenuButton typeSG = new MenuButton("Choose the type");
@@ -79,46 +83,50 @@ public class New_SemiGroup extends Application {
 
         MenuItem integer = new MenuItem("Integer");
         morphSG.getStyleClass().add("menu-create");
-        MenuItem string = new MenuItem("String");
-        morphSG.getStyleClass().add("menu-create");
         MenuItem bool = new MenuItem("Boolean");
         morphSG.getStyleClass().add("menu-create");
-        typeSG.getItems().addAll(bool, integer, string);
+        typeSG.getItems().addAll(bool, integer);
 
-        
-        
+
         Button create = new Button("Create");
         create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
 
 
-
         ////////////
 
-        MenuItem add = new MenuItem("+");
-        MenuItem sub = new MenuItem("-");
-        MenuItem mul = new MenuItem("*");
-        MenuItem div = new MenuItem("/");
-        MenuItem per = new MenuItem("%");
-        MenuItem pow = new MenuItem("^");
+        ComboBox comboBox = new ComboBox();
+        comboBox.setPrefHeight(30);
+        comboBox.setMinWidth(30);
+        comboBox.getStyleClass().add("menu-create");
 
+        ObservableList<String> options =
+                FXCollections.observableArrayList(
+                        "+",
+                        "-",
+                        "*",
+                        "/",
+                        "^"
 
+                );
+
+        ObservableList<String> selezione =
+                FXCollections.observableArrayList(
+                        "∧ (and)",
+                        "V (or)",
+                        "⊕ (xor)"
+
+                );
 
 
         /////////
 
-        MenuItem and = new MenuItem("∧");
-        MenuItem or = new MenuItem("V");
-        MenuItem xor = new MenuItem("⊕");
-        MenuItem nand = new MenuItem("¬∧");
-        MenuItem nor = new MenuItem("¬V");
-        MenuItem xnor = new MenuItem("¬⊕");
 
         integer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                morphSG.getItems().clear();
-                morphSG.getItems().addAll(add, sub, mul, div, per, pow);
+                comboBox.getItems().clear();
+                comboBox.getItems().addAll(options);
                 typeSG.setText("Integer");
             }
         });
@@ -126,65 +134,117 @@ public class New_SemiGroup extends Application {
         bool.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                morphSG.getItems().clear();
-                morphSG.getItems().addAll(and, or, xor, nand, nor, xnor);
+                comboBox.getItems().clear();
+                comboBox.getItems().addAll(selezione);
                 typeSG.setText("Boolean");
             }
         });
 
         ///////////
 
-        add.setOnAction(e->{
-            morphSG.setText("+");
+
+        create.setOnAction(e -> {
+            Circle circle = new Circle();
+            circle.setRadius(250);
+            circle.setStroke(Color.BLACK);
+            circle.setFill(JavaFX.background);
+            circle.setCenterX(400.0f);
+            circle.setCenterY(300.0f);
+
+            Label name = new Label("NEW SEMIGROUP");
+            name.setStyle("-fx-font-size: 25 px");
+            name.setTranslateX(250.0f);
+            name.setTranslateY(150.0f);
+
+            TextField a = new TextField();
+            a.setPromptText("a...");
+            a.setMinHeight(30);
+            a.setTranslateX(175.0f);
+            a.setTranslateY(300.0f);
+
+            TextField b = new TextField();
+            b.setPromptText("b...");
+            b.setMinHeight(30);
+            b.setTranslateX(475.0f);
+            b.setTranslateY(300.0f);
+
+
+            Label leftArrow = new Label("-->");
+            leftArrow.setStyle("-fx-font-size: 22 px");
+            leftArrow.setTranslateY(300.0f);
+            leftArrow.setTranslateX(325.0f);
+
+            Label rightArrow = new Label("<--");
+            rightArrow.setStyle("-fx-font-size: 22 px");
+            rightArrow.setTranslateX(440.0f);
+            rightArrow.setTranslateY(300.0f);
+
+            Label result = new Label();
+            result.setTranslateY(300.0f);
+            result.setTranslateX(385.0f);
+            result.setStyle("-fx-font-size: 22 px");
+
+
+            Button func = new Button("f");
+            func.setStyle("-fx-font-size: 25 px");
+            func.setTranslateX(380.0f);
+            func.setTranslateY(375.0f);
+            func.getStyleClass().add("button-create");
+
+
+            String x = "Type: " + typeSG.getText() + "\n" +
+                    "Operation: " + comboBox.getValue() ;
+            Tooltip t = new Tooltip(x);
+            Button info = new Button("i");
+            info.setShape(new Circle(1.5));
+            info.setTranslateX(500.0f);
+            info.setTranslateY(125.0f);
+            info.setStyle("-fx-font-size: 30 px");
+            info.getStyleClass().add("button-create");
+            t.setShowDelay(Duration.millis(0));
+            t.setHideDelay(Duration.millis(0));
+            info.setTooltip(t);
+
+
+            info.setOnAction(f -> {
+                Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+                alertInfo.setTitle("Info");
+                alertInfo.setHeaderText("Monoid Features");
+                String s = "Type: " + typeSG.getText() + "\n" +
+                        "Operation: " + comboBox.getValue() ;
+                alertInfo.setContentText(s);
+                alertInfo.show();
+            });
+
+
+            func.setOnAction(g -> {
+
+                IntegerCategory.newSemigroup k = new IntegerCategory.newSemigroup((String) comboBox.getValue());
+                int aInt = Integer.parseInt(a.getText());
+                int bInt = Integer.parseInt(b.getText());
+
+                int i = k.apply(aInt, bInt);
+
+                result.setText(String.valueOf(i));
+
+
+            });
+
+
+            JavaFX.draw.getChildren().clear();
+            JavaFX.draw.getChildren().addAll(circle, name, a, leftArrow, b, rightArrow, func, result, info);
+
+
         });
-
-        sub.setOnAction(e->{
-            morphSG.setText("-");
-        });
-
-        mul.setOnAction(e->{
-            morphSG.setText("*");
-        });
-
-        div.setOnAction(e->{
-            morphSG.setText("/");
-        });
-
-        per.setOnAction(e->{
-            morphSG.setText("%");
-        });
-
-        pow.setOnAction(e->{
-            morphSG.setText("^");
-        });
-
-        //////////////
-
-        and.setOnAction(e-> {morphSG.setText("∧"); });
-
-        or.setOnAction(e->{ morphSG.setText("V"); });
-
-        xor.setOnAction(e->{morphSG.setText("⊕");});
-
-        nand.setOnAction(e->{morphSG.setText("¬∧");});
-
-        nor.setOnAction(e->{morphSG.setText("¬V");});
-
-        xnor.setOnAction(e->{morphSG.setText("¬⊕");});
 
 
         typeHBoxSG.getChildren().addAll(typeTextSG, typeSG);
-        morphHBoxSG.getChildren().addAll(morphTextSG, sourceTextSG, morphSG, endMorphSG);
-
+        morphHBoxSG.getChildren().addAll(morphTextSG, sourceTextSG, comboBox, endMorphSG);
         endHBoxSG.getChildren().addAll(create);
-
         semigroupVBox.getChildren().addAll(typeHBoxSG, morphHBoxSG, endHBoxSG);
         semigroup.show();
 
 
-
-
-
-
     }
+
 }
