@@ -213,6 +213,7 @@ public class New_Monoid extends Application {
 
 
 
+        
         create.setOnAction(e->{
             test.fire();
 
@@ -291,6 +292,18 @@ public class New_Monoid extends Application {
                             ;
                     alertInfo.setContentText(s);
                     alertInfo.show();
+
+                int id = Integer.parseInt(inputText.getText());
+                newMonoid k = new newMonoid(id, (String)comboBox.getValue());
+                int aInt =  Integer.parseInt(a.getText());
+                int bInt = Integer.parseInt(b.getText());
+                func.setOnAction(g->{
+                        k.apply(aInt, bInt);
+                        result.setText(k.toString());
+
+
+
+                });
 
                 });
 
