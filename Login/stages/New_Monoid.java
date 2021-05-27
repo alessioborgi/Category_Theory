@@ -241,7 +241,7 @@ public class New_Monoid extends Application {
                     func.setTranslateY(375.0f);
                     func.getStyleClass().add("button-create");
 
-                    String x = "Type: Monoid \n" +
+                    String x = "Type: "+ type.getText() +"\n" +
                             "Operation: " + comboBox.getValue() +"\n"+
                             "Identity: " + inputText.getText()
                             ;
@@ -255,6 +255,20 @@ public class New_Monoid extends Application {
 
                     info.setTooltip(t);
 
+
+
+                    info.setOnAction(f->{
+                        Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+                        alertInfo.setTitle("Info");
+                        alertInfo.setHeaderText("Monoid Features");
+                        String s = "Type: "+ type.getText() +"\n" +
+                                "Operation: " + comboBox.getValue() +"\n"+
+                                "Identity: " + inputText.getText()
+                                ;
+                        alertInfo.setContentText(s);
+                        alertInfo.show();
+
+                    });
 
                     JavaFX.draw.getChildren().clear();
                     JavaFX.draw.getChildren().addAll(circle, name, a, leftArrow, b, rightArrow, func, result, info);
