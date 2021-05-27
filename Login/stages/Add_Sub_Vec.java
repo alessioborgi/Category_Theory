@@ -1,12 +1,8 @@
 package Login.stages;
 
-/**
- * @author alessioborgi
- * @created 24 / 05 / 2021 - 15:56
- * @project CATEGORY_THEORY
- */
+import Login.JavaFX;
 
-import Vector_Category.Vector;
+import Vector_Category.Vectors;
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Insets;
@@ -24,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -120,6 +117,10 @@ public class Add_Sub_Vec extends Application {
         create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
 
+
+
+
+
         ///////////////////
 
         add.setOnAction(e->{operation.setText("+");});
@@ -134,22 +135,79 @@ public class Add_Sub_Vec extends Application {
             int x2 = Integer.parseInt(x2Text.getText());
             int y2 = Integer.parseInt(y2Text.getText());
 
-            Vector<Integer> v1 = new Vector<>();
+            Vectors<Integer> v1 = new Vectors<>();
             v1.add(x1);
             v1.add(y1);
-            Vector<Integer> v2 = new Vector<>();
+            Vectors<Integer> v2 = new Vectors<>();
             v2.add(x2);
             v2.add(y2);
 
             if (operation.getText().equals("+")){
-                resultCheck.setText("" + v1.addition(v2));
-                resultCheck.setStyle("-fx-font-size: 22 px");}
+            resultCheck.setText("" + v1.addition(v2));
+            resultCheck.setStyle("-fx-font-size: 22 px");}
             else{
                 resultCheck.setText(v1.subtraction(v2).toString());
                 resultCheck.setStyle("-fx-font-size: 22 px");
             }
         });
 
+
+
+        create.setOnAction(e->{
+            if(operation.getText().equals("+")){
+                Line line1 = new Line();
+                Line line2 = new Line();
+                Line lineSum = new Line();
+
+
+                //Setting the properties to a line
+
+                line1.setStartX(300.0);
+                line1.setStartY(300.0);
+                line1.setEndX(600.0);
+                line1.setEndY(300.0);
+                line2.setStartX(300.0);
+                line2.setStartY(300.0);
+                line2.setEndX(400.0);
+                line2.setEndY(100.0);
+                lineSum.setStartX(300.0);
+                lineSum.setStartY(300.0);
+                lineSum.setEndX(700.0);
+                lineSum.setEndY(100.0);
+
+
+
+                JavaFX.draw.getChildren().clear();
+                JavaFX.draw.getChildren().addAll(line1, line2, lineSum);}
+            if(operation.getText().equals("-")){
+                Line line1d = new Line();
+                Line line2d = new Line();
+                Line lineDiff = new Line();
+
+                //Setting the properties to a line
+
+                line1d.setStartX(300.0);
+                line1d.setStartY(400.0);
+                line1d.setEndX(500.0);
+                line1d.setEndY(400.0);
+                line2d.setStartX(300.0);
+                line2d.setStartY(400.0);
+                line2d.setEndX(300.0);
+                line2d.setEndY(100.0);
+                lineDiff.setStartX(300.0);
+                lineDiff.setStartY(400.0);
+                lineDiff.setEndX(100.0);
+                lineDiff.setEndY(100.0);
+
+                JavaFX.draw.getChildren().clear();
+                JavaFX.draw.getChildren().addAll(line1d, line2d, lineDiff);
+
+
+            }
+
+
+
+        });
 
 
 
