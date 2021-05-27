@@ -1,11 +1,36 @@
 package Login.stages;
 
+import Login.JavaFX;
+import Vector_Category.Vectors;
+import Vector_Category.Vectors;
+import javafx.application.Application;
+import javafx.embed.swing.JFXPanel;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.*;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.*;
+import javafx.scene.control.Menu;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.*;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+
+
 /**
+ * @author elenamuia
  * @author alessioborgi
  * @created 24 / 05 / 2021 - 15:52
  * @project CATEGORY_THEORY
  */
-import Vector_Category.Vector;
+import Vector_Category.Vectors;
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Insets;
@@ -131,11 +156,11 @@ public class Mul_Div_Vec extends Application {
             int y = Integer.parseInt(yText.getText());
             int id = Integer.parseInt(idMulText.getText());
 
-            Vector_Category.Vector<Integer> v = new Vector<>();
+            Vector_Category.Vectors<Integer> v = new Vectors<>();
             v.add(x);
             v.add(y);
             if (operation.getText().equals("*")) {
-                if ((boolean) Vector.IdMul(v, id)) {
+                if ((boolean) Vectors.IdMul(v, id)) {
                     alertidMul.setTitle("Prove Identity");
                     alertidMul.setHeaderText("Identity Checked:");
                     String s = "CORRECT insertion";
@@ -150,7 +175,7 @@ public class Mul_Div_Vec extends Application {
 
 
                 }}else{
-                if ((boolean) Vector.IdDiv(v, id)) {
+                if ((boolean) Vectors.IdDiv(v, id)) {
                     alertidMul.setTitle("Prove Identity");
                     alertidMul.setHeaderText("Identity Checked:");
                     String s = "CORRECT insertion";
@@ -178,7 +203,7 @@ public class Mul_Div_Vec extends Application {
             int y = Integer.parseInt(yText.getText());
             int k = Integer.parseInt(kText.getText());
 
-            Vector_Category.Vector<Integer> v = new Vector<>();
+            Vector_Category.Vectors<Integer> v = new Vectors<>();
             v.add(x);
             v.add(y);
             if (operation.getText().equals("*")){
@@ -187,6 +212,45 @@ public class Mul_Div_Vec extends Application {
             else{
                 resultCheck.setText(v.scalarDiv(k).toString());
                 resultCheck.setStyle("-fx-font-size: 22 px");
+            }
+        });
+
+
+        create.setOnAction(e->{
+
+            if(operation.getText().equals("*")){
+                Line lineMul = new Line();
+                Line lineMul2 = new Line();
+
+                lineMul.setStartX(300.0);
+                lineMul.setStartY(400);
+                lineMul.setEndX(400.0);
+                lineMul.setEndY(300.0);
+                lineMul2.setStartX(300.0);
+                lineMul2.setStartY(400.0);
+                lineMul2.setEndX(600.0);
+                lineMul2.setEndY(100.0);
+
+                JavaFX.draw.getChildren().clear();
+                JavaFX.draw.getChildren().addAll(lineMul, lineMul2);
+            }
+            else{
+                Line lineDiv = new Line();
+                Line lineDiv2 = new Line();
+
+                lineDiv.setStartX(300.0);
+                lineDiv.setStartY(400);
+                lineDiv.setEndX(400.0);
+                lineDiv.setEndY(300.0);
+                lineDiv2.setStartX(300.0);
+                lineDiv2.setStartY(400.0);
+                lineDiv2.setEndX(600.0);
+                lineDiv2.setEndY(100.0);
+
+                JavaFX.draw.getChildren().clear();
+                JavaFX.draw.getChildren().addAll(lineDiv, lineDiv2);
+
+
             }
         });
 
