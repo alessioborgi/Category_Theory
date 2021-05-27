@@ -1,8 +1,8 @@
 package Login.stages;
 
-
-import Integer_Category.BooleanCategory;
 import Integer_Category.IntegerCategory;
+import Login.JavaFX;
+import Set_Category.SetCat;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +13,10 @@ import javafx.scene.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -22,74 +25,77 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import javax.swing.*;
+import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.*;
 
 
+public class New_Monoid extends Application {
+    public void start(Stage monoid) {
 
-public class New_Group extends Application {
-    public void start(Stage group) {
-        group.setTitle("Group Category");
-        group.setWidth(700);
-        group.setHeight(500);
+        monoid.setWidth(700);
+        monoid.setHeight(500);
+        monoid.setTitle("Monoid Category");
 
-        VBox groupVBox = new VBox();
-        groupVBox.getStyleClass().add("background");
-        Scene groupScene = new Scene(groupVBox);
-        groupScene.getStylesheets().add("Login/Styles.css");
-        group.setScene(groupScene);
+
+        VBox monoidVBox = new VBox();
+        monoidVBox.getStyleClass().add("background");
+        Scene monoidScene = new Scene(monoidVBox);
+        monoidScene.getStylesheets().add("Login/Styles.css");
+        monoid.setScene(monoidScene);
+
 
 
         HBox typeHBox = new HBox();
-        typeHBox.setPrefHeight(75);
+        typeHBox.setMinHeight(80);
         typeHBox.setMinWidth(700);
         typeHBox.setAlignment(Pos.CENTER_LEFT);
         HBox morphHBox = new HBox();
-        morphHBox.setPrefHeight(75);
+        morphHBox.setMinHeight(80);
         morphHBox.setMinWidth(700);
         morphHBox.setAlignment(Pos.CENTER_LEFT);
         HBox identityHBox = new HBox();
-        identityHBox.setPrefHeight(75);
+        identityHBox.setMinHeight(80);
         identityHBox.setMinWidth(700);
         identityHBox.setAlignment(Pos.CENTER_LEFT);
-        HBox inverseHBox = new HBox();
-        inverseHBox.setPrefHeight(75);
-        inverseHBox.setMinWidth(700);
-        inverseHBox.setAlignment(Pos.CENTER_LEFT);
+        HBox checkHBox = new HBox();
+        checkHBox.setMinHeight(80);
+        checkHBox.setMinWidth(100);
+        checkHBox.setAlignment(Pos.CENTER_LEFT);
         HBox endHBox = new HBox();
-        endHBox.setPrefHeight(37);
+        endHBox.setMinHeight(80);
         endHBox.setMinWidth(700);
-        endHBox.setAlignment(Pos.BASELINE_CENTER);
-        HBox checkTest = new HBox();
-        checkTest.setPrefHeight(37);
-        checkTest.setMinWidth(700);
-        checkTest.setAlignment(Pos.CENTER);
+        endHBox.setAlignment(Pos.CENTER);
+
+
 
         Label typeText = new Label("    Type:   ");
         typeText.setStyle("-fx-font-size: 30 px");
         Label morphText = new Label("    Function:  ");
         morphText.setStyle("-fx-font-size: 30 px");
-        Label identityText = new Label("    Identity:   ");
-        Label sourceText = new Label("Source  A   ");
+        Label sourceText = new Label("  Source A   ");
         sourceText.setStyle("-fx-font-size: 22 px");
         Label endMorph = new Label ("   Source B");
         endMorph.setStyle("-fx-font-size: 22 px");
+        Label identityText = new Label("    Identity:   ");
         identityText.setStyle("-fx-font-size: 30 px");
-        Label inverseText = new Label("    Inverse:    ");
-        inverseText.setStyle("-fx-font-size: 30 px");
-
-        TextField idText = new TextField();
-        idText.setMinHeight(30);
-        idText.setPromptText("Type Identity");
         Label fine = new Label();
 
-
+        TextField inputText = new TextField();
+        inputText.setMinHeight(30);
+        inputText.setPromptText("Type Identity"); //to set the hint text
 
         MenuButton type = new MenuButton("Choose the type");
         type.getStyleClass().add("menu-create");
         type.setStyle("-fx-font-size: 22 px");
+
 
 
 
@@ -103,6 +109,11 @@ public class New_Group extends Application {
         bool.getStyleClass().add("menu-create");
         type.getItems().addAll(bool, integer, string);
 
+
+
+
+
+        Label spazio = new Label("      ");
         Button test = new Button("Test");
         test.getStyleClass().add("button-create");
         test.setStyle("-fx-font-size: 22 px");
@@ -111,7 +122,10 @@ public class New_Group extends Application {
         create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
 
+
         ////////////
+
+
 
 
 
@@ -119,15 +133,6 @@ public class New_Group extends Application {
         comboBox.setPrefHeight(30);
         comboBox.setMinWidth(30);
         comboBox.getStyleClass().add("menu-create");
-
-
-        ComboBox comboBoxInv = new ComboBox();
-        comboBoxInv.setPrefHeight(30);
-        comboBoxInv.setMinWidth(30);
-        comboBoxInv.getStyleClass().add("menu-create");
-
-
-
         ObservableList<String> options =
                 FXCollections.observableArrayList(
                         "+",
@@ -135,13 +140,8 @@ public class New_Group extends Application {
                         "*",
                         "/",
                         "^"
+
                 );
-
-
-
-
-
-        /////////
 
         ObservableList<String> selezione =
                 FXCollections.observableArrayList(
@@ -154,23 +154,13 @@ public class New_Group extends Application {
                 );
 
 
-        ///////////////////
-
-
-        ObservableList<String> inv  =
-                FXCollections.observableArrayList(
-                        "-a",
-                        "+a",
-                        "0",
-                        "1"
-
-                );
 
         integer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 comboBox.getItems().clear();
                 comboBox.getItems().addAll(options);
+
                 type.setText("Integer");
             }
         });
@@ -185,19 +175,24 @@ public class New_Group extends Application {
         });
 
 
+        ////////////
+
         test.setOnAction(e->{
-            if (type.getText().equals("Integer")){
-                int id = Integer.parseInt(idText.getText());
-                IntegerCategory.newGroup testgroup = new IntegerCategory.newGroup(id, (String)comboBox.getValue(), (String) comboBoxInv.getValue());
-                String tstring = testgroup.test();
-                if (testgroup.isAbelian()){fine.setText(tstring + " - Abelian Group");}
-                else{fine.setText(tstring);}
+            if (type.getText().equals("Integer")) {
                 fine.setStyle("-fx-font-size: 22 px");
+                int id = Integer.parseInt(inputText.getText());
+                if (new Integer_Category.IntegerCategory.newMonoid(id, (String) comboBox.getValue()).test()) {
+                    fine.setText("                                              TEST PASSED!");
+
+                } else {
+                    fine.setText("                                         WRONG IDENTITY!");
 
                 }
-            if (type.getText().equals("Boolean")){
+            }
+            
+            if(type.getText().equals("Boolean")){
                 fine.setStyle("-fx-font-size: 22 px");
-                String ide = idText.getText();
+                String ide = inputText.getText();
                 boolean identity = false;
                 boolean flag = false;
                 if (ide.equals("1") || ide.equals("true") || ide.equals("True")){
@@ -210,26 +205,113 @@ public class New_Group extends Application {
                 }
                 else { fine.setText("                            Please insert a boolean value"); }
                 if (flag){
-                    ArrayList tg = new Integer_Category.BooleanCategory.newGroup(identity, (String) comboBox.getValue(),(String) comboBoxInv.getValue()).test();
-                    if ((boolean) tg.get(0)) {
-                        fine.setText("                                              TEST PASSED!");
+
+                    if (new Integer_Category.BooleanCategory.newMonoid(identity, (String) comboBox.getValue()).test() ) {
+                    fine.setText("                                              TEST PASSED!");
                     }
-                    else { fine.setText("                                         " + tg.get(1)); }
-                }
+                    else { fine.setText("                                         WRONG IDENTITY!"); }
+                     }
             }
         });
 
 
-        comboBoxInv.getItems().addAll(inv);
+
+        create.setOnAction(e->{
+            test.fire();
+
+            if(fine.getText().equals("                                              TEST PASSED!")) {
+                Circle circle = new Circle();
+                circle.setRadius(250);
+                circle.setStroke(Color.BLACK);
+                circle.setFill(JavaFX.background);
+                circle.setCenterX(400.0f);
+                circle.setCenterY(300.0f);
+
+                Label name = new Label("NEW MONOID");
+                name.setStyle("-fx-font-size: 25 px");
+                name.setTranslateX(250.0f);
+                name.setTranslateY(150.0f);
+
+                TextField a = new TextField();
+                a.setPromptText("a...");
+                a.setMinHeight(30);
+                a.setTranslateX(175.0f);
+                a.setTranslateY(300.0f);
+
+                TextField b = new TextField();
+                b.setPromptText("b...");
+                b.setMinHeight(30);
+                b.setTranslateX(475.0f);
+                b.setTranslateY(300.0f);
+
+
+                Label leftArrow = new Label("-->");
+                leftArrow.setStyle("-fx-font-size: 22 px");
+                leftArrow.setTranslateY(300.0f);
+                leftArrow.setTranslateX(325.0f);
+
+                Label rightArrow = new Label("<--");
+                rightArrow.setStyle("-fx-font-size: 22 px");
+                rightArrow.setTranslateX(440.0f);
+                rightArrow.setTranslateY(300.0f);
+
+                Label result = new Label();
+                result.setTranslateY(300.0f);
+                result.setTranslateX(380.0f);
+
+
+                Button func = new Button("f");
+                func.setStyle("-fx-font-size: 25 px");
+                func.setTranslateX(380.0f);
+                func.setTranslateY(375.0f);
+                func.getStyleClass().add("button-create");
+
+
+                String x = "Type: "+ type.getText() +"\n" +
+                        "Operation: " + comboBox.getValue() +"\n"+
+                        "Identity: " + inputText.getText()
+                        ;
+                Tooltip t = new Tooltip(x);
+                Button info = new Button("i");
+                info.setShape(new Circle(1.5));
+                info.setTranslateX(500.0f);
+                info.setTranslateY(125.0f);
+                info.setStyle("-fx-font-size: 30 px");
+                info.getStyleClass().add("button-create");
+                t.setShowDelay(Duration.millis(0));
+                t.setHideDelay(Duration.millis(0));
+                info.setTooltip(t);
+
+
+
+                info.setOnAction(f->{
+                    Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+                    alertInfo.setTitle("Info");
+                    alertInfo.setHeaderText("Monoid Features");
+                    String s = "Type: "+ type.getText() +"\n" +
+                            "Operation: " + comboBox.getValue() +"\n"+
+                            "Identity: " + inputText.getText()
+                            ;
+                    alertInfo.setContentText(s);
+                    alertInfo.show();
+
+                });
+
+
+                JavaFX.draw.getChildren().clear();
+                JavaFX.draw.getChildren().addAll(circle, name, a, leftArrow, b, rightArrow, func, result, info);
+
+
+            }
+        });
+
 
         typeHBox.getChildren().addAll(typeText, type);
-        morphHBox.getChildren().addAll(morphText, sourceText,comboBox , endMorph);
-        identityHBox.getChildren().addAll(identityText, idText);
-        inverseHBox.getChildren().addAll(inverseText, comboBoxInv);
-        endHBox.getChildren().addAll(test, empty, create);
-        checkTest.getChildren().addAll(fine);
-        groupVBox.getChildren().addAll(typeHBox, morphHBox, identityHBox, inverseHBox, endHBox, checkTest);
-        group.show();
-
+        morphHBox.getChildren().addAll(morphText, sourceText, comboBox,  endMorph);
+        identityHBox.getChildren().addAll(identityText, inputText);
+        checkHBox.getChildren().addAll(fine);
+        endHBox.getChildren().addAll( test, empty, create);
+        monoidVBox.getChildren().addAll(typeHBox, morphHBox, identityHBox, checkHBox, endHBox);
+        monoid.show();
     }
 }
