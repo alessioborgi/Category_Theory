@@ -103,11 +103,10 @@ public class New_Monoid extends Application {
 
         MenuItem integer = new MenuItem("Integer");
         integer.getStyleClass().add("menu-create");
-        MenuItem string = new MenuItem("String");
-        string.getStyleClass().add("menu-create");
+      
         MenuItem bool = new MenuItem("Boolean");
         bool.getStyleClass().add("menu-create");
-        type.getItems().addAll(bool, integer, string);
+        type.getItems().addAll(bool, integer);
 
 
 
