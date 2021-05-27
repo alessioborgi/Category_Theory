@@ -209,7 +209,7 @@ public class New_SemiGroup extends Application {
             info.setOnAction(f -> {
                 Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
                 alertInfo.setTitle("Info");
-                alertInfo.setHeaderText("Monoid Features");
+                alertInfo.setHeaderText("Semigroup Features");
                 String s = "Type: " + typeSG.getText() + "\n" +
                         "Operation: " + comboBox.getValue() ;
                 alertInfo.setContentText(s);
