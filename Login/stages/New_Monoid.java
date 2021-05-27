@@ -253,10 +253,10 @@ public class New_Monoid extends Application {
                 rightArrow.setTranslateX(440.0f);
                 rightArrow.setTranslateY(300.0f);
 
-                Label result = new Label();
+                 Label result = new Label();
                 result.setTranslateY(300.0f);
-                result.setTranslateX(380.0f);
-
+                result.setTranslateX(385.0f);
+                result.setStyle("-fx-font-size: 22 px");
 
                 Button func = new Button("f");
                 func.setStyle("-fx-font-size: 25 px");
@@ -301,13 +301,14 @@ public class New_Monoid extends Application {
                     newMonoid k = new newMonoid(id, (String)comboBox.getValue());
                     int aInt =  Integer.parseInt(a.getText());
                     int bInt = Integer.parseInt(b.getText());
-                        k.apply(aInt, bInt);
-                        result.setText(k.toString());
+
+                        int i = k.apply(aInt, bInt);
+
+                        result.setText(String.valueOf(i));
 
 
 
                 });
-
                
 
 
