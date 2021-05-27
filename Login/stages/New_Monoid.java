@@ -242,7 +242,9 @@ public class New_Monoid extends Application {
                     func.getStyleClass().add("button-create");
 
                     String x = "Type: Monoid \n" +
-                            "Operation: " + comboBox.getValue();
+                            "Operation: " + comboBox.getValue() +"\n"+
+                            "Identity: " + inputText.getText()
+                            ;
                     Tooltip t = new Tooltip(x);
                     Button info = new Button("i");
                     info.setShape(new Circle(1.5));
