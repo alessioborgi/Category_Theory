@@ -295,11 +295,12 @@ public class New_Monoid extends Application {
                     
                 });
 
-                int id = Integer.parseInt(inputText.getText());
-                newMonoid k = new newMonoid(id, (String)comboBox.getValue());
-                int aInt =  Integer.parseInt(a.getText());
-                int bInt = Integer.parseInt(b.getText());
+                
                 func.setOnAction(g->{
+                    int id = Integer.parseInt(inputText.getText());
+                    newMonoid k = new newMonoid(id, (String)comboBox.getValue());
+                    int aInt =  Integer.parseInt(a.getText());
+                    int bInt = Integer.parseInt(b.getText());
                         k.apply(aInt, bInt);
                         result.setText(k.toString());
 
