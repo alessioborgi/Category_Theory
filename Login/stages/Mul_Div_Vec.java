@@ -226,10 +226,11 @@ public class Mul_Div_Vec extends Application {
                 lineMul.setStartY(400);
                 lineMul.setEndX(400.0);
                 lineMul.setEndY(300.0);
-                lineMul2.setStartX(300.0);
-                lineMul2.setStartY(400.0);
+                lineMul2.setStartX(400.0);
+                lineMul2.setStartY(300.0);
                 lineMul2.setEndX(600.0);
                 lineMul2.setEndY(100.0);
+                lineMul2.setStroke(Color.RED);
 
                 JavaFX.draw.getChildren().clear();
                 JavaFX.draw.getChildren().addAll(lineMul, lineMul2);
@@ -242,10 +243,11 @@ public class Mul_Div_Vec extends Application {
                 lineDiv.setStartY(400);
                 lineDiv.setEndX(400.0);
                 lineDiv.setEndY(300.0);
-                lineDiv2.setStartX(300.0);
-                lineDiv2.setStartY(400.0);
+                lineDiv2.setStartX(400.0);
+                lineDiv2.setStartY(300.0);
                 lineDiv2.setEndX(600.0);
                 lineDiv2.setEndY(100.0);
+                lineDiv.setStroke(Color.RED);
 
                 JavaFX.draw.getChildren().clear();
                 JavaFX.draw.getChildren().addAll(lineDiv, lineDiv2);
