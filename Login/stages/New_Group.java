@@ -143,14 +143,12 @@ public class New_Group extends Application {
 
         /////////
 
-        ObservableList<String> selezione =
+       ObservableList<String> selezione =
                 FXCollections.observableArrayList(
-                        "∧",
-                        "V",
-                        "⊕",
-                        "¬∧",
-                        "¬V",
-                        "¬⊕"
+                        "∧ (and)",
+                        "V (or)",
+                        "⊕ (xor)"
+                        
                 );
 
 
