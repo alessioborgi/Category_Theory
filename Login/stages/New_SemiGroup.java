@@ -1,10 +1,5 @@
 package Login.stages;
 
-/**
- * @author alessioborgi
- * @created 24 / 05 / 2021 - 15:54
- * @project CATEGORY_THEORY
- */
 
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
@@ -41,6 +36,7 @@ public class New_SemiGroup extends Application {
         semigroupVBox.getStyleClass().add("background");
         Scene semigroupScene = new Scene(semigroupVBox);
         semigroupScene.getStylesheets().add("Login/Styles.css");
+
 
         semigroup.setScene(semigroupScene);
 
@@ -89,13 +85,12 @@ public class New_SemiGroup extends Application {
         morphSG.getStyleClass().add("menu-create");
         typeSG.getItems().addAll(bool, integer, string);
 
-        Button test = new Button("Test");
-        test.getStyleClass().add("button-create");
-        test.setStyle("-fx-font-size: 22 px");
-        Label empty = new Label("           ");
+        
+        
         Button create = new Button("Create");
         create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
+
 
 
         ////////////
@@ -181,9 +176,15 @@ public class New_SemiGroup extends Application {
         typeHBoxSG.getChildren().addAll(typeTextSG, typeSG);
         morphHBoxSG.getChildren().addAll(morphTextSG, sourceTextSG, morphSG, endMorphSG);
 
-        endHBoxSG.getChildren().addAll(test, empty, create);
+        endHBoxSG.getChildren().addAll(create);
 
         semigroupVBox.getChildren().addAll(typeHBoxSG, morphHBoxSG, endHBoxSG);
         semigroup.show();
+
+
+
+
+
+
     }
 }
