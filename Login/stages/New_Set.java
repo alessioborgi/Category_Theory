@@ -63,7 +63,7 @@ public class New_Set extends Application {
 
         Label identityTextSet = new Label("    Identity:   ");
         identityTextSet.setStyle("-fx-font-size: 30 px");
-        TextField inputTextSet = new TextField("");
+        TextField inputTextSet = new TextField();
         inputTextSet.setPromptText("Type Identity"); //to set the hint text
         inputTextSet.setMinHeight(30);
         Label space = new Label("           ");
@@ -279,11 +279,18 @@ public class New_Set extends Application {
 
             if( morphSet.getText().equals("∩")){
                 SetCat.SetIntersection k = new SetCat.SetIntersection();
-                alertidSet.setTitle("Prove Identity");
-                alertidSet.setHeaderText("Identity Checked");
-                String s = k.tryIdentity();
-                alertidSet.setContentText(s);
-                alertidSet.show();
+                if (inputTextSet.getText().equals("set itself")) {
+                    alertidSet.setTitle("Prove Identity");
+                    alertidSet.setHeaderText("Identity Checked");
+                    String s = k.tryIdentity();
+                    alertidSet.setContentText(s);
+                    alertidSet.show();
+                } else {
+                    String falso = "ERROR, the Identity should be an element that applied to the Set returns the set itself, be careful!";
+                    alertidSet.setTitle("Prove Identity");
+                    alertidSet.setHeaderText("Identity Checked");
+                    alertidSet.setContentText(falso);
+                    alertidSet.show();}
             }
 
         });
@@ -513,6 +520,11 @@ public class New_Set extends Application {
                 cerchio.setFill(JavaFX.background);
                 JavaFX.draw.getChildren().clear();
                 JavaFX.draw.getChildren().addAll(shape, cerchio, forma, A, B);
+
             }
         });
     }}
+
+
+
+
