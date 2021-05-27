@@ -117,11 +117,13 @@ public class New_Group extends Application {
         ComboBox comboBox = new ComboBox();
         comboBox.setPrefHeight(30);
         comboBox.setMinWidth(30);
+        comboBox.getStyleClass().add("menu-create");
 
 
         ComboBox comboBoxInv = new ComboBox();
-        comboBox.setPrefHeight(30);
-        comboBox.setMinWidth(30);
+        comboBoxInv.setPrefHeight(30);
+        comboBoxInv.setMinWidth(30);
+        comboBoxInv.getStyleClass().add("menu-create");
 
 
 
