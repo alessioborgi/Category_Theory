@@ -4,66 +4,125 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <BorderPane fx:controller="Free_Drawing.Controller"
             xmlns:fx="http://javafx.com/fxml"
             stylesheets="@MyStyles.css">
-<top>
-    <VBox id="vbox"
-          xmlns:fx="http://javafx.com/fxml">
-        <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput">
-            <menus>
-                <Menu text="Create">
-                    <items>
-                        <MenuItem text="New Vertex"   onAction="#NewVertexClicked"/>
-                        <MenuItem text="New Morphism" onAction="#NewMorphism"/>
-                        <MenuItem text="Composition"  onAction="#NewComposition"/>
-                        <SeparatorMenuItem  />
-                        <MenuItem text="Cancel"       onAction="#CancelVertex"/>
-                    </items>
-                </Menu>
-                <Menu text="Edit">
-                    <items>
-                        <MenuItem text="Clear"        onAction="#ClearAll"/>
-                        <MenuItem text="Logout"       onAction="#Logout"/>
-                        <SeparatorMenuItem  />
-                        <MenuItem text="Exit"         onAction="#ExitNow"/>
-                    </items>
-                </Menu>
-                <Menu text="Help">
-                    <items>
-                        <MenuItem text="Search" disable="true"/>
-                        <MenuItem text="Online Manual" visible="false"/>
-                        <SeparatorMenuItem />
-                        <MenuItem text="About" onAction="#handleAboutAction"/>
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
-    </VBox>
-</top>
-<center>
-    <AnchorPane fx:id="graph" style="-fx-background-color:linear-gradient(to right, gold , orange);"
-                onMousePressed="#onGraphPressed"
-                onDragDetected="#onGraphDragDetected"
-                onMouseDragged="#onGraphDragged"
-                onMouseReleased="#onGraphReleased"/>
-</center>
+    <top>
+        <AnchorPane fx:id="Top" >
+            <VBox id="vbox" xmlns:fx="http://javafx.com/fxml">
+                <HBox id="vbox" xmlns:fx="http://javafx.com/fxml">
+                    <Label fx:id="labelt1" layoutX="0" layoutY="0">
+                        <graphic>
+                            <ImageView fitWidth="160" fitHeight="75" preserveRatio="true" smooth="true">
+                                <image>
+                                    <Image url="/img/Java_Free.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Label>
+
+                    <Label fx:id="labelt2" layoutX="160" layoutY="0">
+                        <graphic>
+                            <ImageView fitWidth="480" fitHeight="75" preserveRatio="true" smooth="true">
+                                <image>
+                                    <Image url="/img/Cat_Free.jpeg"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Label>
+
+                    <Label fx:id="labelt3" layoutX="640" layoutY="0">
+                        <graphic>
+                            <ImageView fitWidth="160" fitHeight="75" preserveRatio="true" smooth="true">
+                                <image>
+                                    <Image url="/img/Java_Free.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Label>
+
+                </HBox>
+                <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput">
+                    <menus>
+                        <Menu text="Create">
+                            <items>
+                                <MenuItem text="New Vertex"   onAction="#NewVertexClicked"/>
+                                <MenuItem text="New Morphism" onAction="#NewMorphism"/>
+                                <MenuItem text="Composition"  onAction="#NewComposition"/>
+                                <SeparatorMenuItem  />
+                                <MenuItem text="Cancel"       onAction="#CancelVertex"/>
+                            </items>
+                        </Menu>
+                        <Menu text="Edit">
+                            <items>
+                                <MenuItem text="Clear"        onAction="#ClearAll"/>
+                                <MenuItem text="Logout"       onAction="#Logout"/>
+                                <SeparatorMenuItem  />
+                                <MenuItem text="Exit"         onAction="#ExitNow"/>
+                            </items>
+                        </Menu>
+                        <Menu text="Help">
+                            <items>
+                                <MenuItem text="Search" disable="true"/>
+                                <MenuItem text="Online Manual" visible="false"/>
+                                <SeparatorMenuItem />
+                                <MenuItem text="About" onAction="#handleAboutAction"/>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </VBox>
+        </AnchorPane>
+    </top>
+    <center>
+        <AnchorPane fx:id="graph" style="-fx-background-color:linear-gradient(to right, gold , orange);"
+                    onMousePressed="#onGraphPressed"
+                    onDragDetected="#onGraphDragDetected"
+                    onMouseDragged="#onGraphDragged"
+                    onMouseReleased="#onGraphReleased">
+        </AnchorPane>
+    </center>
 
 
-<bottom>
-    <GridPane fx:id="Bottom">
+    <bottom>
+        <VBox fx:id="Bottom" style="-fx-background-color:linear-gradient(to right, gold , orange);">
+            <Pane>
+                <Button text ="Clear" fx:id ="button" onAction="#SubmitPressed" layoutX="330" ></Button>
+            </Pane>
 
-        <HBox id="vbox2" xmlns:fx="http://javafx.com/fxml" GridPane.rowIndex="0" GridPane.columnIndex="2">
-            <Button text ="Clear" fx:id ="button" onAction="#SubmitPressed"></Button>
-        </HBox>
-        <HBox id="vbox" xmlns:fx="http://javafx.com/fxml" GridPane.rowIndex="1" GridPane.columnIndex="0">
-            <Label fx:id="label1" text="Sapienza1" ></Label>
+            <Pane id="vbox" xmlns:fx="http://javafx.com/fxml" >
+                <Label fx:id="labelb1" layoutX="0" layoutY="350" prefHeight="50" prefWidth="50" >
+                    <graphic>
+                        <ImageView fitWidth="220" fitHeight="280" preserveRatio="true" smooth="true">
+                            <image>
+                                <Image url="/img/Sapienza3.PNG"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Label>
 
-            <Label text="ACSAI" ></Label>
-            <Label text="Sapienza1"></Label>
-        </HBox>
-    </GridPane>
-</bottom>
+                <Label fx:id="labelb2" prefHeight="25" layoutX="150"  layoutY="349" prefWidth="100">
+                    <graphic>
+                        <ImageView fitWidth="700" fitHeight="130" preserveRatio="true" smooth="true">
+                            <image>
+                                <Image url="/img/Acsai_Free.jpeg"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Label>
+
+                <Label fx:id="labelb3" layoutX="532" layoutY="350" prefHeight="25" prefWidth="50">
+                    <graphic>
+                        <ImageView fitWidth="225" fitHeight="130" preserveRatio="true" smooth="true">
+                            <image>
+                                <Image url="/img/Sapienza4.PNG"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Label>
+            </Pane>
+        </VBox>
+    </bottom>
 </BorderPane>
-
-
