@@ -56,7 +56,7 @@ import java.util.*;
 public class Mul_Div_Vec extends Application {
     public void start(Stage muldivVec) {
 
-        muldivVec.setTitle("Group Category");
+        muldivVec.setTitle("Multiplication Division Vector");
         muldivVec.setWidth(700);
         muldivVec.setHeight(500);
 
