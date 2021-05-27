@@ -292,6 +292,8 @@ public class New_Monoid extends Application {
                             ;
                     alertInfo.setContentText(s);
                     alertInfo.show();
+                    
+                });
 
                 int id = Integer.parseInt(inputText.getText());
                 newMonoid k = new newMonoid(id, (String)comboBox.getValue());
@@ -305,7 +307,7 @@ public class New_Monoid extends Application {
 
                 });
 
-                });
+               
 
 
                 JavaFX.draw.getChildren().clear();
