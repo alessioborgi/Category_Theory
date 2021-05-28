@@ -14,8 +14,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
 import javafx.stage.Stage;
-
-
+import javafx.util.Duration;
 
 
 public class New_Set extends Application {
@@ -50,7 +49,6 @@ public class New_Set extends Application {
         endHBoxSet.setMinHeight(100);
         endHBoxSet.setMinWidth(700);
         endHBoxSet.setAlignment(Pos.CENTER);
-
 
 
         Label morphTextSet = new Label("    Morphism:  ");
@@ -114,6 +112,7 @@ public class New_Set extends Application {
 
         MenuButton morphSet = new MenuButton("Choose the function");
         morphSet.setStyle("-fx-font-size: 22 px");
+        morphSet.getStyleClass().add("button-create");
 
         Button createSet = new Button("Create");
         createSet.setStyle("-fx-font-size: 22 px");
@@ -355,8 +354,34 @@ public class New_Set extends Application {
                 Shape forma = Shape.intersect(circle1, circle2);
                 forma.setStroke(Color.WHITE);
                 forma.setFill(Color.CORNFLOWERBLUE);
+
+                String x =
+                        "Operation: " + morphSet.getText() +"\n"+
+                                "Identity: " + inputTextSet.getText();
+
+                Tooltip t = new Tooltip(x);
+                Button info = new Button("i");
+                info.setShape(new Circle(1.5));
+                info.setTranslateX(500.0f);
+                info.setTranslateY(100.0f);
+                info.setStyle("-fx-font-size: 30 px");
+                info.getStyleClass().add("button-create");
+                t.setShowDelay(Duration.millis(0));
+                t.setHideDelay(Duration.millis(0));
+                info.setTooltip(t);
+
+                info.setOnAction(f-> {
+                    Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+                    alertInfo.setTitle("Info");
+                    alertInfo.setHeaderText("Group Features");
+                    String s = "Operation: " + morphSet.getText() + "\n" +
+                            "Identity: " + inputTextSet.getText();
+                    alertInfo.setContentText(s);
+                    alertInfo.show();
+                });
+
                 JavaFX.draw.getChildren().clear();
-                JavaFX.draw.getChildren().addAll( shape, forma,A, B);}
+                JavaFX.draw.getChildren().addAll( shape, forma,A, B, info);}
 
 
             if(morphSet.getText().equals("∩")){
@@ -406,8 +431,35 @@ public class New_Set extends Application {
                 Shape forma = Shape.union(circle1, circle2);
                 forma.setFill(JavaFX.background);
                 forma.setStroke(Color.WHITE);
+
+
+                String x =
+                        "Operation: " + morphSet.getText() +"\n"+
+                                "Idetity: " + inputTextSet.getText();
+
+                Tooltip t = new Tooltip(x);
+                Button info = new Button("i");
+                info.setShape(new Circle(1.5));
+                info.setTranslateX(500.0f);
+                info.setTranslateY(100.0f);
+                info.setStyle("-fx-font-size: 30 px");
+                info.getStyleClass().add("button-create");
+                t.setShowDelay(Duration.millis(0));
+                t.setHideDelay(Duration.millis(0));
+                info.setTooltip(t);
+
+                info.setOnAction(f-> {
+                    Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+                    alertInfo.setTitle("Info");
+                    alertInfo.setHeaderText("Group Features");
+                    String s = "Operation: " + morphSet.getText() + "\n" +
+                            "Identity: " + inputTextSet.getText();
+                    alertInfo.setContentText(s);
+                    alertInfo.show();
+                });
+
                 JavaFX.draw.getChildren().clear();
-                JavaFX.draw.getChildren().addAll(forma,  shape, A, B);
+                JavaFX.draw.getChildren().addAll(forma,  shape, A, B, info);
             }
 
             if(morphSet.getText().equals("-")){
@@ -463,8 +515,34 @@ public class New_Set extends Application {
                 Shape forma   = Shape.subtract(circle2, circle1);
                 forma.setFill(JavaFX.background);
                 forma.setStroke(Color.WHITE);
+
+                String x =
+                        "Operation: " + morphSet.getText() +"\n"+
+                        "Identity: " + identityTextSet.getText();
+
+                Tooltip t = new Tooltip(x);
+                Button info = new Button("i");
+                info.setShape(new Circle(1.5));
+                info.setTranslateX(500.0f);
+                info.setTranslateY(100.0f);
+                info.setStyle("-fx-font-size: 30 px");
+                info.getStyleClass().add("button-create");
+                t.setShowDelay(Duration.millis(0));
+                t.setHideDelay(Duration.millis(0));
+                info.setTooltip(t);
+
+                info.setOnAction(f-> {
+                            Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+                            alertInfo.setTitle("Info");
+                            alertInfo.setHeaderText("Group Features");
+                            String s = "Operation: " + morphSet.getText() + "\n" +
+                                    "Identity: " + inputTextSet.getText();
+                            alertInfo.setContentText(s);
+                            alertInfo.show();
+                        });
+
                 JavaFX.draw.getChildren().clear();
-                JavaFX.draw.getChildren().addAll(shape, cerchio, forma, A, B);
+                JavaFX.draw.getChildren().addAll(shape, cerchio, forma, A, B, info);
 
 
             }
@@ -518,13 +596,37 @@ public class New_Set extends Application {
                 Shape cerchio = Shape.intersect(circle1, circle2);
                 cerchio.setStroke(Color.WHITE);
                 cerchio.setFill(JavaFX.background);
+
+                String x =
+                        "Operation: " + morphSet.getText() +"\n"+
+                                "Identity: " + inputTextSet.getText();
+
+                Tooltip t = new Tooltip(x);
+                Button info = new Button("i");
+                info.setShape(new Circle(1.5));
+                info.setTranslateX(500.0f);
+                info.setTranslateY(100.0f);
+                info.setStyle("-fx-font-size: 30 px");
+                info.getStyleClass().add("button-create");
+                t.setShowDelay(Duration.millis(0));
+                t.setHideDelay(Duration.millis(0));
+                info.setTooltip(t);
+
+                info.setOnAction(f-> {
+                    Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+                    alertInfo.setTitle("Info");
+                    alertInfo.setHeaderText("Group Features");
+                    String s = "Operation: " + morphSet.getText() + "\n" +
+                            "Identity: " + inputTextSet.getText();
+                    alertInfo.setContentText(s);
+                    alertInfo.show();
+                });
+
                 JavaFX.draw.getChildren().clear();
                 JavaFX.draw.getChildren().addAll(shape, cerchio, forma, A, B);
 
             }
         });
     }}
-
-
 
 
