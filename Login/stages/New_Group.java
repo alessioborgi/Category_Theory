@@ -172,8 +172,7 @@ public class New_Group extends Application {
                 comboBox.getItems().clear();
                 comboBox.getItems().addAll(options);
                 type.setText("Integer");
-                comboBoxInv.getItems().clear();
-                comboBoxInv.getItems().addAll(inv);
+                
             }
         });
 
@@ -183,7 +182,7 @@ public class New_Group extends Application {
                 comboBox.getItems().clear();
                 comboBox.getItems().addAll(selezione);
                 type.setText("Boolean");
-                comboBoxInv.getItems().addAll(selezione);
+                
             }
         });
 
@@ -332,7 +331,7 @@ public class New_Group extends Application {
             }});
 
 
-
+        comboBoxInv.getItems().addAll(inv);
         
 
         typeHBox.getChildren().addAll(typeText, type);
