@@ -83,6 +83,9 @@ public class New_Ring extends Application{
         idAddText.setStyle("-fx-font-size: 30 px");
         Label idMulText = new Label("    IdMul:   ");
         idMulText.setStyle("-fx-font-size: 30 px");
+        Label inverseLabel = new Label("    Inverse:    ");
+        inverseLabel.setStyle("-fx-font-size: 30 px");
+
 
         TextField idAddTxt = new TextField();
         idAddTxt.setMinHeight(30);
@@ -127,6 +130,7 @@ public class New_Ring extends Application{
                         "-"
                 );
 
+
         ObservableList<String> optionsMul =
                 FXCollections.observableArrayList(
                         "*",
@@ -143,6 +147,23 @@ public class New_Ring extends Application{
                 );
 
 
+        ComboBox comboBoxInv = new ComboBox();
+        comboBoxInv.setPrefHeight(30);
+        comboBoxInv.setMinWidth(30);
+        comboBoxInv.getStyleClass().add("menu-create");
+
+
+        ObservableList<String> inverse =
+        FXCollections.observableArrayList(
+                "-a",
+                "+a",
+                "0",
+                "1"
+
+        );
+
+
+
         //////////////////////
 
         Int.setOnAction(e->{
@@ -151,6 +172,7 @@ public class New_Ring extends Application{
             type.setText("Integer");
             comboBoxMul.getItems().clear();
             comboBoxMul.getItems().addAll(optionsMul);
+
 
         });
 
@@ -161,6 +183,8 @@ public class New_Ring extends Application{
             comboBoxMul.getItems().clear();
             comboBoxAdd.getItems().addAll(noOPt);
             comboBoxMul.getItems().addAll(noOPt);
+
+
 
         });
 
@@ -237,7 +261,8 @@ public class New_Ring extends Application{
                     "Operation: " + comboBoxAdd.getValue() +"\n"+
                     "Operation: " + comboBoxMul.getValue() +"\n"+
                     "Id ADD: " + idAddTxt.getText() +"\n"+
-                    "Id MUL: "  + idMulTxt.getText()
+                    "Id MUL: "  + idMulTxt.getText()+"\n"+
+                    "Inverse: " + comboBoxInv.getValue()
                     ;
             Tooltip t = new Tooltip(x);
             Button info = new Button("i");
@@ -260,14 +285,31 @@ public class New_Ring extends Application{
                         "Operation: " + comboBoxAdd.getValue() +"\n"+
                         "Operation: " + comboBoxMul.getValue() +"\n"+
                         "Id ADD: " + idAddTxt.getText() +"\n"+
-                        "Id MUL: "  + idMulTxt.getText()
+                        "Id MUL: "  + idMulTxt.getText() +"\n"+
+                        "Inverse: " + comboBoxInv.getValue()
                         ;
                 alertInfo.setContentText(s);
                 alertInfo.show();
             });
 
+            func.setOnAction(g->{
 
-         
+                int idA = Integer.parseInt(idAddTxt.getText());
+                int idM = Integer.parseInt(idMulTxt.getText());
+                IntegerCategory.newRing k = new IntegerCategory.newRing(idA, idM, (String)comboBoxAdd.getValue(),
+                        (String)comboBoxMul.getValue(), (String)comboBoxInv.getValue());
+                int aInt =  Integer.parseInt(a.getText());
+                int bInt = Integer.parseInt(b.getText());
+
+                int i = k.add(aInt, bInt);
+                int j = k.mult(aInt, bInt);
+
+                resultA.setText(String.valueOf(i));
+                resultB.setText(String.valueOf(j));
+            });
+
+
+
 
             JavaFX.draw.getChildren().clear();
             JavaFX.draw.getChildren().addAll(circle, name, a, leftArrow, b, rightArrow, func, resultA, info, resultB,
@@ -277,7 +319,7 @@ public class New_Ring extends Application{
         });
 
 
-
+        comboBoxInv.getItems().addAll(inverse);
 
         typeHBox.getChildren().addAll(typeText, type);
         addHBox.getChildren().addAll(addText, sourceAdd, comboBoxAdd, endAdd);
@@ -286,7 +328,7 @@ public class New_Ring extends Application{
         idMulHBox.getChildren().addAll(idMulText, idMulTxt);
         endHBox.getChildren().addAll(test, empty, create);
         type.getItems().addAll(Int, Boo);
-
+        invHBox.getChildren().addAll(inverseLabel, comboBoxInv);
 
         ringVBox.getChildren().addAll(typeHBox, addHBox, mulHBox, idAddHBox, idMulHBox, invHBox, endHBox);
         ring.show();
