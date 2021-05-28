@@ -64,7 +64,7 @@ public class New_SemiGroup extends Application {
 
         Label typeTextSG = new Label("    Type:   ");
         typeTextSG.setStyle("-fx-font-size: 30 px");
-        Label morphTextSG = new Label("    Function:  ");
+        Label morphTextSG = new Label("    Morphism:  ");
         morphTextSG.setStyle("-fx-font-size: 30 px");
         Label sourceTextSG = new Label("Source  A   ");
         sourceTextSG.setStyle("-fx-font-size: 22 px");
