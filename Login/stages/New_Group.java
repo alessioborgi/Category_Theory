@@ -172,6 +172,8 @@ public class New_Group extends Application {
                 comboBox.getItems().clear();
                 comboBox.getItems().addAll(options);
                 type.setText("Integer");
+                comboBoxInv.getItems().clear();
+                comboBoxInv.getItems().addAll(inv);
             }
         });
 
@@ -181,6 +183,7 @@ public class New_Group extends Application {
                 comboBox.getItems().clear();
                 comboBox.getItems().addAll(selezione);
                 type.setText("Boolean");
+                comboBoxInv.getItems().addAll(selezione);
             }
         });
 
@@ -307,7 +310,8 @@ public class New_Group extends Application {
 
                 func.setOnAction(g-> {
                     int id = Integer.parseInt(idText.getText());
-                    IntegerCategory.newMonoid k = new IntegerCategory.newMonoid(id, (String) comboBox.getValue());
+                    IntegerCategory.newGroup k = new IntegerCategory.newGroup(id, (String) comboBox.getValue(),
+                            (String) comboBoxInv.getValue());
                     int aInt = Integer.parseInt(a.getText());
                     int bInt = Integer.parseInt(b.getText());
 
@@ -329,7 +333,7 @@ public class New_Group extends Application {
 
 
 
-        comboBoxInv.getItems().addAll(inv);
+        
 
         typeHBox.getChildren().addAll(typeText, type);
         morphHBox.getChildren().addAll(morphText, sourceText,comboBox , endMorph);
