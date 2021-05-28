@@ -98,7 +98,7 @@ public class Mul_Div_Vec extends Application {
         xLabel.setStyle("-fx-font-size: 25 px");
         Label yLabel = new Label("       y    ");
         yLabel.setStyle("-fx-font-size: 25 px");
-        Label operationLabel = new Label("     Operation:    ");
+        Label operationLabel = new Label("     Morphism:    ");
         operationLabel.setStyle("-fx-font-size: 30 px");
         Label scalarLabel = new Label("     Scalar :     ");
         scalarLabel.setStyle("-fx-font-size: 30 px");
