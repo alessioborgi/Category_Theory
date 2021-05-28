@@ -1,5 +1,7 @@
 package Free_Drawing;
 
+import Free_Drawing.menu.New_Vertex;
+import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -12,7 +14,7 @@ import javafx.scene.control.Button;
 public class Vertex extends Button {
 
     //private static int count = 0;   //Variable that will determine the increasing of the node ID
-    //public int ID;
+    public String ID;
     public ObservableList<Arrow> edges = FXCollections.observableArrayList();
 
     public Vertex(Double x, Double y){
@@ -23,8 +25,10 @@ public class Vertex extends Button {
         translateXProperty().bind(widthProperty().divide(-2));
         translateYProperty().bind(heightProperty().divide(-2));
 
-        //ID = count++;
-        //setText(ID + "");
+        if(!Controller.idNode1Text.getText().equals("")){
+            ID = Controller.idNode1Text.getText();
+            setText(ID);}
+
         getStyleClass().add("visNode");
 
     }
