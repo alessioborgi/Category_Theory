@@ -82,7 +82,7 @@ public class Add_Sub_Vec extends Application {
         x2Label.setStyle("-fx-font-size: 22 px");
         Label y2Label = new Label("      y    ");
         y2Label.setStyle("-fx-font-size: 22 px");
-        Label id = new Label("     Identity:     ");
+        Label id = new Label("     IdCheck:     ");
         id.setStyle("-fx-font-size: 30 px");
         Label resultLabel = new Label("     Result:    ");
         resultLabel.setStyle("-fx-font-size: 30 px");
