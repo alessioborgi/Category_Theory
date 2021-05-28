@@ -78,7 +78,7 @@ public class New_Monoid extends Application {
 
         Label typeText = new Label("    Type:   ");
         typeText.setStyle("-fx-font-size: 30 px");
-        Label morphText = new Label("    Function:  ");
+        Label morphText = new Label("    Morphism:  ");
         morphText.setStyle("-fx-font-size: 30 px");
         Label sourceText = new Label("  Source A   ");
         sourceText.setStyle("-fx-font-size: 22 px");
