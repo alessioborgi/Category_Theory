@@ -53,7 +53,7 @@ public class New_Set extends Application {
 
 
 
-        Label morphTextSet = new Label("    Function:  ");
+        Label morphTextSet = new Label("    Morphism:  ");
         morphTextSet.setStyle("-fx-font-size: 30 px");
         Label sourceTextSet = new Label("Source  A   ");
         sourceTextSet.setStyle("-fx-font-size: 22 px");
