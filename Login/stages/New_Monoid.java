@@ -1,5 +1,11 @@
 package Login.stages;
 
+/**
+ * @author alessioborgi
+ * @created 24 / 05 / 2021 - 15:53
+ * @project CATEGORY_THEORY
+ */
+
 import Integer_Category.IntegerCategory;
 import Login.JavaFX;
 import Set_Category.SetCat;
@@ -103,7 +109,7 @@ public class New_Monoid extends Application {
 
         MenuItem integer = new MenuItem("Integer");
         integer.getStyleClass().add("menu-create");
-      
+
         MenuItem bool = new MenuItem("Boolean");
         bool.getStyleClass().add("menu-create");
         type.getItems().addAll(bool, integer);
@@ -142,12 +148,12 @@ public class New_Monoid extends Application {
 
                 );
 
-       ObservableList<String> selezione =
+        ObservableList<String> selezione =
                 FXCollections.observableArrayList(
                         "∧ (and)",
                         "V (or)",
                         "⊕ (xor)"
-                        
+
                 );
 
 
@@ -186,7 +192,7 @@ public class New_Monoid extends Application {
 
                 }
             }
-            
+
             if(type.getText().equals("Boolean")){
                 fine.setStyle("-fx-font-size: 22 px");
                 String ide = inputText.getText();
@@ -204,16 +210,16 @@ public class New_Monoid extends Application {
                 if (flag){
 
                     if (new Integer_Category.BooleanCategory.newMonoid(identity, (String) comboBox.getValue()).test() ) {
-                    fine.setText("                                              TEST PASSED!");
+                        fine.setText("                                              TEST PASSED!");
                     }
                     else { fine.setText("                                         WRONG IDENTITY!"); }
-                     }
+                }
             }
         });
 
 
 
-        
+
         create.setOnAction(e->{
             test.fire();
 
@@ -253,7 +259,7 @@ public class New_Monoid extends Application {
                 rightArrow.setTranslateX(440.0f);
                 rightArrow.setTranslateY(300.0f);
 
-                 Label result = new Label();
+                Label result = new Label();
                 result.setTranslateY(300.0f);
                 result.setTranslateX(385.0f);
                 result.setStyle("-fx-font-size: 22 px");
@@ -292,24 +298,24 @@ public class New_Monoid extends Application {
                             ;
                     alertInfo.setContentText(s);
                     alertInfo.show();
-                    
+
                 });
 
-                
+
                 func.setOnAction(g->{
                     int id = Integer.parseInt(inputText.getText());
-                    newMonoid k = new newMonoid(id, (String)comboBox.getValue());
+                    IntegerCategory.newMonoid k = new IntegerCategory.newMonoid(id, (String)comboBox.getValue());
                     int aInt =  Integer.parseInt(a.getText());
                     int bInt = Integer.parseInt(b.getText());
 
-                        int i = k.apply(aInt, bInt);
+                    int i = k.apply(aInt, bInt);
 
-                        result.setText(String.valueOf(i));
+                    result.setText(String.valueOf(i));
 
 
 
                 });
-               
+
 
 
                 JavaFX.draw.getChildren().clear();
