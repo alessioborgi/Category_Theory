@@ -74,7 +74,7 @@ public class Add_Sub_Vec extends Application {
         x1Label.setStyle("-fx-font-size: 22 px");
         Label y1Label = new Label("       y    ");
         y1Label.setStyle("-fx-font-size: 22 px");
-        Label operationLabel = new Label("     Operation:    ");
+        Label operationLabel = new Label("     Morphism:    ");
         operationLabel.setStyle("-fx-font-size: 30 px");
         Label v2Label = new Label("     V2:     ");
         v2Label.setStyle("-fx-font-size: 30 px");
