@@ -31,7 +31,6 @@ public class Controller {
     public  Vertex vertexDelete;
     public  Arrow arrow;
     public  Button button;
-    public Label label1;
     public static int count = 0;
     public String ID;
 
@@ -200,13 +199,7 @@ public class Controller {
             ID = String.valueOf(count++);
 
             }
-       // else if (New_Vertex.idNode1Text.getText().equals("")){
-         //   ID = String.valueOf(count);
-
-         //   vertex1.setText(ID);
-         //   count++;
-
-       // }
+       //
         New_Vertex.create.setOnAction(e->{
             Double x = (Double) (Math.random()*(600-0+1)+0);
             Double y = (Double) (Math.random()*(600-50+1)+50);
