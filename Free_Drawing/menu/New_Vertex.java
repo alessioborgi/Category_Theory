@@ -4,6 +4,8 @@ package Free_Drawing.menu;
  * @project CATEGORY_THEORY
  * @author alessioborgi
  */
+import Free_Drawing.Controller;
+import Free_Drawing.Vertex;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -17,8 +19,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.Random;
+
 public class New_Vertex extends Application{
+
+    public static TextField idNode1Text;
+    public static Button create;
+
     public void start(Stage new_vertex) {
+
 
         new_vertex.setWidth(700);
         new_vertex.setHeight(500);
@@ -37,10 +46,10 @@ public class New_Vertex extends Application{
         idNode1HBox.setMinHeight(100);
         idNode1HBox.setMinWidth(700);
         idNode1HBox.setAlignment(Pos.CENTER_LEFT);
-        HBox idNode2HBox = new HBox();
-        idNode2HBox.setMinHeight(100);
-        idNode2HBox.setMinWidth(700);
-        idNode2HBox.setAlignment(Pos.CENTER_LEFT);
+        //HBox idNode2HBox = new HBox();
+        //idNode2HBox.setMinHeight(100);
+        //idNode2HBox.setMinWidth(700);
+        //idNode2HBox.setAlignment(Pos.CENTER_LEFT);
         HBox compositionHBOX = new HBox();
         compositionHBOX.setMinHeight(100);
         compositionHBOX.setMinWidth(700);
@@ -58,7 +67,7 @@ public class New_Vertex extends Application{
         Label composition = new Label("   Composition:    ");
         composition.setStyle("-fx-font-size: 30 px");
 
-        TextField idNode1Text = new TextField();
+        idNode1Text = new TextField();
         idNode1Text.setPromptText("Insert the ID...");
         idNode1Text.setMinHeight(25);
 
@@ -70,34 +79,16 @@ public class New_Vertex extends Application{
         compositionText.setPromptText(" ID node...");
         compositionText.setMinHeight(25);
 
-        Button create = new Button("Create");
+        create = new Button("Create");
         create.setStyle("-fx-font-size: 22 px");
         create.getStyleClass().add("button-create");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
         idNode1HBox.getChildren().addAll(idNode1, idNode1Text);
-        idNode2HBox.getChildren().addAll(idNode2, idNode2Text);
+        //idNode2HBox.getChildren().addAll(idNode2, idNode2Text);
 
         compositionHBOX.getChildren().addAll(composition, compositionText);
         createHBOX.getChildren().addAll(create);
-        newVertexVBox.getChildren().addAll(idNode1HBox, idNode2HBox, compositionHBOX, createHBOX);
+        newVertexVBox.getChildren().addAll(idNode1HBox, compositionHBOX, createHBOX);
         new_vertex.show();
     }
 }
