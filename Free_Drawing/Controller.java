@@ -205,6 +205,7 @@ public class Controller {
             Double y = (Double) (Math.random()*(600-50+1)+50);
 
             vertex1 = createAndAddVertex(x, y);
+            New_Vertex.idNode1Text.setText("");
         });
 
 
