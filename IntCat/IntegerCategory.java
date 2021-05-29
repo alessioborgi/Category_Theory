@@ -1,13 +1,14 @@
-
+package Integer_Category;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.lang.Math;
 
-public class IntegerCategory{
+public class IntegerCategory {
 
-    public static class newSemigroup implements Semigroup<Integer>{
+    public static class newSemigroup implements Semigroup<Integer> {
         String fx;
-        public newSemigroup(String func){
+
+        public newSemigroup(String func) {
             fx = func;
         }
 
@@ -40,37 +41,39 @@ public class IntegerCategory{
         }
 
         public Integer apply(Integer t, Integer u) {
-            return new newSemigroup(fx).apply(t,u);
+            return new newSemigroup(fx).apply(t, u);
         }
 
-        public boolean test(){
+        public boolean test() {
             for (int i = 0; i < 50; i++) {
-                Integer randomN = ThreadLocalRandom.current().nextInt(0,100);
-                Integer randomM = ThreadLocalRandom.current().nextInt(-100,0);
-                try{test(randomN);
-                    test(randomM);}
-                catch(Exception e){
+                Integer randomN = ThreadLocalRandom.current().nextInt(0, 100);
+                Integer randomM = ThreadLocalRandom.current().nextInt(-100, 0);
+                try {
+                    test(randomN);
+                    test(randomM);
+                } catch (Exception e) {
                     System.out.println("Exception caught => " + e.getMessage());
                     return false;
                 }
             }
-            return true;}
+            return true;
+        }
     }
 
-    public static class newGroup implements Group<Integer>{
+    public static class newGroup implements Group<Integer> {
 
         int zero;
         String fx;
         String inv;
 
-        public newGroup(int e, String func, String invFunc){
+        public newGroup(int e, String func, String invFunc) {
             zero = e;
             fx = func;
             inv = invFunc;
         }
 
         public Integer apply(Integer t, Integer u) {
-            return new newSemigroup(fx).apply(t,u);
+            return new newSemigroup(fx).apply(t, u);
         }
 
         public Integer id() {
@@ -83,36 +86,43 @@ public class IntegerCategory{
                 case "+a" -> t;
                 case "0" -> 0;
                 case "1" -> 1;
-
                 default -> 0;
             };
         }
 
-
-        public String test(){
+        public String test() {
             for (int i = 0; i < 50; i++) {
-                Integer randomN = ThreadLocalRandom.current().nextInt(0,100);
-                Integer randomM = ThreadLocalRandom.current().nextInt(-100,0);
-                try{test(randomN);
-                    test(randomM);}
-                catch(Exception e){
+                Integer randomN = ThreadLocalRandom.current().nextInt(1, 100);
+                Integer randomM = ThreadLocalRandom.current().nextInt(-100, -1);
+                try {
+                    test(randomN);
+                    test(randomM);
+                } catch (Exception e) {
                     System.out.println("Exception caught => " + e.getMessage());
                     return e.getMessage();
                 }
             }
-            return "TEST PASSED!";}
+            return "TEST PASSED!";
+        }
 
-        public boolean isAbelian(){
-            for(int i = 0; i < 50; i++){
-                Integer randomN = ThreadLocalRandom.current().nextInt(-100,100);
-                Integer randomM = ThreadLocalRandom.current().nextInt(-100,0);
-                Integer randomZ = ThreadLocalRandom.current().nextInt(0,100);
-                if (! isAbelian(randomN,randomM,randomZ)){return false;}
+        public boolean isAbelian() {
+            for (int i = 0; i < 50; i++) {
+                Integer randomN = ThreadLocalRandom.current().nextInt(-100, 100);
+                if (randomN.equals(0)) {
+                    randomN++;
+                }
+                Integer randomM = ThreadLocalRandom.current().nextInt(-100, -1);
+                Integer randomZ = ThreadLocalRandom.current().nextInt(1, 100);
+                if (!isAbelian(randomN, randomM, randomZ)) {
+                    System.out.println("Not Abelian");
+                    return false;
+                }
             }
-            return true;}
+            return true;
+        }
     }
 
-    public static class newRing implements Ring<Integer>{
+    public static class newRing implements Ring<Integer> {
 
         int zeroAdd;
         int zeroMul;
@@ -122,14 +132,14 @@ public class IntegerCategory{
         newGroup ringGroup;
         newMonoid ringMonoid;
 
-        public newRing(int eA,int eM,String addition,String multiplication,String inversion){
+        public newRing(int eA, int eM, String addition, String multiplication, String inversion) {
             zeroAdd = eA;
             zeroMul = eM;
             invA = inversion;
             fxAdd = addition;
             fxMult = multiplication;
-            ringGroup = new newGroup(zeroAdd,fxAdd,invA);
-            ringMonoid = new newMonoid(zeroMul,fxMult);
+            ringGroup = new newGroup(zeroAdd, fxAdd, invA);
+            ringMonoid = new newMonoid(zeroMul, fxMult);
         }
 
         @Override
@@ -149,70 +159,37 @@ public class IntegerCategory{
 
         @Override
         public Integer add(Integer t, Integer u) {
-            return ringGroup.apply(t,u);
+            return ringGroup.apply(t, u);
         }
 
         @Override
         public Integer mult(Integer t, Integer u) {
-            return ringMonoid.apply(t,u);
+            return ringMonoid.apply(t, u);
         }
 
-        private boolean distributivityTest(){
-            for(int i = 0; i < 50; i++){
-                Integer randomN = ThreadLocalRandom.current().nextInt(-100,100);
-                Integer randomM = ThreadLocalRandom.current().nextInt(-100,0);
-                Integer randomZ = ThreadLocalRandom.current().nextInt(0,100);
-                Integer randomK = ThreadLocalRandom.current().nextInt(-100,0);
+        private boolean distributivityTest() {
+            for (int i = 0; i < 50; i++) {
+                Integer randomN = ThreadLocalRandom.current().nextInt(-100, 100);
+                Integer randomM = ThreadLocalRandom.current().nextInt(-100, 0);
+                Integer randomZ = ThreadLocalRandom.current().nextInt(0, 100);
+                Integer randomK = ThreadLocalRandom.current().nextInt(-100, 0);
                 try {
                     distributivityTest(randomN, randomM, randomZ);
                     distributivityTest(randomN, randomZ, randomM);
                     distributivityTest(randomM, randomN, randomZ);
                     distributivityTest(randomM, randomK, randomZ);
                     distributivityTest(randomK, randomN, randomZ);
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     System.out.println("Exception caught => " + e.getMessage());
                     return false;
                 }
             }
-            return true;}
+            return true;
+        }
 
-        public boolean test(){
+        public boolean test() {
             return ringGroup.isAbelian() && ringMonoid.test() && distributivityTest();
         }
 
     }
-
-   /**
-    public void met(){
-        try {
-            BooleanCategory.newMonoid BoolOR = new BooleanCategory.newMonoid(true,"and");
-            newGroup add = new newGroup(0, "+", "-");
-            newMonoid mult = new newMonoid(1, "/");
-            newSemigroup sub = new newSemigroup("-");
-            newRing intRing = new newRing(0, 1, "+", "*", "-");
-            //System.out.println(add.isAbelian());
-            System.out.println(BoolOR.apply(true,true));
-            System.out.println(BoolOR.test());
-            if (mult.test() && add.test() && intRing.test()) {
-                System.out.println(sub.apply(8, 9)); //-1
-                System.out.println(mult.apply(8, 4)); //12
-                System.out.println(intRing.add(7, 3)); //10 or 4
-                System.out.println(intRing.mult(8, 4)); //-20
-            }
-        }
-        catch (Exception e){
-            System.out.println("Exception caught => " + e.getMessage());
-        }
-    }
-
-    public static void main(String[] args){
-        long startTime = System.currentTimeMillis();
-
-        IntegerCategory firstInt = new IntegerCategory();
-        firstInt.met();
-        long endTime = System.currentTimeMillis();
-        System.out.println("Total execution time: " + (endTime-startTime) + "ms");
-    }*/
-
 }
