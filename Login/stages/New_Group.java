@@ -172,7 +172,6 @@ public class New_Group extends Application {
                 comboBox.getItems().clear();
                 comboBox.getItems().addAll(options);
                 type.setText("Integer");
-                
             }
         });
 
@@ -182,7 +181,6 @@ public class New_Group extends Application {
                 comboBox.getItems().clear();
                 comboBox.getItems().addAll(selezione);
                 type.setText("Boolean");
-                
             }
         });
 
@@ -205,10 +203,12 @@ public class New_Group extends Application {
                 if (ide.equals("1") || ide.equals("true") || ide.equals("True")){
                     identity = true;
                     flag = true;
+                    idText.setText("true");
                 }
                 else if (ide.equals("0") || ide.equals("false") || ide.equals("False")){
                     identity = false;
                     flag = true;
+                    idText.setText("false");
                 }
                 else { fine.setText("                            Please insert a boolean value"); }
                 if (flag){
@@ -226,7 +226,7 @@ public class New_Group extends Application {
             test.fire();
 
             if(fine.getText().equals("                                              TEST PASSED!") ||
-                 (fine.getText().equals("TEST PASSED! - Abelian Group"))) {
+                    (fine.getText().equals("TEST PASSED! - Abelian Group"))) {
                 Circle circle = new Circle();
                 circle.setRadius(250);
                 circle.setStroke(Color.BLACK);
@@ -307,19 +307,27 @@ public class New_Group extends Application {
                 });
 
 
-                func.setOnAction(g-> {
-                    int id = Integer.parseInt(idText.getText());
-                    IntegerCategory.newGroup k = new IntegerCategory.newGroup(id, (String) comboBox.getValue(),
-                            (String) comboBoxInv.getValue());
-                    int aInt = Integer.parseInt(a.getText());
-                    int bInt = Integer.parseInt(b.getText());
-
-                    int i = k.apply(aInt, bInt);
-
-                    result.setText(String.valueOf(i));
-
-
-                });
+                if (type.getText().equals("Integer")) {
+                    IntegerCategory.newGroup intGroup= new IntegerCategory.newGroup(Integer.parseInt(idText.getText()), (String) comboBox.getValue(),(String) comboBoxInv.getValue());
+                    func.setOnAction(g -> {
+                        result.setText(String.valueOf(intGroup.apply(Integer.parseInt(a.getText()), Integer.parseInt(b.getText()))));
+                    });
+                }
+                if(type.getText().equals("Boolean")){
+                    BooleanCategory.newGroup BoolGroup = new BooleanCategory.newGroup(Boolean.parseBoolean(idText.getText()),(String) comboBox.getValue(),(String) comboBoxInv.getValue());
+                    func.setOnAction(g -> {
+                        String alfa = a.getText();
+                        String beta = b.getText();
+                        if(alfa.equals("1")){alfa = "True";}
+                        else if(alfa.equals("0")){alfa = "False";}
+                        if(beta.equals("1")){beta = "True";}
+                        else if(beta.equals("0")){beta = "False";}
+                        result.setText(String.valueOf(BoolGroup.apply(Boolean.parseBoolean(alfa), Boolean.parseBoolean(beta))));
+                        if (!((beta.equalsIgnoreCase("True") || beta.equalsIgnoreCase("False")) && (alfa.equalsIgnoreCase("True") || alfa.equalsIgnoreCase("False")))){
+                            result.setText("!!");
+                        }
+                    });
+                }
 
 
 
@@ -331,8 +339,8 @@ public class New_Group extends Application {
             }});
 
 
+
         comboBoxInv.getItems().addAll(inv);
-        
 
         typeHBox.getChildren().addAll(typeText, type);
         morphHBox.getChildren().addAll(morphText, sourceText,comboBox , endMorph);
