@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 public class Vertex extends Button {
 
     //private static int count = 0;   //Variable that will determine the increasing of the node ID
+    public static int count = 0;
     public String ID;
     public ObservableList<Arrow> edges = FXCollections.observableArrayList();
 
@@ -25,9 +26,15 @@ public class Vertex extends Button {
         translateXProperty().bind(widthProperty().divide(-2));
         translateYProperty().bind(heightProperty().divide(-2));
 
-        if(!Controller.idNode1Text.getText().equals("")){
-            ID = Controller.idNode1Text.getText();
+        if(New_Vertex.idNode1Text == (null)){
+            ID = String.valueOf(count);
+            setText(ID);
+            count++;
+        }
+        else if(!New_Vertex.idNode1Text.getText().equals("")){
+            ID = New_Vertex.idNode1Text.getText();
             setText(ID);}
+
 
         getStyleClass().add("visNode");
 
