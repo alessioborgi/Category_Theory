@@ -34,8 +34,12 @@ public class Vertex extends Button {
         else if(!New_Vertex.idNode1Text.getText().equals("")){
             ID = New_Vertex.idNode1Text.getText();
             setText(ID);}
+        else if (New_Vertex.idNode1Text.getText().equals("")){
+               ID = String.valueOf(count);
+               setText(ID);
+               count++;
 
-
+        }
         getStyleClass().add("visNode");
 
     }
