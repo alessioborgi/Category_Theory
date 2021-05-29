@@ -1,5 +1,7 @@
 package Free_Drawing;
 
+import Free_Drawing.menu.New_Morphism;
+import Login.stages.New_Group;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -23,15 +25,21 @@ import java.util.Optional;
 public class Controller {
 
     @FXML
-    public AnchorPane graph;
-    public Vertex vertex1;
-    public Vertex vertex2;
-    public Vertex vertexDelete;
-    public Arrow arrow;
-    public Button button;
-    public static TextField idNode1Text;
+    public   AnchorPane graph;
+    public  Vertex vertex1;
+    public  Vertex vertex2;
+    public  Vertex vertexDelete;
+    public  Arrow arrow;
+    public  Button button;
     public Label label1;
+    public static int count = 0;
+    public String ID;
 
+
+
+    public void CreatePressed(){
+
+    }
 
 
     //Graph Events
@@ -70,7 +78,7 @@ public class Controller {
     }
 
     //Vertex Events
-    private void onRightClickOnVertex(MouseEvent mouseEvent, Vertex vertex) {
+    private  void onRightClickOnVertex(MouseEvent mouseEvent, Vertex vertex) {
         if(mouseEvent.isPrimaryButtonDown()){
             vertex1 = vertex;
         }else if(mouseEvent.isSecondaryButtonDown()){
@@ -79,7 +87,7 @@ public class Controller {
         }
     }
 
-    private void onVertexDragDetected(MouseEvent mouseEvent, Vertex vertex) {
+    private  void onVertexDragDetected(MouseEvent mouseEvent, Vertex vertex) {
         //This method allows the fact that when I move one node, it should be in front of the others instead of moving behind them
         //It adds the fact also that if I start from a Vertex that is present on the graph, and then I click with the left button
         //of the mouse, it creates a new vertex, connected directly with an arrow
@@ -99,7 +107,7 @@ public class Controller {
         }
     }
 
-    private void onVertexDragged(MouseEvent mouseEvent, Button vertex) {
+    private  void onVertexDragged(MouseEvent mouseEvent, Button vertex) {
         //This method allows me to move a node, only with the left click
         if(vertex2 != null){
             vertex2.setLayoutX(vertex.getLayoutX() + mouseEvent.getX() + vertex.getTranslateX());
@@ -112,7 +120,7 @@ public class Controller {
 
     }
 
-    private void onVertexReleased(MouseEvent mouseEvent, Vertex vertex) {
+    private  void onVertexReleased(MouseEvent mouseEvent, Vertex vertex) {
         vertex.getStyleClass().remove("dragged");
         for(Arrow a : vertex.edges){
             a.getStyleClass().remove("dragged");
@@ -131,7 +139,7 @@ public class Controller {
     }
 
     //Helper Methods
-    private Vertex createAndAddVertex(Double x, Double y) {
+    public  Vertex createAndAddVertex(Double x, Double y) {
         Vertex vertex = new Vertex(x, y);
 
         vertex.setOnAction(e -> {
@@ -151,7 +159,7 @@ public class Controller {
         return vertex;
     }
 
-    private Arrow createAndAddArrow(Vertex v1, Vertex v2){
+    private  Arrow createAndAddArrow(Vertex v1, Vertex v2){
         Arrow arrow = new Arrow(v1.getLayoutX(), v1.getLayoutY(), v2.getLayoutX(), v2.getLayoutY());
         //Now we bind the coordinates of the arrow to the coordinate of the vertices
         arrow.x1Property().bind(v1.layoutXProperty());
@@ -180,80 +188,51 @@ public class Controller {
 
     public void NewVertexClicked(ActionEvent actionEvent) {
         Stage new_vertex = new Stage();
-        new_vertex.setWidth(700);
-        new_vertex.setHeight(500);
-        new_vertex.setTitle("New Vertex");
+        new New_Vertex().start(new_vertex);
+        if(New_Vertex.idNode1Text == (null)){
+            ID = String.valueOf(count);
+            vertex1.setText(ID);
+            count++;
+        }
+        else if(!New_Vertex.idNode1Text.getText().equals("")){
+            ID = New_Vertex.idNode1Text.getText();
+            vertex1.setText(ID);
+            ID = String.valueOf(count++);
 
-        VBox newVertexVBox = new VBox();
-        newVertexVBox.getStyleClass().add("background");
-        Scene newVertexScene = new Scene(newVertexVBox);
-        newVertexScene.getStylesheets().add("Login/Styles.css");
+            }
+       // else if (New_Vertex.idNode1Text.getText().equals("")){
+         //   ID = String.valueOf(count);
 
-        new_vertex.setScene(newVertexScene);
+         //   vertex1.setText(ID);
+         //   count++;
 
-        //////////////////////////////////
+       // }
+        New_Vertex.create.setOnAction(e->{
+            Double x = (Double) (Math.random()*(600-0+1)+0);
+            Double y = (Double) (Math.random()*(600-50+1)+50);
 
-        HBox idNode1HBox = new HBox();
-        idNode1HBox.setMinHeight(100);
-        idNode1HBox.setMinWidth(700);
-        idNode1HBox.setAlignment(Pos.CENTER_LEFT);
-        HBox idNode2HBox = new HBox();
-        idNode2HBox.setMinHeight(100);
-        idNode2HBox.setMinWidth(700);
-        idNode2HBox.setAlignment(Pos.CENTER_LEFT);
-        HBox compositionHBOX = new HBox();
-        compositionHBOX.setMinHeight(100);
-        compositionHBOX.setMinWidth(700);
-        compositionHBOX.setAlignment(Pos.CENTER_LEFT);
-        HBox createHBOX = new HBox();
-        createHBOX.setMinHeight(100);
-        createHBOX.setMinWidth(700);
-        createHBOX.setAlignment(Pos.CENTER);
+            vertex1 = createAndAddVertex(x, y);
+        });
 
 
-        Label idNode1 = new Label("    ID Node 1:   ");
-        idNode1.setStyle("-fx-font-size: 30 px");
-        Label idNode2 = new Label("    ID Node 2:  ");
-        idNode2.setStyle("-fx-font-size: 30 px");
-        Label composition = new Label("   Composition:    ");
-        composition.setStyle("-fx-font-size: 30 px");
-
-        idNode1Text = new TextField();
-        idNode1Text.setPromptText("Insert the ID...");
-        idNode1Text.setMinHeight(25);
-
-        TextField idNode2Text = new TextField();
-        idNode2Text.setPromptText("Insert the ID...");
-        idNode2Text.setMinHeight(25);
-
-        TextField compositionText = new TextField();
-        compositionText.setPromptText(" ID node...");
-        compositionText.setMinHeight(25);
-
-        Button create = new Button("Create");
-        create.setStyle("-fx-font-size: 22 px");
-        create.getStyleClass().add("button-create");
-
-        idNode1HBox.getChildren().addAll(idNode1, idNode1Text);
-        idNode2HBox.getChildren().addAll(idNode2, idNode2Text);
-
-        compositionHBOX.getChildren().addAll(composition, compositionText);
-        createHBOX.getChildren().addAll(create);
-        newVertexVBox.getChildren().addAll(idNode1HBox, idNode2HBox, compositionHBOX, createHBOX);
-        new_vertex.show();
     }
 
     public void NewComposition(ActionEvent actionEvent) {
     }
 
     public void NewMorphism(ActionEvent actionEvent) {
+        Stage new_morphism = new Stage();
+        new New_Morphism().start(new_morphism);
+
     }
 
     public void CancelVertex(ActionEvent actionEvent) {
     }
 
     public void ClearAll(ActionEvent actionEvent) {
+        count = 0;
         graph.getChildren().clear();
+
 
     }
 
