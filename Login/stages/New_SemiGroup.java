@@ -1,6 +1,7 @@
 package Login.stages;
 
 
+import Integer_Category.BooleanCategory;
 import Integer_Category.IntegerCategory;
 import Login.JavaFX;
 import javafx.application.Application;
@@ -218,15 +219,34 @@ public class New_SemiGroup extends Application {
 
 
             func.setOnAction(g -> {
+                if(typeSG.getText().equals("Integer")) {
+                    IntegerCategory.newSemigroup k = new IntegerCategory.newSemigroup((String) comboBox.getValue());
+                    int aInt = Integer.parseInt(a.getText());
+                    int bInt = Integer.parseInt(b.getText());
 
-                IntegerCategory.newSemigroup k = new IntegerCategory.newSemigroup((String) comboBox.getValue());
-                int aInt = Integer.parseInt(a.getText());
-                int bInt = Integer.parseInt(b.getText());
+                    int i = k.apply(aInt, bInt);
 
-                int i = k.apply(aInt, bInt);
-
-                result.setText(String.valueOf(i));
-
+                    result.setText(String.valueOf(i));
+                }
+                else {
+                    BooleanCategory.newSemigroup Boolsemi = new BooleanCategory.newSemigroup((String)comboBox.getValue());
+                    String alfa = a.getText();
+                    String beta = b.getText();
+                    if (alfa.equals("1")) {
+                        alfa = "True";
+                    } else if (alfa.equals("0")) {
+                        alfa = "False";
+                    }
+                    if (beta.equals("1")) {
+                        beta = "True";
+                    } else if (beta.equals("0")) {
+                        beta = "False";
+                    }
+                    result.setText(String.valueOf(Boolsemi.apply(Boolean.parseBoolean(alfa), Boolean.parseBoolean(beta))));
+                    if (!((beta.equalsIgnoreCase("True") || beta.equalsIgnoreCase("False")) && (alfa.equalsIgnoreCase("True") || alfa.equalsIgnoreCase("False")))) {
+                        result.setText("!!");
+                    }
+                }
 
             });
 
