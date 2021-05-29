@@ -1,11 +1,6 @@
 package Login.stages;
 
-/**
- * @author alessioborgi
- * @created 24 / 05 / 2021 - 15:53
- * @project CATEGORY_THEORY
- */
-
+import Integer_Category.BooleanCategory;
 import Integer_Category.IntegerCategory;
 import Login.JavaFX;
 import Set_Category.SetCat;
@@ -201,10 +196,12 @@ public class New_Monoid extends Application {
                 if (ide.equals("1") || ide.equals("true") || ide.equals("True")){
                     identity = true;
                     flag = true;
+                    inputText.setText("True");
                 }
                 else if (ide.equals("0") || ide.equals("false") || ide.equals("False")){
                     identity = false;
                     flag = true;
+                    inputText.setText("False");
                 }
                 else { fine.setText("                            Please insert a boolean value"); }
                 if (flag){
@@ -301,20 +298,29 @@ public class New_Monoid extends Application {
 
                 });
 
+                if (type.getText().equals("Integer")) {
+                    IntegerCategory.newMonoid IntMonoid = new IntegerCategory.newMonoid(Integer.parseInt(inputText.getText()), (String) comboBox.getValue());
+                    func.setOnAction(g -> {
+                        result.setText(String.valueOf(IntMonoid.apply(Integer.parseInt(a.getText()), Integer.parseInt(b.getText()))));
+                    });
+                }
+                if(type.getText().equals("Boolean")){
+                    BooleanCategory.newMonoid BoolMonoid = new BooleanCategory.newMonoid(Boolean.parseBoolean(inputText.getText()),(String) comboBox.getValue());
+                    func.setOnAction(g -> {
+                        String alfa = a.getText();
+                        String beta = b.getText();
+                        if(alfa.equals("1")){alfa = "True";}
+                        else if(alfa.equals("0")){alfa = "False";}
+                        if(beta.equals("1")){beta = "True";}
+                        else if(beta.equals("0")){beta = "False";}
+                        result.setText(String.valueOf(BoolMonoid.apply(Boolean.parseBoolean(alfa), Boolean.parseBoolean(beta))));
+                        if (!((beta.equalsIgnoreCase("True") || beta.equalsIgnoreCase("False")) && (alfa.equalsIgnoreCase("True") || alfa.equalsIgnoreCase("False")))){
+                            result.setText("!!");
+                        }
+                    });
+                }
 
-                func.setOnAction(g->{
-                    int id = Integer.parseInt(inputText.getText());
-                    IntegerCategory.newMonoid k = new IntegerCategory.newMonoid(id, (String)comboBox.getValue());
-                    int aInt =  Integer.parseInt(a.getText());
-                    int bInt = Integer.parseInt(b.getText());
 
-                    int i = k.apply(aInt, bInt);
-
-                    result.setText(String.valueOf(i));
-
-
-
-                });
 
 
 
