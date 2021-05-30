@@ -28,8 +28,8 @@ import javafx.stage.Stage;
 public class Add_Sub_Vec extends Application {
 
     public void start(Stage addsubVec) {
-        
-        //line 29-203: it is defined the stage and its elements  
+
+        //line 29-203: it is defined the stage and its elements
 
         addsubVec.setTitle("Group Category");
         addsubVec.setWidth(700);
@@ -132,7 +132,7 @@ public class Add_Sub_Vec extends Application {
 
         ///////////////////
         result.setOnAction(e->{
-
+            // how the button "result" works when pushed
             int x1 = Integer.parseInt(x1Text.getText());
             int y1 = Integer.parseInt(y1Text.getText());
             int x2 = Integer.parseInt(x2Text.getText());
@@ -154,6 +154,9 @@ public class Add_Sub_Vec extends Application {
             }
         });
         create.setOnAction(e->{
+
+            //how the create draws the vector, linked to the class JavaFX.java
+
             if(operation.getText().equals("+")){
                 Line line1 = new Line();
                 Line line2 = new Line();
@@ -204,6 +207,8 @@ public class Add_Sub_Vec extends Application {
         Alert alertidAdd = new Alert(Alert.AlertType.INFORMATION);
 
         test.setOnAction(e->{
+            // how the button "test" works when pushed
+
             int x1 = Integer.parseInt(x1Text.getText());
             int y1 = Integer.parseInt(y1Text.getText());
             int idScalar = Integer.parseInt(identity.getText());
@@ -258,3 +263,4 @@ public class Add_Sub_Vec extends Application {
         addsubVec.show();
     }
 }
+
