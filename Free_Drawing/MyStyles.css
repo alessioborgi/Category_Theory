@@ -1,3 +1,14 @@
+/**
+ * @author alessioborgi
+ * @created 03 / 05 / 2021 - 17:09
+ * @project LOGIN
+ */
+
+
+/* This file is a CSS file. It will handle all the customization of some items that will use it.
+   In particular the Nodes customization and the customization of the vertex that are been dragged */
+
+
  .visNode{
      -fx-font-size: 15;      /*It increases the size of the Vertex's ID */
      -fx-font-weight: bold;  /*It the Vertex's ID in bold */
