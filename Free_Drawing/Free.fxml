@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+
 <BorderPane fx:controller="Free_Drawing.Controller"
             xmlns:fx="http://javafx.com/fxml"
             stylesheets="@MyStyles.css">
@@ -44,31 +42,18 @@
                     </Label>
 
                 </HBox>
-                <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput">
+                <MenuBar fx:id="menuBar">
                     <menus>
                         <Menu text="Create">
                             <items>
                                 <MenuItem text="New Vertex"   onAction="#NewVertexClicked"/>
-                                <MenuItem text="New Morphism" onAction="#NewMorphism"/>
-                                <MenuItem text="Composition"  onAction="#NewComposition"/>
-                                <SeparatorMenuItem  />
-                                <MenuItem text="Cancel"       onAction="#CancelVertex"/>
                             </items>
                         </Menu>
                         <Menu text="Edit">
                             <items>
                                 <MenuItem text="Clear"        onAction="#ClearAll"/>
-                                <MenuItem text="Logout"       onAction="#Logout"/>
                                 <SeparatorMenuItem  />
                                 <MenuItem text="Exit"         onAction="#ExitNow"/>
-                            </items>
-                        </Menu>
-                        <Menu text="Help">
-                            <items>
-                                <MenuItem text="Search" disable="true"/>
-                                <MenuItem text="Online Manual" visible="false"/>
-                                <SeparatorMenuItem />
-                                <MenuItem text="About" onAction="#handleAboutAction"/>
                             </items>
                         </Menu>
                     </menus>
@@ -76,6 +61,7 @@
             </VBox>
         </AnchorPane>
     </top>
+    
     <center>
         <AnchorPane fx:id="graph" style="-fx-background-color:linear-gradient(to right, gold , orange);"
                     onMousePressed="#onGraphPressed"
@@ -83,17 +69,13 @@
                     onMouseDragged="#onGraphDragged"
                     onMouseReleased="#onGraphReleased">
         </AnchorPane>
-
-
-
     </center>
-
 
     <bottom>
         <VBox fx:id="Bottom" style="-fx-background-color:white;" prefHeight="160">
             <Pane style="-fx-background-color:linear-gradient(to right, gold , orange);">
-                <Button text ="Clear" fx:id ="button" onAction="#SubmitPressed" layoutX="330" layoutY="0" alignment="BOTTOM_CENTER"
-                style = "-fx-background-color: #7cafc2;
+                <Button text ="Clear" fx:id ="button" onAction="#ClearAll" layoutX="330" layoutY="0" alignment="BOTTOM_CENTER"
+                        style = "-fx-background-color: #7cafc2;
                 -fx-background-radius: 15px;
                 -fx-text-fill: #ffffff;"></Button>
             </Pane>
