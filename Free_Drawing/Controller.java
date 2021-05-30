@@ -188,18 +188,7 @@ public class Controller {
     public void NewVertexClicked(ActionEvent actionEvent) {
         Stage new_vertex = new Stage();
         new New_Vertex().start(new_vertex);
-        if(New_Vertex.idNode1Text == (null)){
-            ID = String.valueOf(count);
-            vertex1.setText(ID);
-            count++;
-        }
-        else if(!New_Vertex.idNode1Text.getText().equals("")){
-            ID = New_Vertex.idNode1Text.getText();
-            vertex1.setText(ID);
-            ID = String.valueOf(count++);
-
-            }
-       //
+        
         New_Vertex.create.setOnAction(e->{
             Double x = (Double) (Math.random()*(600-0+1)+0);
             Double y = (Double) (Math.random()*(600-50+1)+50);
