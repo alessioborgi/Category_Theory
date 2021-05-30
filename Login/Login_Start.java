@@ -147,7 +147,7 @@ public class Login_Start extends JFrame implements ActionListener {
                         int second = cal.get(Calendar.SECOND);
                         int minute = cal.get(Calendar.MINUTE);
                         int hour = cal.get(Calendar.HOUR);
-                        current_time.setText("Time:" + hour + ":" + minute + ":" + second);
+                        current_time.setText("Time: " + hour + ":" + minute + ":" + second);
                         current_date.setText(" Date: " + months[month] + "/" + day + "/" + year);
                         sleep(1000);
                     }
