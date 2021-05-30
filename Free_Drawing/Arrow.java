@@ -1,20 +1,24 @@
 package Free_Drawing;
 
+/**
+ * @author alessioborgi
+ * @created 22 / 05 / 2021 - 16:25
+ * @project CATEGORY_THEORY
+ */
+
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Group;
 import javafx.scene.shape.Polyline;
 
-/**
- * @author alessioborgi
- * @created 22 / 05 / 2021 - 16:25
- * @project CATEGORY_THEORY
- */
 public class Arrow extends Group {
+    /*
+        This method handles the creation of the morphism between nodes.
+     */
 
+    //Declaration of all the components.
     private Polyline mainLine = new Polyline();     //Line of the arrow
-    private Polyline headA = new Polyline();
     private Polyline headB = new Polyline();
     private SimpleDoubleProperty x1 = new SimpleDoubleProperty();
     private SimpleDoubleProperty y1 = new SimpleDoubleProperty();
@@ -26,16 +30,13 @@ public class Arrow extends Group {
     private final double ARROWHEAD_ANGLE= Math.toRadians(20);
     private final double ARROWHEAD_LENGTH = 10;
 
-
     public Arrow(double x1, double y1, double x2, double y2){
         this.x1.set(x1);
         this.y1.set(y1);
         this.x2.set(x2);
         this.y2.set(y2);
 
-        //getChildren().addAll(mainLine, headA, headB);
         getChildren().addAll(mainLine, headB);
-
 
         //We add listeners to all the coordinate variable so that whenever they are updated, we can update the mainline too
         for(SimpleDoubleProperty s : new SimpleDoubleProperty[]{this.x1, this.y1, this.x2, this.y2}){
@@ -43,26 +44,22 @@ public class Arrow extends Group {
         }
 
         setUpStyleClassStructure();
-
-        //headA.visibleProperty().bind(headAVisible);
         headB.visibleProperty().bind(headBVisible);
         update();
-
     }
 
     private void setUpStyleClassStructure() {
+        /*
+            Helper method for setting trigonometric features in the morphism that has been created.
+         */
         mainLine.getStyleClass().setAll("arrow");
-        //headA.getStyleClass().setAll("arrow");
         headB.getStyleClass().setAll("arrow");
-
-        //headA.getStyleClass().add("arrowhead");
         headB.getStyleClass().add("arrowhead");
 
         //Since we set up the style for the arrow(that is a group), we have to set up a settings so that whenever
         //the Group's style changes, it update directly also the "mainLine", "headA", and "headB".
         getStyleClass().addListener((ListChangeListener<? super String>) c ->{
             c.next();
-            //for(Polyline p : new Polyline[]{mainLine, headA, headB}){
             for(Polyline p : new Polyline[]{mainLine, headB}){
                 p.getStyleClass().addAll(c.getAddedSubList());
                 p.getStyleClass().removeAll((c.getRemoved()));
@@ -84,16 +81,8 @@ public class Arrow extends Group {
         mainLine.getPoints().setAll(x1, y1, x2, y2);
 
         double theta = Math.atan2(y2-y1, x2-x1);
-        //Arrow head1
-        double x = x1 + Math.cos(theta + ARROWHEAD_ANGLE) * ARROWHEAD_LENGTH;
-        double y = y1 + Math.sin(theta + ARROWHEAD_ANGLE) * ARROWHEAD_LENGTH;
-        //headA.getPoints().setAll(x, y, x1, y1);
-        x = x1 + Math.cos(theta - ARROWHEAD_ANGLE) * ARROWHEAD_LENGTH;
-        y = y1 + Math.sin(theta - ARROWHEAD_ANGLE) * ARROWHEAD_LENGTH;
-        //headA.getPoints().addAll(x, y);
-        //Arrow head2
-        x = x2 - Math.cos(theta + ARROWHEAD_ANGLE) * ARROWHEAD_LENGTH;
-        y = y2 - Math.sin(theta + ARROWHEAD_ANGLE) * ARROWHEAD_LENGTH;
+        double x = x2 - Math.cos(theta + ARROWHEAD_ANGLE) * ARROWHEAD_LENGTH;
+        double y = y2 - Math.sin(theta + ARROWHEAD_ANGLE) * ARROWHEAD_LENGTH;
         headB.getPoints().setAll(x, y, x2, y2);
         x = x2 - Math.cos(theta - ARROWHEAD_ANGLE) * ARROWHEAD_LENGTH;
         y = y2 - Math.sin(theta - ARROWHEAD_ANGLE) * ARROWHEAD_LENGTH;
@@ -101,6 +90,9 @@ public class Arrow extends Group {
     }
 
     private double[] scale(double x1, double y1, double x2, double y2){
+        /*
+            Method used to scale all the layout of the morphisms.
+         */
         double theta = Math.atan2(y2-y1, x2-x1);
         return new double[]{
                 x1 + Math.cos(theta) * ARROW_SCALER,
@@ -108,7 +100,8 @@ public class Arrow extends Group {
         };
     }
 
-    //Getters and Setters
+    //Getters and Setters Methods
+
     public double getX1() {
         return x1.get();
     }
@@ -147,28 +140,21 @@ public class Arrow extends Group {
     public SimpleDoubleProperty y2Property() {
         return y2;
     }
-
-    public boolean isHeadAVisible() {
-        return headAVisible.get();
-    }
-
+    public boolean isHeadAVisible() {return headAVisible.get();}
     public SimpleBooleanProperty headAVisibleProperty() {
         return headAVisible;
     }
-
     public void setHeadAVisible(boolean headAVisible) {
         this.headAVisible.set(headAVisible);
     }
-
     public boolean isHeadBVisible() {
         return headBVisible.get();
     }
-
     public SimpleBooleanProperty headBVisibleProperty() {
         return headBVisible;
     }
-
     public void setHeadBVisible(boolean headBVisible) {
         this.headBVisible.set(headBVisible);
     }
 }
+
