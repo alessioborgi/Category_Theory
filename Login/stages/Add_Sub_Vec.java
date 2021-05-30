@@ -1,37 +1,37 @@
 package Login.stages;
-
 import Login.JavaFX;
-
 import Vector_Category.Vectors;
 import javafx.application.Application;
-import javafx.embed.swing.JFXPanel;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.*;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.control.Menu;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.shape.Line;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.util.*;
-
+/**
+ * This class implements the JavaFx libraries in order to create the graohic interface of the class Vector
+ * (with Mul_Div_Vec.java). In this class the user finds a window in which he/she can perform various actions:
+ * In the first line the user has to add the two elements which will compose our first vector "v1". Then the user
+ * will choose the operation that will be applied to our vectors (in this case + or -).
+ * In the third line the user can compose the vector v2.
+ * Then the user will add the identity element which will be applied to the first element, and the button "Test"
+ * checks it the identity written is correct.
+ * The button "Result" writes the result vector between v1 and v2 next to the label "Result:"
+ * The button "Create" creates the graphical view of the chosen operation using default vectors, the two components
+ * are black while the result is red.
+ */
 
 public class Add_Sub_Vec extends Application {
 
     public void start(Stage addsubVec) {
+        
+        //line 29-203: it is defined the stage and its elements  
 
-        addsubVec.setTitle("Addition Subtraction Vectors");
+        addsubVec.setTitle("Group Category");
         addsubVec.setWidth(700);
         addsubVec.setHeight(500);
 
@@ -67,7 +67,6 @@ public class Add_Sub_Vec extends Application {
         endHBox.setMinWidth(700);
         endHBox.setAlignment(Pos.BASELINE_CENTER);
 
-
         Label v1Label = new Label("     V1:     ");
         v1Label.setStyle("-fx-font-size: 30 px");
         Label x1Label = new Label("x    ");
@@ -87,7 +86,6 @@ public class Add_Sub_Vec extends Application {
         Label resultLabel = new Label("     Result:    ");
         resultLabel.setStyle("-fx-font-size: 30 px");
         Label resultCheck = new Label();
-
 
         TextField x1Text = new TextField();
         x1Text.setPromptText("First Vector's X"); //to set the hint text
@@ -126,21 +124,15 @@ public class Add_Sub_Vec extends Application {
         create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
 
-
-
-
-
-
-
+        Alert interi = new Alert(Alert.AlertType.WARNING);
         ///////////////////
 
         add.setOnAction(e->{operation.setText("+");});
         sub.setOnAction(e->{operation.setText("-");});
 
         ///////////////////
-
-
         result.setOnAction(e->{
+
             int x1 = Integer.parseInt(x1Text.getText());
             int y1 = Integer.parseInt(y1Text.getText());
             int x2 = Integer.parseInt(x2Text.getText());
@@ -161,18 +153,11 @@ public class Add_Sub_Vec extends Application {
                 resultCheck.setStyle("-fx-font-size: 22 px");
             }
         });
-
-
-
         create.setOnAction(e->{
             if(operation.getText().equals("+")){
                 Line line1 = new Line();
                 Line line2 = new Line();
                 Line lineSum = new Line();
-
-
-                //Setting the properties to a line
-
                 line1.setStartX(300.0);
                 line1.setStartY(300.0);
                 line1.setEndX(600.0);
@@ -213,12 +198,7 @@ public class Add_Sub_Vec extends Application {
 
                 JavaFX.draw.getChildren().clear();
                 JavaFX.draw.getChildren().addAll(line1d, line2d, lineDiff);
-
-
             }
-
-
-
         });
 
         Alert alertidAdd = new Alert(Alert.AlertType.INFORMATION);
@@ -264,13 +244,8 @@ public class Add_Sub_Vec extends Application {
                         alertidAdd.setContentText(s);
                         alertidAdd.show();
                     }
-
                 }
-
-
         });
-
-
 
         v1HBox.getChildren().addAll(v1Label, x1Label, x1Text, y1Label, y1Text);
         operationHBox.getChildren().addAll(operationLabel, operation);
@@ -281,9 +256,5 @@ public class Add_Sub_Vec extends Application {
         identityHBox.getChildren().addAll(id, identity);
         addsubVBox.getChildren().addAll(v1HBox, operationHBox, v2HBox, identityHBox, resultHBox, endHBox);
         addsubVec.show();
-
-
-
-
     }
 }
