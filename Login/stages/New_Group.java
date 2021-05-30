@@ -1,21 +1,12 @@
 package Login.stages;
-
-
 import Integer_Category.BooleanCategory;
 import Integer_Category.IntegerCategory;
 import Login.JavaFX;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.JFXPanel;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.*;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.control.Menu;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.*;
@@ -24,13 +15,24 @@ import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.util.*;
 
-
+/**
+ * This class works with the Group Category, it is the graphical interface of the class "IntegerCategory.java", in
+ * particular the nested class newGroup, which implements the interface "Group".
+ * This code opens a window from the button "New Group" in the Create menu from the main page.
+ * In this window, the user can find, first of all, a menuButton where the user can decide the type of the elements used
+ * to represent this category (Integer or Boolean), and basing on this choice all the next menus will be set with
+ * different items.
+ * Then the user has to decide the operation that will be applied between the items.
+ * After that the user has to define the identity and the inverse linked to the type and the operation chosen.
+ * Last but not least, in the last HBox there are two buttons: one to test both the identity and the inverse chosen,
+ * "Test"; and "Create" which automatically works as "Test" and then, in the main page, draws a circle, representing 
+ * the object, in which the user can find all the detailed info about this specific Group, and can add two specific 
+ * elements to which will be applied the operation defined, using the button "f".
+ */
 
 public class New_Group extends Application {
     public void start(Stage group) {
@@ -43,7 +45,6 @@ public class New_Group extends Application {
         Scene groupScene = new Scene(groupVBox);
         groupScene.getStylesheets().add("Login/Styles.css");
         group.setScene(groupScene);
-
 
         HBox typeHBox = new HBox();
         typeHBox.setPrefHeight(75);
@@ -88,15 +89,9 @@ public class New_Group extends Application {
         idText.setPromptText("Type Identity");
         Label fine = new Label();
 
-
-
         MenuButton type = new MenuButton("Choose the type");
         type.getStyleClass().add("menu-create");
         type.setStyle("-fx-font-size: 22 px");
-
-
-
-
 
         MenuItem integer = new MenuItem("Integer");
         integer.getStyleClass().add("menu-create");
@@ -113,22 +108,15 @@ public class New_Group extends Application {
         create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
 
-        ////////////
-
-
-
         ComboBox comboBox = new ComboBox();
         comboBox.setPrefHeight(30);
         comboBox.setMinWidth(30);
         comboBox.getStyleClass().add("menu-create");
 
-
         ComboBox comboBoxInv = new ComboBox();
         comboBoxInv.setPrefHeight(30);
         comboBoxInv.setMinWidth(30);
         comboBoxInv.getStyleClass().add("menu-create");
-
-
 
         ObservableList<String> options =
                 FXCollections.observableArrayList(
@@ -139,12 +127,6 @@ public class New_Group extends Application {
                         "^"
                 );
 
-
-
-
-
-        /////////
-
         ObservableList<String> selezione =
                 FXCollections.observableArrayList(
                         "∧ (and)",
@@ -152,10 +134,6 @@ public class New_Group extends Application {
                         "⊕ (xor)"
 
                 );
-
-
-        ///////////////////
-
 
         ObservableList<String> inv  =
                 FXCollections.observableArrayList(
@@ -183,7 +161,6 @@ public class New_Group extends Application {
                 type.setText("Boolean");
             }
         });
-
 
         test.setOnAction(e->{
             if (type.getText().equals("Integer")){
@@ -221,7 +198,6 @@ public class New_Group extends Application {
             }
         });
 
-
         create.setOnAction(e->{
             test.fire();
 
@@ -251,7 +227,6 @@ public class New_Group extends Application {
                 b.setTranslateX(475.0f);
                 b.setTranslateY(300.0f);
 
-
                 Label leftArrow = new Label("-->");
                 leftArrow.setStyle("-fx-font-size: 22 px");
                 leftArrow.setTranslateY(300.0f);
@@ -266,7 +241,6 @@ public class New_Group extends Application {
                 result.setTranslateY(300.0f);
                 result.setTranslateX(385.0f);
                 result.setStyle("-fx-font-size: 22 px");
-
 
                 Button func = new Button("f");
                 func.setStyle("-fx-font-size: 25 px");
@@ -291,8 +265,6 @@ public class New_Group extends Application {
                 t.setHideDelay(Duration.millis(0));
                 info.setTooltip(t);
 
-
-
                 info.setOnAction(f->{
                     Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
                     alertInfo.setTitle("Info");
@@ -305,8 +277,6 @@ public class New_Group extends Application {
                     alertInfo.setContentText(s);
                     alertInfo.show();
                 });
-
-
                 if (type.getText().equals("Integer")) {
                     IntegerCategory.newGroup intGroup= new IntegerCategory.newGroup(Integer.parseInt(idText.getText()), (String) comboBox.getValue(),(String) comboBoxInv.getValue());
                     func.setOnAction(g -> {
@@ -328,20 +298,11 @@ public class New_Group extends Application {
                         }
                     });
                 }
-
-
-
                 JavaFX.draw.getChildren().clear();
                 JavaFX.draw.getChildren().addAll(circle, name, a, leftArrow, b, rightArrow, func, result, info);
-
-
-
             }});
 
-
-
         comboBoxInv.getItems().addAll(inv);
-
         typeHBox.getChildren().addAll(typeText, type);
         morphHBox.getChildren().addAll(morphText, sourceText,comboBox , endMorph);
         identityHBox.getChildren().addAll(identityText, idText);
@@ -350,6 +311,5 @@ public class New_Group extends Application {
         checkTest.getChildren().addAll(fine);
         groupVBox.getChildren().addAll(typeHBox, morphHBox, identityHBox, inverseHBox, endHBox, checkTest);
         group.show();
-
     }
 }
