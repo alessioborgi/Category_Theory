@@ -124,7 +124,7 @@ public class Menu extends JFrame{
                         int second = cal.get(Calendar.SECOND);
                         int minute = cal.get(Calendar.MINUTE);
                         int hour = cal.get(Calendar.HOUR);
-                        current_time.setText("Time " + hour + ":" + minute + ":" + second);
+                        current_time.setText("Time: " + hour + ":" + minute + ":" + second);
                         current_date.setText(" Date: " + months[month] + "/" + day + "/" + year);
                         sleep(100);
                     }
