@@ -1,3 +1,25 @@
+package Integer_Category;
+import java.util.ArrayList;
+
+public class BooleanCategory {
+
+    public static class newSemigroup implements Semigroup<Boolean> {
+        String fx;
+
+        public newSemigroup(String func) {
+            fx = func;
+        }
+
+        public Boolean apply(Boolean t, Boolean u) {
+            return switch (fx) {
+                case "∧ (and)" -> t && u;
+                case  "V (or)" -> t || u;
+                case "⊕ (xor)" -> t ^ u;
+                default -> false;
+
+            };
+        }
+    }
 
     public static class newMonoid implements Monoid<Boolean> {
 
