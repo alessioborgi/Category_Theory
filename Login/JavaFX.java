@@ -24,6 +24,14 @@ import javafx.stage.Stage;
 import java.util.*;
 
 public class JavaFX {
+    /*
+        This class is the one that handles all the events and the options of the main Menu.
+        It handles the Menu(Create, Draw and Cancel) and all its big amount of stages that
+        we can open from it.
+        It handles the box of the buttons placed at the bottom of the stage.
+     */
+
+    //Declaration of all the items necessary
     public static Group root  =  new  Group();
     private static Scene  scene  =  new  Scene(root);
     public static Group draw = new Group();
@@ -31,12 +39,10 @@ public class JavaFX {
     private static Menu Create = new Menu("Create");
     private static Menu Draw = new Menu("Draw");
     private static Menu Cancel = new Menu("Cancel");
-    private static Menu Help = new Menu("Help");
     private static Menu New_Vector = new Menu("New Vector");
 
     private static MenuItem Exit_now = new MenuItem("Exit");
     private static MenuItem Clear_all = new MenuItem("Clear All");
-    private static MenuItem Back_now = new MenuItem("Logout");
     private static MenuItem New_Semigroup = new MenuItem("New Semigroup");
     private static MenuItem New_Monoid = new MenuItem("New Monoid");
     private static MenuItem New_Group = new MenuItem("New Group");
@@ -51,41 +57,43 @@ public class JavaFX {
 
     private static Button exit = new Button("Exit");
     private static Button clear_all = new Button("Clear");
-    private static Button back = new Button("Logout");
-    private static HBox box = new HBox(clear_all, exit, back);
+    private static HBox box = new HBox(clear_all, exit);
 
-    public static LinearGradient background = new LinearGradient(0, 0, 1, 1, true,    //sizing
-            CycleMethod.NO_CYCLE,                  //cycling
-            new Stop(0, Color.GOLD),            //colors
-            new Stop(1, Color.ORANGE)
-    );
+    public static LinearGradient background = new LinearGradient(0, 0, 1, 1, true, CycleMethod.NO_CYCLE, new Stop(0, Color.GOLD), new Stop(1, Color.ORANGE));
 
     public static void initFX(JFXPanel fxPanel) {
-        // This method is invoked on the JavaFX thread
+        /*
+            This method is invoked on the JavaFX thread for initializing JavaFX
+         */
         Scene scene = createScene();
         fxPanel.setScene(scene);
     }
 
     public static Scene createScene() {
+        /*
+            Method that will create the JavaFX's Scene.
+         */
         scene.setFill(background);
         addActions();
         setter();
 
-        root.getChildren().addAll(box, main_menu, draw);//
+        root.getChildren().addAll(box, main_menu, draw);
         return (scene);
     }
 
     private static void setter(){
+        /*
+            This method is the one that it is used as a Setter. It has the task to set all the main items.
+         */
         scene.getStylesheets().add("Login/Styles.css");
 
-        Help.getItems().add(About);
         Create.getItems().addAll(New_Semigroup, New_Monoid, New_Group, New_Ring, New_Set, New_Vector);
         New_Vector.getItems().addAll(Add_Sub_Vector, Mul_Div_Vector);
-        main_menu.getMenus().addAll(Create, Draw, Cancel, Help);
-        Cancel.getItems().addAll(Clear_all, Back_now, separator, Exit_now);
+        main_menu.getMenus().addAll(Create, Draw, Cancel);
+        Cancel.getItems().addAll(Clear_all, separator, Exit_now);
         Draw.getItems().add(Free);
 
-        //Mnemonics used up to now: (a, c, d, e, f, g, k, l, m, r, s, v)
+        //Mnemonics used: (a, c, d, e, f, g, k, l, m, r, s, v)
         About.setAccelerator(KeyCombination.keyCombination("shortcut+A"));
         Clear_all.setAccelerator(KeyCombination.keyCombination("shortcut+C"));
         Mul_Div_Vector.setAccelerator(KeyCombination.keyCombination("shortcut+D"));
@@ -93,7 +101,6 @@ public class JavaFX {
         Free.setAccelerator(KeyCombination.keyCombination("shortcut+F"));
         New_Group.setAccelerator(KeyCombination.keyCombination("shortcut+G"));
         New_Semigroup.setAccelerator(KeyCombination.keyCombination("shortcut+K"));
-        Back_now.setAccelerator(KeyCombination.keyCombination("shortcut+L"));
         New_Monoid.setAccelerator(KeyCombination.keyCombination("shortcut+M"));
         New_Ring.setAccelerator(KeyCombination.keyCombination("shortcut+R"));
         New_Set.setAccelerator(KeyCombination.keyCombination("shortcut+S"));
@@ -101,15 +108,17 @@ public class JavaFX {
 
         exit.getStyleClass().add("button-red");
         clear_all.getStyleClass().add("button-green");
-        back.getStyleClass().add("button-logout");
 
         box.setSpacing(10);
         box.setAlignment(Pos.CENTER_LEFT);
         box.setPadding(new Insets(570, 0, 0, 340));
-
     }
-
+    
     private static void addActions(){
+        /*
+            This method will have the task to create and add all the events associated with all the items 
+            declared above.
+         */
         EventHandler free_event = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -194,24 +203,6 @@ public class JavaFX {
             }
         };
 
-        EventHandler go_back = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirm Back to Login");
-                alert.setHeaderText("Confirm that you want to go Back to the Login :(");
-                alert.setContentText("Anyway, Thank you for using this app!");
-
-                Optional<ButtonType> result = alert.showAndWait();
-                if(result.isPresent() && result.get() == ButtonType.OK){
-                    Login.Menu.frame.dispose();
-                    Login_Start frame_1 = new Login_Start();
-                    frame_1.setVisible(true);
-                }
-            }
-        };
-
-
         EventHandler clear_event = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -219,19 +210,12 @@ public class JavaFX {
             }
         };
 
-
-
-
         clear_all.setOnAction(clear_event);
         Clear_all.setOnAction(clear_event);
         Exit_now.setOnAction(exit_event);
         exit.setOnAction(exit_event);
-        Back_now.setOnAction(go_back);
-        back.setOnAction(go_back);
         Draw.setOnAction(free_event);
-
-        //****************************************************
-
+        
         New_Semigroup.setOnAction(new_semigroup);
         New_Group.setOnAction(new_group);
         New_Set.setOnAction(new_set);
