@@ -210,13 +210,13 @@ public class New_Group extends Application {
                     flag = true;
                     idText.setText("false");
                 }
-                else { fine.setText("                            Please insert a boolean value"); }
+                else { fine.setText("Please insert a boolean value"); }
                 if (flag){
                     ArrayList tg = new Integer_Category.BooleanCategory.newGroup(identity, (String) comboBox.getValue(),(String) comboBoxInv.getValue()).test();
                     if ((boolean) tg.get(0)) {
-                        fine.setText("                                              TEST PASSED!");
+                        fine.setText("TEST PASSED!");
                     }
-                    else { fine.setText("                                         " + tg.get(1)); }
+                    else { fine.setText("" + tg.get(1)); }
                 }
             }
         });
@@ -225,7 +225,7 @@ public class New_Group extends Application {
         create.setOnAction(e->{
             test.fire();
 
-            if(fine.getText().equals("                                              TEST PASSED!") ||
+            if(fine.getText().equals("TEST PASSED!") ||
                     (fine.getText().equals("TEST PASSED! - Abelian Group"))) {
                 Circle circle = new Circle();
                 circle.setRadius(250);
