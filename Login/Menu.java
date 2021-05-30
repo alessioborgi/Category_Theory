@@ -1,21 +1,24 @@
 package Login;
 
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
-import javax.swing.*;
-import java.awt.*;
-import java.util.*;
-import java.awt.event.*;
-
-
 /**
  * @author alessioborgi
  * @created 03 / 05 / 2021 - 16:01
  * @project LOGIN
  */
 
-public class Menu extends JFrame implements ActionListener{
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javax.swing.*;
+import java.awt.*;
+import java.util.*;
 
+public class Menu extends JFrame{
+    /*
+        This class is the one that handles the Menu's Frame of the Project. It's structure is a mix of
+        Java Swing and JavaFx. The first one handled by it and the second by the JavaFX class.
+     */
+
+    //Declaration of the main Items of the Frame
     protected static JFrame frame = new JFrame();
     private JPanel panel = new JPanel(){protected void paintComponent(Graphics g) {
         if (g instanceof Graphics2D) {
@@ -29,7 +32,6 @@ public class Menu extends JFrame implements ActionListener{
         }
     }};
     private JFXPanel fxPanel = new JFXPanel();
-
     private JLabel cat_label = new JLabel();
     private JLabel acsai = new JLabel();
     private JLabel sapienza = new JLabel();
@@ -39,12 +41,13 @@ public class Menu extends JFrame implements ActionListener{
     private JLabel current_date = new JLabel();
     private JLabel current_time = new JLabel();
 
-
-
     public Menu() {
+        /*
+            Constructor of the Menu that calls all the methods for setting, adding listeners and adding items.
+            It also initialize the JavaFX's thread.
+         */
         setter();
         adder();
-        addListeners();
         clock();
 
         Platform.runLater(() -> JavaFX.initFX(fxPanel));
@@ -52,6 +55,10 @@ public class Menu extends JFrame implements ActionListener{
     }
 
     private void setter(){
+        /*
+            This method is invoked on the for setting all the bounds, and all the features of
+             the JFrame, and its items.
+         */
         frame.setBounds(10, 10,800, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Category Theory's Menu");
@@ -83,6 +90,9 @@ public class Menu extends JFrame implements ActionListener{
     }
 
     private void adder(){
+        /*
+            This method adds all the items to the Java Swing's Panel.
+         */
         panel.add(java_item);
         panel.add(cat_label);
         panel.add(java_item_1);
@@ -98,6 +108,10 @@ public class Menu extends JFrame implements ActionListener{
     }
 
     public void clock(){
+        /*
+            This method is the one that handles the date and the time in the Menu Jframe.
+            It therefore initializes and sets the run method.
+         */
         String months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
         Thread clock = new Thread(){
             public void run(){
@@ -120,12 +134,5 @@ public class Menu extends JFrame implements ActionListener{
             }
         };
         clock.start();
-    }
-
-    private void addListeners(){
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
     }
 }
