@@ -5,8 +5,6 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
 
-
-
 /**
  * @author alessioborgi
  * @created 03 / 05 / 2021 - 16:01
@@ -14,9 +12,13 @@ import java.awt.event.*;
  */
 
 public class Login_Start extends JFrame implements ActionListener {
+    /*
+        This class is the initial one, able to handle the first Java Swing's window of the
+        project. It is the Login JFrame that allows to login to our implementation
+        project.
+     */
 
-    public static java.awt.Color bordeaux = new java.awt.Color(110, 34, 44);
-    public static java.awt.Color darkgreen = new java.awt.Color(0, 150, 36);
+    //Declaration of all the items
     public static java.awt.Color black = new java.awt.Color(0, 0, 0);
     public static java.awt.Color orange = new java.awt.Color(249,166, 2);
     protected static JFrame frame = new JFrame();
@@ -38,9 +40,11 @@ public class Login_Start extends JFrame implements ActionListener {
     private JLabel current_date = new JLabel();
     private JLabel current_time = new JLabel();
 
-
-
     public Login_Start() {
+        /*
+            Constructor that calls all the submethods for setting, adding components and listeners
+            to the JFrame.
+         */
         setter();
         adder();
         addListeners();
@@ -50,6 +54,10 @@ public class Login_Start extends JFrame implements ActionListener {
 
 
     private void setter(){
+        /*
+            Method that allows to set all the features of the items with their relative bounds and
+            so on.
+         */
         frame.setBounds(200, 200,500, 540);
         panel.setBackground(orange);
 
@@ -100,6 +108,9 @@ public class Login_Start extends JFrame implements ActionListener {
     }
 
     private void adder(){
+        /*
+            This method manages the addition to the panel of all the items of the Swing's window.
+         */
         frame.add(panel);
         panel.add(java_item);
         panel.add(cat_label);
@@ -119,6 +130,10 @@ public class Login_Start extends JFrame implements ActionListener {
     }
 
     public void clock(){
+        /*
+            This method is the one that handles the date and the time in the Menu Jframe.
+            It therefore initializes and sets the run method.
+         */
         String months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
         Thread clock = new Thread(){
             public void run(){
@@ -144,18 +159,32 @@ public class Login_Start extends JFrame implements ActionListener {
     }
 
     private void addListeners(){
+        /*
+            This method add all the listeners to the JButton and JPasswordField items.
+         */
         show_password.addActionListener(this);
         login.addActionListener(this);
         clear.addActionListener(this);
     }
 
     public void clear_all(){
+        /*
+            This is a sub-method used in the actionPerformed method below that handles the case
+            in which we have to clear all the JTextField of the login.
+         */
         username.setText("");
         password_text.setText("");
     }
 
     @Override
     public void actionPerformed(ActionEvent button) {
+        /*
+            This method is the main method od the listener interface. The Listener class is the one
+            that is interested in processing an action event, and the object created with that class
+            is registered with a component, using the component's addActionListener method(added in
+            the "addListeners" method above). When the action event occurs, that object's actionPerformed
+            method is invoked.
+         */
         if(button.getSource() == login){
             String userName = username.getText();
             String password = password_text.getText();
