@@ -1,5 +1,7 @@
 package Free_Drawing;
 
+import Free_Drawing.menu.Define_ID;
+import Free_Drawing.menu.New_Composition;
 import Free_Drawing.menu.New_Morphism;
 import Login.stages.New_Group;
 import javafx.event.ActionEvent;
@@ -13,8 +15,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Free_Drawing.menu.New_Vertex;
+import Free_Drawing.menu.Define_ID;
 
+import java.util.HashMap;
+import java.util.*;
 import java.util.Optional;
 
 /**
@@ -36,6 +40,7 @@ public class Controller {
 
 
 
+
     public void CreatePressed(){
 
     }
@@ -46,6 +51,7 @@ public class Controller {
         //Everytime I click with the left-click of the mouse, I create a new Node
         if(mouseEvent.isPrimaryButtonDown()){
             vertex1 = createAndAddVertex(mouseEvent.getX(), mouseEvent.getY());
+
         }
     }
 
@@ -80,6 +86,7 @@ public class Controller {
     private  void onRightClickOnVertex(MouseEvent mouseEvent, Vertex vertex) {
         if(mouseEvent.isPrimaryButtonDown()){
             vertex1 = vertex;
+
         }else if(mouseEvent.isSecondaryButtonDown()){
             //When I right click once on a vertex, I delete it.
             vertexDelete = vertex;
@@ -187,26 +194,16 @@ public class Controller {
 
     public void NewVertexClicked(ActionEvent actionEvent) {
         Stage new_vertex = new Stage();
-        new New_Vertex().start(new_vertex);
-        
-        New_Vertex.create.setOnAction(e->{
-            Double x = (Double) (Math.random()*(600-0+1)+0);
-            Double y = (Double) (Math.random()*(600-50+1)+50);
+        new Define_ID().start(new_vertex);
 
+        Define_ID.create.setOnAction(e->{
+            Double x = (Double) (Math.random()*(450-0+1)+0);
+            Double y = (Double) (Math.random()*(450-50+1)+50);
             vertex1 = createAndAddVertex(x, y);
-            New_Vertex.idNode1Text.setText("");
+
+            Define_ID.idNode1Text.setText("");
+
         });
-
-
-    }
-
-    public void NewComposition(ActionEvent actionEvent) {
-    }
-
-    public void NewMorphism(ActionEvent actionEvent) {
-        Stage new_morphism = new Stage();
-        new New_Morphism().start(new_morphism);
-
     }
 
     public void CancelVertex(ActionEvent actionEvent) {
@@ -215,7 +212,6 @@ public class Controller {
     public void ClearAll(ActionEvent actionEvent) {
         count = 0;
         graph.getChildren().clear();
-
 
     }
 
