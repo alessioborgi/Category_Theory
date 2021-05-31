@@ -1,13 +1,16 @@
 package Integer_Category;
 
+import java.beans.ConstructorProperties;
 import java.util.concurrent.ThreadLocalRandom;
 import java.lang.Math;
 
+//class to handle Semigroups,Monoids, Groups and Rings for the integers
 public class IntegerCategory {
 
     public static class newSemigroup implements Semigroup<Integer> {
         String fx;
 
+        //take a string from the constructor and it changes method apply accordingly
         public newSemigroup(String func) {
             fx = func;
         }
@@ -29,26 +32,31 @@ public class IntegerCategory {
 
         int zero;
         String fx;
-
+        //Constructor takes the operation as string and the identity as int
         public newMonoid(int e, String func) {
             zero = e;
             fx = func;
         }
 
+        //return the identity
         @Override
         public Integer id() {
             return zero;
         }
 
+        //use method apply from semigroup!
         public Integer apply(Integer t, Integer u) {
             return new newSemigroup(fx).apply(t, u);
         }
 
+        //testing if a monoid is wellformed running lot of test with random integers
+        //0 is not included cause among the possible operations there is also the division
         public boolean test() {
             for (int i = 0; i < 50; i++) {
                 Integer randomN = ThreadLocalRandom.current().nextInt(0, 100);
                 Integer randomM = ThreadLocalRandom.current().nextInt(-100, 0);
                 try {
+                    //NOT RECURSIVE, this calls the interface method
                     test(randomN);
                     test(randomM);
                 } catch (Exception e) {
@@ -65,21 +73,21 @@ public class IntegerCategory {
         int zero;
         String fx;
         String inv;
-
+        //Constructor takes the operation and the inverse as string, the identity as int
         public newGroup(int e, String func, String invFunc) {
             zero = e;
             fx = func;
             inv = invFunc;
         }
-
+        //operation
         public Integer apply(Integer t, Integer u) {
             return new newSemigroup(fx).apply(t, u);
         }
-
+        //identity
         public Integer id() {
             return zero;
         }
-
+        //handling the inversion
         public Integer invert(Integer t) {
             return switch (inv) {
                 case "-a" -> -t;
@@ -90,11 +98,13 @@ public class IntegerCategory {
             };
         }
 
+        //testing the group with random integers, returning a string with the exception message if caught
         public String test() {
             for (int i = 0; i < 50; i++) {
                 Integer randomN = ThreadLocalRandom.current().nextInt(1, 100);
                 Integer randomM = ThreadLocalRandom.current().nextInt(-100, -1);
                 try {
+                    //NOT RECURSIVE, this calls the interface method
                     test(randomN);
                     test(randomM);
                 } catch (Exception e) {
@@ -105,6 +115,7 @@ public class IntegerCategory {
             return "TEST PASSED!";
         }
 
+        //test if a group is abelian using the method from the interface
         public boolean isAbelian() {
             for (int i = 0; i < 50; i++) {
                 Integer randomN = ThreadLocalRandom.current().nextInt(-100, 100);
@@ -123,7 +134,8 @@ public class IntegerCategory {
     }
 
     public static class newRing implements Ring<Integer> {
-
+        //according to Cat. theory, a ring is an abelian group under addition and a monoid under multiplication
+        //so i create that 2 objects (see below)
         int zeroAdd;
         int zeroMul;
         String invA;
@@ -132,6 +144,7 @@ public class IntegerCategory {
         newGroup ringGroup;
         newMonoid ringMonoid;
 
+        //constructor takes all the needed infos
         public newRing(int eA, int eM, String addition, String multiplication, String inversion) {
             zeroAdd = eA;
             zeroMul = eM;
@@ -186,7 +199,7 @@ public class IntegerCategory {
             }
             return true;
         }
-
+        //testing all the properties
         public boolean test() {
             return ringGroup.isAbelian() && ringMonoid.test() && distributivityTest();
         }
