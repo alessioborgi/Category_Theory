@@ -1,3 +1,6 @@
+package Integer_Category;
+
+//simple interface for Groups
 public interface Group<T> extends Monoid<T> {
 
     T invert(T t);
@@ -12,8 +15,9 @@ public interface Group<T> extends Monoid<T> {
             throw new Exception("Error: Unlawful Inversion");
         }
     }
-
+    //a method to test if a group is abelian
     default boolean isAbelian(T t,T u,T r){
+        //first launch the above test
         try {
                 test(t);
             }
@@ -21,6 +25,7 @@ public interface Group<T> extends Monoid<T> {
             System.out.println("Expression caught => " + e.getMessage());
             return false;
         }
+        //testing commutativity and associativity
         return apply(t, u).equals(apply(u, t)) && apply(t, apply(u, r)).equals(apply(apply(t, u), r));
     }
 }
