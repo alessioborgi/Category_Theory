@@ -13,7 +13,7 @@ import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 /**
- * This class implements the JavaFx libraries in order to create the graohic interface of the class Vector
+ * This class implements the JavaFx libraries in order to create the graphic interface of the class Vector
  * (with Mul_Div_Vec.java). In this class the user finds a window in which he/she can perform various actions:
  * In the first line the user has to add the two elements which will compose our first vector "v1". Then the user
  * will choose the operation that will be applied to our vectors (in this case + or -).
