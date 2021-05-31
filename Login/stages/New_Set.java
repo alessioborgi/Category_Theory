@@ -1,5 +1,4 @@
 package Login.stages;
-
 import Login.JavaFX;
 import Set_Category.SetCat;
 import javafx.application.Application;
@@ -12,15 +11,23 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
-
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * This class works with the Set Category, it is the graphical interface of the class "Set_Cat.java".
+ * This code opens a window from the button "New Set" in the Create menu from the main page.
+ *  In this window, the user can find, first of all, a menuButton where the user can decide the operation to be performed 
+ *  between sets.
+ *  After that the user has to define the identity linked to the operation chosen.
+ *  In the next line the user can porve if the operation can handle the associativity operation by pressing the button
+ *  "Prove the associativity".
+ *  Last but not least, in the last HBox there are two buttons: one to test identity inserted:"Test"; 
+ *  and "Create" which draws, in the main page, the graphical representation of the chosen operation.
+ */
 
 public class New_Set extends Application {
-
     public void start(Stage set) {
-
         set.setTitle("Set Category");
         set.setWidth(700);
         set.setHeight(500);
@@ -31,7 +38,6 @@ public class New_Set extends Application {
         Scene setScene = new Scene(setVBox);
         setScene.getStylesheets().add("Login/Styles.css");
         set.setScene(setScene);
-
 
         HBox morphHBoxSet = new HBox();
         morphHBoxSet.setMinHeight(100);
@@ -49,7 +55,6 @@ public class New_Set extends Application {
         endHBoxSet.setMinHeight(100);
         endHBoxSet.setMinWidth(700);
         endHBoxSet.setAlignment(Pos.CENTER);
-
 
         Label morphTextSet = new Label("    Morphism:  ");
         morphTextSet.setStyle("-fx-font-size: 30 px");
@@ -69,8 +74,6 @@ public class New_Set extends Application {
         Button prova = new Button("Test"); //test identity button
         prova.setStyle("-fx-font-size: 22 px");
         prova.getStyleClass().add("button-create");
-
-
 
         Label spazio = new Label("    ");
         Button prove = new Button("Prove associativity");
@@ -108,8 +111,6 @@ public class New_Set extends Application {
         Label associativitySet5 = new Label ("   C  ");
         associativitySet5.setStyle("-fx-font-size: 20 px");
 
-
-
         MenuButton morphSet = new MenuButton("Choose the function");
         morphSet.setStyle("-fx-font-size: 22 px");
         morphSet.getStyleClass().add("button-create");
@@ -117,8 +118,6 @@ public class New_Set extends Application {
         Button createSet = new Button("Create");
         createSet.setStyle("-fx-font-size: 22 px");
         createSet.getStyleClass().add("button-create");
-
-        ////////////////
 
         MenuItem uni = new MenuItem("U");
         uni.getStyleClass().add("menu-create");
@@ -128,11 +127,9 @@ public class New_Set extends Application {
         subt.getStyleClass().add("menu-create");
         MenuItem symsub = new MenuItem("Δ");
         symsub.getStyleClass().add("menu-create");
-        ///////////////////////////
 
         Alert alertAssSet = new Alert(Alert.AlertType.INFORMATION);
         Alert alertidSet = new Alert(Alert.AlertType.INFORMATION);
-        ////////////////
 
         uni.setOnAction(e-> {
             morphSet.setText("U");
@@ -623,10 +620,18 @@ public class New_Set extends Application {
                 });
 
                 JavaFX.draw.getChildren().clear();
-                JavaFX.draw.getChildren().addAll(shape, cerchio, forma, A, B);
+                JavaFX.draw.getChildren().addAll(shape, cerchio, forma, A, B, info);
 
             }
         });
     }}
+
+
+
+
+
+
+
+
 
 
