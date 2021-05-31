@@ -1,42 +1,48 @@
 package Login.stages;
-
 import Integer_Category.BooleanCategory;
 import Integer_Category.IntegerCategory;
 import Login.JavaFX;
-import Set_Category.SetCat;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.JFXPanel;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.*;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import javax.swing.*;
-import java.awt.*;
-import java.lang.reflect.Array;
-import java.util.*;
+/**
+ * @author elenamuia
+ * @author alessioborgi
+ * @author federicavaleau
+ * @author francescodanese
+ * @created 24 / 05 / 2021 - 15:52
+ * @project CATEGORY_THEORY
+ */
 
+/**
+ * This class works with the Monoid Category, it is the graphical interface of the class "IntegerCategory.java", in
+ * particular the nested class newMonoid, which implements the interface "Monoid".
+ * This code opens a window from the button "New Monoid" in the Create menu from the main page.
+ * In this window, the user can find, first of all, a menuButton where the user can decide the type of the elements used
+ * to represent this category (Integer or Boolean), and basing on this choice all the next menu will be set with
+ * different items.
+ * Then the user has to decide the operation that will be applied between the items.
+ * After that the user has to define the identity linked to the type and the operation chosen.
+ * Last but not least, in the last HBox there are two buttons: one to test both the identity chosen,
+ * "Test"; and "Create" which automatically works as "Test" and then, in the main page, draws a circle, representing
+ * the object, in which the user can find all the detailed info about this specific Group, and can add two specific
+ * elements to which will be applied the operation defined, using the button "f".
+ */
 
 public class New_Monoid extends Application {
     public void start(Stage monoid) {
@@ -45,14 +51,11 @@ public class New_Monoid extends Application {
         monoid.setHeight(500);
         monoid.setTitle("Monoid Category");
 
-
         VBox monoidVBox = new VBox();
         monoidVBox.getStyleClass().add("background");
         Scene monoidScene = new Scene(monoidVBox);
         monoidScene.getStylesheets().add("Login/Styles.css");
         monoid.setScene(monoidScene);
-
-
 
         HBox typeHBox = new HBox();
         typeHBox.setMinHeight(80);
@@ -75,8 +78,6 @@ public class New_Monoid extends Application {
         endHBox.setMinWidth(700);
         endHBox.setAlignment(Pos.CENTER);
 
-
-
         Label typeText = new Label("    Type:   ");
         typeText.setStyle("-fx-font-size: 30 px");
         Label morphText = new Label("    Morphism:  ");
@@ -97,21 +98,12 @@ public class New_Monoid extends Application {
         type.getStyleClass().add("menu-create");
         type.setStyle("-fx-font-size: 22 px");
 
-
-
-
-
-
         MenuItem integer = new MenuItem("Integer");
         integer.getStyleClass().add("menu-create");
 
         MenuItem bool = new MenuItem("Boolean");
         bool.getStyleClass().add("menu-create");
         type.getItems().addAll(bool, integer);
-
-
-
-
 
         Label spazio = new Label("      ");
         Button test = new Button("Test");
@@ -121,13 +113,6 @@ public class New_Monoid extends Application {
         Button create = new Button("Create");
         create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
-
-
-        ////////////
-
-
-
-
 
         ComboBox comboBox = new ComboBox();
         comboBox.setPrefHeight(30);
@@ -151,8 +136,6 @@ public class New_Monoid extends Application {
 
                 );
 
-
-
         integer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -171,9 +154,6 @@ public class New_Monoid extends Application {
                 type.setText("Boolean");
             }
         });
-
-
-        ////////////
 
         test.setOnAction(e->{
             if (type.getText().equals("Integer")) {
@@ -214,9 +194,6 @@ public class New_Monoid extends Application {
             }
         });
 
-
-
-
         create.setOnAction(e->{
             test.fire();
 
@@ -245,7 +222,6 @@ public class New_Monoid extends Application {
                 b.setTranslateX(475.0f);
                 b.setTranslateY(300.0f);
 
-
                 Label leftArrow = new Label("-->");
                 leftArrow.setStyle("-fx-font-size: 22 px");
                 leftArrow.setTranslateY(300.0f);
@@ -267,7 +243,6 @@ public class New_Monoid extends Application {
                 func.setTranslateY(375.0f);
                 func.getStyleClass().add("button-create");
 
-
                 String x = "Type: "+ type.getText() +"\n" +
                         "Operation: " + comboBox.getValue() +"\n"+
                         "Identity: " + inputText.getText()
@@ -282,8 +257,6 @@ public class New_Monoid extends Application {
                 t.setShowDelay(Duration.millis(0));
                 t.setHideDelay(Duration.millis(0));
                 info.setTooltip(t);
-
-
 
                 info.setOnAction(f->{
                     Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
@@ -319,18 +292,10 @@ public class New_Monoid extends Application {
                         }
                     });
                 }
-
-
-
-
-
                 JavaFX.draw.getChildren().clear();
                 JavaFX.draw.getChildren().addAll(circle, name, a, leftArrow, b, rightArrow, func, result, info);
-
-
             }
         });
-
 
         typeHBox.getChildren().addAll(typeText, type);
         morphHBox.getChildren().addAll(morphText, sourceText, comboBox,  endMorph);
