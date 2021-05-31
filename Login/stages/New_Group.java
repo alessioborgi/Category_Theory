@@ -24,7 +24,7 @@ import java.util.*;
  * particular the nested class newGroup, which implements the interface "Group".
  * This code opens a window from the button "New Group" in the Create menu from the main page.
  * In this window, the user can find, first of all, a menuButton where the user can decide the type of the elements used
- * to represent this category (Integer or Boolean), and basing on this choice all the next menus will be set with
+ * to represent this category (Integer or Boolean), and basing on this choice all the next menu will be set with
  * different items.
  * Then the user has to decide the operation that will be applied between the items.
  * After that the user has to define the identity and the inverse linked to the type and the operation chosen.
