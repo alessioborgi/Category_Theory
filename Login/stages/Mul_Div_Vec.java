@@ -1,62 +1,45 @@
 package Login.stages;
-
 import Login.JavaFX;
 import Vector_Category.Vectors;
-import Vector_Category.Vectors;
 import javafx.application.Application;
-import javafx.embed.swing.JFXPanel;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.*;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.control.Menu;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.shape.Line;
-import javafx.scene.text.Font;
-
+import javafx.stage.Stage;
 
 /**
  * @author elenamuia
  * @author alessioborgi
+ * @author federicavaleau
+ * @author francescodanese
  * @created 24 / 05 / 2021 - 15:52
  * @project CATEGORY_THEORY
  */
-import Vector_Category.Vectors;
-import javafx.application.Application;
-import javafx.embed.swing.JFXPanel;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.*;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
-import javafx.scene.control.Menu;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.*;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
-import java.util.*;
+
+/**
+ * This class implements the JavaFx libraries in order to create the graphic interface of the class Vector
+ * (with Add_Sub_Vec.java). In this class the user finds a window in which he/she can perform various actions:
+ * In the first line the user has to add the two elements which will compose our vector "v1". Then the user
+ * will choose the operation that will be applied to our vectors (in this case * or /).
+ * In the third line the user can decide the scalar k which will be multiplied or divided by v1.
+ * Then the user will add the identity element which will be applied to the first element, and the button "Test"
+ * checks it the identity written is correct.
+ * The button "Result" writes the result vector between v1 and k next to the label "Result:"
+ * The button "Create" creates the graphical view of the chosen operation using default vectors, the two components
+ * are black while the result is red.
+ */
+
 
 public class Mul_Div_Vec extends Application {
     public void start(Stage muldivVec) {
 
-        muldivVec.setTitle("Multiplication Division Vector");
+        muldivVec.setTitle("Group Category");
         muldivVec.setWidth(700);
         muldivVec.setHeight(500);
 
@@ -91,14 +74,13 @@ public class Mul_Div_Vec extends Application {
         endHBox.setMinWidth(700);
         endHBox.setAlignment(Pos.BASELINE_CENTER);
 
-
         Label vLabel = new Label("     V1:     ");
         vLabel.setStyle("-fx-font-size: 30 px");
         Label xLabel = new Label("x    ");
         xLabel.setStyle("-fx-font-size: 25 px");
         Label yLabel = new Label("       y    ");
         yLabel.setStyle("-fx-font-size: 25 px");
-        Label operationLabel = new Label("     Morphism:    ");
+        Label operationLabel = new Label("     MOrphism:    ");
         operationLabel.setStyle("-fx-font-size: 30 px");
         Label scalarLabel = new Label("     Scalar :     ");
         scalarLabel.setStyle("-fx-font-size: 30 px");
@@ -146,10 +128,8 @@ public class Mul_Div_Vec extends Application {
 
         Alert alertidMul = new Alert(Alert.AlertType.INFORMATION);
 
-        ////////////////////////////
         mul.setOnAction(e->{operation.setText("*");});
         div.setOnAction(e->{operation.setText("/");});
-        /////////////////////////////////
 
         test.setOnAction(e->{
             int x = Integer.parseInt(xText.getText());
@@ -187,16 +167,9 @@ public class Mul_Div_Vec extends Application {
                     String s = "WRONG insertion";
                     alertidMul.setContentText(s);
                     alertidMul.show();
-
                 }
-
-
             }
         });
-
-
-
-
 
         result.setOnAction(e-> {
             int x = Integer.parseInt(xText.getText());
@@ -214,7 +187,6 @@ public class Mul_Div_Vec extends Application {
                 resultCheck.setStyle("-fx-font-size: 22 px");
             }
         });
-
 
         create.setOnAction(e->{
 
@@ -251,13 +223,8 @@ public class Mul_Div_Vec extends Application {
 
                 JavaFX.draw.getChildren().clear();
                 JavaFX.draw.getChildren().addAll(lineDiv, lineDiv2);
-
-
-            }
+                }
         });
-
-
-
 
         vHBox.getChildren().addAll(vLabel, xLabel, xText, yLabel, yText);
         operationHBox.getChildren().addAll(operationLabel, operation);
@@ -267,15 +234,6 @@ public class Mul_Div_Vec extends Application {
         endHBox.getChildren().addAll(test, nul, result, empty, create);
         operation.getItems().addAll(mul, div);
         muldivVBox.getChildren().addAll(vHBox, operationHBox, scalarHBox, identityHBox,resultHBox, endHBox);
-
-
-
-
         muldivVec.show();
-
-
-
-
-
     }
 }
