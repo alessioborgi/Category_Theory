@@ -1,6 +1,9 @@
+package Integer_Category;
+
 import java.util.function.BinaryOperator;
 
 @FunctionalInterface
+//simple interface for semigroups
 public interface Semigroup<T> extends BinaryOperator<T>{
 
     @Override
@@ -12,19 +15,3 @@ public interface Semigroup<T> extends BinaryOperator<T>{
 
 
 
-
-
-
-
-
-
-
-
-
-/**
- default void AssociativityTest(T t,T u) throws Exception{
- if(apply(t,u).equals(apply(u,t))) {
- System.out.println("Associativity test passed.");
- }
- else {throw new Exception("Associativity test failed.");}
- } **/
