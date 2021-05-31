@@ -1,21 +1,12 @@
 package Login.stages;
-
-
 import Integer_Category.BooleanCategory;
 import Integer_Category.IntegerCategory;
 import Login.JavaFX;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.JFXPanel;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.*;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.control.Menu;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.*;
@@ -28,9 +19,28 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.util.*;
+/**
+ * @author elenamuia
+ * @author alessioborgi
+ * @author federicavaleau
+ * @author francescodanese
+ * @created 24 / 05 / 2021 - 15:52
+ * @project CATEGORY_THEORY
+ */
 
 
+/**
+ * This class works with the Semigroup Category, it is the graphical interface of the class "IntegerCategory.java", in
+ * particular the nested class newSemigroup, which implements the functional interface "Semigroup".
+ * This code opens a window from the button "New Semigroup" in the Create menu from the main page.
+ * In this window, the user can find, first of all, a menuButton where the user can decide the type of the elements used
+ * to represent this category (Integer or Boolean), and basing on this choice all the next menu will be set with
+ * different items.
+ * Then the user has to decide the operation that will be applied between the items.
+ * Last but not least, in the last HBox there is one button: "Create" which draws a circle in the main page representing
+ * the object, in which the user can find all the detailed info about this specific Semigroup, and can add two specific
+ * elements to which will be applied the operation defined, using the button "f".
+ */
 
 public class New_SemiGroup extends Application {
     public void start(Stage semigroup) {
@@ -44,10 +54,7 @@ public class New_SemiGroup extends Application {
         Scene semigroupScene = new Scene(semigroupVBox);
         semigroupScene.getStylesheets().add("Login/Styles.css");
 
-
         semigroup.setScene(semigroupScene);
-
-        //////////////////////////////////
 
         HBox typeHBoxSG = new HBox();
         typeHBoxSG.setMinHeight(150);
@@ -61,8 +68,7 @@ public class New_SemiGroup extends Application {
         endHBoxSG.setMinHeight(150);
         endHBoxSG.setMinWidth(700);
         endHBoxSG.setAlignment(Pos.CENTER);
-
-
+        
         Label typeTextSG = new Label("    Type:   ");
         typeTextSG.setStyle("-fx-font-size: 30 px");
         Label morphTextSG = new Label("    Morphism:  ");
@@ -71,8 +77,7 @@ public class New_SemiGroup extends Application {
         sourceTextSG.setStyle("-fx-font-size: 22 px");
         Label endMorphSG = new Label("   Target B");
         endMorphSG.setStyle("-fx-font-size: 22 px");
-
-
+        
         MenuButton typeSG = new MenuButton("Choose the type");
         typeSG.getStyleClass().add("menu-create");
         typeSG.setStyle("-fx-font-size: 22 px");
@@ -88,13 +93,9 @@ public class New_SemiGroup extends Application {
         morphSG.getStyleClass().add("menu-create");
         typeSG.getItems().addAll(bool, integer);
 
-
         Button create = new Button("Create");
         create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
-
-
-        ////////////
 
         ComboBox comboBox = new ComboBox();
         comboBox.setPrefHeight(30);
@@ -107,8 +108,7 @@ public class New_SemiGroup extends Application {
                         "-",
                         "*",
                         "/",
-                        "^"
-
+                       "^"
                 );
 
         ObservableList<String> selezione =
@@ -116,12 +116,7 @@ public class New_SemiGroup extends Application {
                         "∧ (and)",
                         "V (or)",
                         "⊕ (xor)"
-
                 );
-
-
-        /////////
-
 
         integer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -140,9 +135,6 @@ public class New_SemiGroup extends Application {
                 typeSG.setText("Boolean");
             }
         });
-
-        ///////////
-
 
         create.setOnAction(e -> {
             Circle circle = new Circle();
@@ -169,7 +161,6 @@ public class New_SemiGroup extends Application {
             b.setTranslateX(475.0f);
             b.setTranslateY(300.0f);
 
-
             Label leftArrow = new Label("-->");
             leftArrow.setStyle("-fx-font-size: 22 px");
             leftArrow.setTranslateY(300.0f);
@@ -185,13 +176,11 @@ public class New_SemiGroup extends Application {
             result.setTranslateX(385.0f);
             result.setStyle("-fx-font-size: 22 px");
 
-
             Button func = new Button("f");
             func.setStyle("-fx-font-size: 25 px");
             func.setTranslateX(380.0f);
             func.setTranslateY(375.0f);
             func.getStyleClass().add("button-create");
-
 
             String x = "Type: " + typeSG.getText() + "\n" +
                     "Operation: " + comboBox.getValue() ;
@@ -206,7 +195,6 @@ public class New_SemiGroup extends Application {
             t.setHideDelay(Duration.millis(0));
             info.setTooltip(t);
 
-
             info.setOnAction(f -> {
                 Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
                 alertInfo.setTitle("Info");
@@ -216,7 +204,6 @@ public class New_SemiGroup extends Application {
                 alertInfo.setContentText(s);
                 alertInfo.show();
             });
-
 
             func.setOnAction(g -> {
                 if(typeSG.getText().equals("Integer")) {
@@ -247,24 +234,16 @@ public class New_SemiGroup extends Application {
                         result.setText("!!");
                     }
                 }
-
             });
-
 
             JavaFX.draw.getChildren().clear();
             JavaFX.draw.getChildren().addAll(circle, name, a, leftArrow, b, rightArrow, func, result, info);
-
-
         });
-
-
         typeHBoxSG.getChildren().addAll(typeTextSG, typeSG);
         morphHBoxSG.getChildren().addAll(morphTextSG, sourceTextSG, comboBox, endMorphSG);
         endHBoxSG.getChildren().addAll(create);
         semigroupVBox.getChildren().addAll(typeHBoxSG, morphHBoxSG, endHBoxSG);
         semigroup.show();
-
-
     }
-
 }
+
