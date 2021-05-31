@@ -40,7 +40,7 @@ import javafx.util.Duration;
  * After that the user has to define the identity linked to the type and the operation chosen.
  * Last but not least, in the last HBox there are two buttons: one to test both the identity chosen,
  * "Test"; and "Create" which automatically works as "Test" and then, in the main page, draws a circle, representing
- * the object, in which the user can find all the detailed info about this specific Group, and can add two specific
+ * the object, in which the user can find all the detailed info about this specific Monoid, and can add two specific
  * elements to which will be applied the operation defined, using the button "f".
  */
 
