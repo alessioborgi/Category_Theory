@@ -28,9 +28,8 @@ import javafx.util.Duration;
  * This class works with the RingCategory, it is the graphical interface of the class "IntegerCategory.java", in
  * particular the nested class newRing, which implements the interface "Ring".
  * This code opens a window from the button "New Ring" in the Create menu from the main page.
- * In this window, the user can find, first of all, a menuButton where the user can decide the type of the elements used
- * to represent this category (Integer or Boolean), and basing on this choice all the next menu will be set with
- * different items.
+ * In this window, the user can find, first of all, The type already defined: Integer, and basing on this Label
+ * all the next menu will be set with the proper items.
  * Then the user has to decide the operation that will be applied between the items using "Add:" and "Mul:" TextField.
  * After that the user has to define the identity linked to the type and the operation chosen.
  * Last but not least, in the last HBox there are two buttons: one to test both the identities and the inverse chosen,
@@ -109,9 +108,7 @@ public class New_Ring extends Application{
         idMulTxt.setMinHeight(30);
         idMulTxt.setPromptText("Type the Mul's ID"); //to set the hint text
 
-        MenuButton type = new MenuButton("Choose the type");
-        type.getStyleClass().add("menu-create");
-        type.setStyle("-fx-font-size: 22 px");
+
 
         Button test = new Button("Test");
         test.getStyleClass().add("button-create");
@@ -121,10 +118,8 @@ public class New_Ring extends Application{
         create.getStyleClass().add("button-create");
         create.setStyle("-fx-font-size: 22 px");
 
-        MenuItem Int = new MenuItem("Integer");
-        Int.getStyleClass().add("menu-create");
-        MenuItem Boo = new MenuItem("Boolean");
-        Boo.getStyleClass().add("menu-create");
+        Label Int = new Label("Integer");
+        Int.setStyle("-fx-font-size: 30 px");
 
         ComboBox comboBoxMul = new ComboBox();
         comboBoxMul.setPrefHeight(30);
@@ -145,10 +140,7 @@ public class New_Ring extends Application{
                         "*",
                         "/"
                 );
-        ObservableList<String> noOPt =
-                FXCollections.observableArrayList(
-                        "No Options Available"
-                );
+
 
         ComboBox comboBoxInv = new ComboBox();
         comboBoxInv.setPrefHeight(30);
@@ -163,21 +155,13 @@ public class New_Ring extends Application{
                 "1"
         );
 
-        Int.setOnAction(e->{
-            comboBoxAdd.getItems().clear();
-            comboBoxAdd.getItems().addAll(optionsAdd);
-            type.setText("Integer");
-            comboBoxMul.getItems().clear();
-            comboBoxMul.getItems().addAll(optionsMul);
-        });
 
-        Boo.setOnAction(e->{
-            type.setText("Boolean");
-            comboBoxAdd.getItems().clear();
-            comboBoxMul.getItems().clear();
-            comboBoxAdd.getItems().addAll(noOPt);
-            comboBoxMul.getItems().addAll(noOPt);
-        });
+            comboBoxAdd.getItems().addAll(optionsAdd);
+
+            comboBoxMul.getItems().addAll(optionsMul);
+
+
+
 
         create.setOnAction(e->{
             Circle circle = new Circle();
@@ -242,7 +226,7 @@ public class New_Ring extends Application{
             division.setTranslateX(381.0f);
             division.setStyle("-fx-font-size: 28 px");
 
-            String x = "Type: "+ type.getText() +"\n" +
+            String x = "Type: Integer"+"\n" +
                     "Operation: " + comboBoxAdd.getValue() +"\n"+
                     "Operation: " + comboBoxMul.getValue() +"\n"+
                     "Id ADD: " + idAddTxt.getText() +"\n"+
@@ -264,7 +248,7 @@ public class New_Ring extends Application{
                 Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
                 alertInfo.setTitle("Info");
                 alertInfo.setHeaderText("Ring Features");
-                String s = "Type: "+ type.getText() +"\n" +
+                String s = "Type: Integer" +"\n" +
                         "Operation: " + comboBoxAdd.getValue() +"\n"+
                         "Operation: " + comboBoxMul.getValue() +"\n"+
                         "Id ADD: " + idAddTxt.getText() +"\n"+
@@ -297,13 +281,13 @@ public class New_Ring extends Application{
         });
 
         comboBoxInv.getItems().addAll(inverse);
-        typeHBox.getChildren().addAll(typeText, type);
+        typeHBox.getChildren().addAll(typeText, Int);
         addHBox.getChildren().addAll(addText, sourceAdd, comboBoxAdd, endAdd);
         mulHBox.getChildren().addAll(mulText, sourceMul, comboBoxMul, endMul);
         idAddHBox.getChildren().addAll(idAddText, idAddTxt);
         idMulHBox.getChildren().addAll(idMulText, idMulTxt);
         endHBox.getChildren().addAll(test, empty, create);
-        type.getItems().addAll(Int, Boo);
+
         invHBox.getChildren().addAll(inverseLabel, comboBoxInv);
         ringVBox.getChildren().addAll(typeHBox, addHBox, mulHBox, idAddHBox, idMulHBox, invHBox, endHBox);
         ring.show();
