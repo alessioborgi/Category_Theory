@@ -52,29 +52,33 @@ public class New_Ring extends Application{
         ring.setScene(ringScene);
 
         HBox typeHBox = new HBox();
-        typeHBox.setMinHeight(70);
+        typeHBox.setMinHeight(50);
         typeHBox.setMinWidth(700);
         typeHBox.setAlignment(Pos.CENTER_LEFT);
         HBox addHBox = new HBox();
-        addHBox.setMinHeight(70);
+        addHBox.setMinHeight(50);
         addHBox.setMinWidth(700);
         addHBox.setAlignment(Pos.CENTER_LEFT);
         HBox mulHBox = new HBox();
-        mulHBox.setMinHeight(70);
+        mulHBox.setMinHeight(50);
         mulHBox.setMinWidth(700);
         mulHBox.setAlignment(Pos.CENTER_LEFT);
         HBox idAddHBox = new HBox();
-        idAddHBox.setMinHeight(70);
+        idAddHBox.setMinHeight(50);
         idAddHBox.setMinWidth(700);
         idAddHBox.setAlignment(Pos.CENTER_LEFT);
         HBox idMulHBox = new HBox();
-        idMulHBox.setMinHeight(70);
+        idMulHBox.setMinHeight(50);
         idMulHBox.setMinWidth(700);
         idMulHBox.setAlignment(Pos.CENTER_LEFT);
         HBox invHBox = new HBox();
         invHBox.setMinHeight(50);
         invHBox.setMinWidth(700);
         invHBox.setAlignment(Pos.CENTER_LEFT);
+        HBox testBox = new HBox();
+        testBox.setAlignment(Pos.BASELINE_CENTER);
+        testBox.setMinHeight(50);
+        testBox.setMinWidth(700);
         HBox endHBox = new HBox();
         endHBox.setMaxHeight(30);
         endHBox.setMinWidth(700);
@@ -100,6 +104,7 @@ public class New_Ring extends Application{
         idMulText.setStyle("-fx-font-size: 30 px");
         Label inverseLabel = new Label("    Inverse:    ");
         inverseLabel.setStyle("-fx-font-size: 30 px");
+        Label result = new Label("");
 
         TextField idAddTxt = new TextField();
         idAddTxt.setMinHeight(30);
@@ -160,124 +165,142 @@ public class New_Ring extends Application{
 
             comboBoxMul.getItems().addAll(optionsMul);
 
+        test.setOnAction(e->{
+            result.setStyle("-fx-font-size: 22 px");
 
+                IntegerCategory.newRing kkk= new IntegerCategory.newRing(Integer.parseInt(idAddTxt.getText()), Integer.parseInt(idMulTxt.getText()), (String)comboBoxAdd.getValue(),(String)comboBoxMul.getValue(),(String)comboBoxInv.getValue());
+                if(kkk.test()){
+                    System.out.println("Correct");
+                    result.setText("TEST PASSED!");
+                }
+                else {
+                    System.out.println("Wrong");
+                    result.setText("WRONG!");
+                }
 
-
+        });
         create.setOnAction(e->{
-            Circle circle = new Circle();
-            circle.setRadius(235);
-            circle.setStroke(Color.BLACK);
-            circle.setFill(JavaFX.background);
-            circle.setCenterX(400.0f);
-            circle.setCenterY(300.0f);
+            test.fire();
+            if(result.getText().equals("TEST PASSED!")) {
+                Circle circle = new Circle();
+                circle.setRadius(235);
+                circle.setStroke(Color.BLACK);
+                circle.setFill(JavaFX.background);
+                circle.setCenterX(400.0f);
+                circle.setCenterY(300.0f);
 
-            Label name = new Label("NEW RING");
-            name.setStyle("-fx-font-size: 25 px");
-            name.setTranslateX(250.0f);
-            name.setTranslateY(150.0f);
+                Label name = new Label("NEW RING");
+                name.setStyle("-fx-font-size: 25 px");
+                name.setTranslateX(250.0f);
+                name.setTranslateY(150.0f);
 
-            TextField a = new TextField();
-            a.setPromptText("a...");
-            a.setMinHeight(30);
-            a.setMaxWidth(100);
-            a.setTranslateX(200.0f);
-            a.setTranslateY(300.0f);
+                TextField a = new TextField();
+                a.setPromptText("a...");
+                a.setMinHeight(30);
+                a.setMaxWidth(100);
+                a.setTranslateX(200.0f);
+                a.setTranslateY(300.0f);
 
-            TextField b = new TextField();
-            b.setPromptText("b...");
-            b.setMinHeight(30);
-            b.setMaxWidth(100);
-            b.setTranslateX(475.0f);
-            b.setTranslateY(300.0f);
+                TextField b = new TextField();
+                b.setPromptText("b...");
+                b.setMinHeight(30);
+                b.setMaxWidth(100);
+                b.setTranslateX(475.0f);
+                b.setTranslateY(300.0f);
 
-            Label leftArrow = new Label("-->");
-            leftArrow.setStyle("-fx-font-size: 22 px");
-            leftArrow.setTranslateY(300.0f);
-            leftArrow.setTranslateX(300.0f);
 
-            Label rightArrow = new Label("<--");
-            rightArrow.setStyle("-fx-font-size: 22 px");
-            rightArrow.setTranslateX(440.0f);
-            rightArrow.setTranslateY(300.0f);
+                Label leftArrow = new Label("-->");
+                leftArrow.setStyle("-fx-font-size: 22 px");
+                leftArrow.setTranslateY(300.0f);
+                leftArrow.setTranslateX(300.0f);
 
-            Label resultA = new Label();
-            resultA.setTranslateY(300.0f);
-            resultA.setTranslateX(360.0f);
-            resultA.setStyle("-fx-font-size: 25 px");
+                Label rightArrow = new Label("<--");
+                rightArrow.setStyle("-fx-font-size: 22 px");
+                rightArrow.setTranslateX(440.0f);
+                rightArrow.setTranslateY(300.0f);
 
-            Label resultB = new Label();
-            resultB.setTranslateY(300.0f);
-            resultB.setTranslateX(400.0f);
-            resultB.setStyle("-fx-font-size: 25 px");
+                Label resultA = new Label();
+                resultA.setTranslateY(300.0f);
+                resultA.setTranslateX(360.0f);
+                resultA.setStyle("-fx-font-size: 25 px");
 
-            Label operation =new Label("+|x");
-            operation.setStyle("-fx-font-size: 30 px");
-            operation.setTranslateX(360.0f);
-            operation.setTranslateY(230.0f);
+                Label resultB = new Label();
+                resultB.setTranslateY(300.0f);
+                resultB.setTranslateX(400.0f);
+                resultB.setStyle("-fx-font-size: 25 px");
 
-            Button func = new Button("f");
-            func.setStyle("-fx-font-size: 25 px");
-            func.setTranslateX(370.0f);
-            func.setTranslateY(375.0f);
-            func.getStyleClass().add("button-create");
 
-            Label division = new Label("|");
-            division.setTranslateY(298.0f);
-            division.setTranslateX(381.0f);
-            division.setStyle("-fx-font-size: 28 px");
+                Label operation = new Label("+|x");
+                operation.setStyle("-fx-font-size: 30 px");
+                operation.setTranslateX(360.0f);
+                operation.setTranslateY(230.0f);
 
-            String x = "Type: Integer"+"\n" +
-                    "Operation: " + comboBoxAdd.getValue() +"\n"+
-                    "Operation: " + comboBoxMul.getValue() +"\n"+
-                    "Id ADD: " + idAddTxt.getText() +"\n"+
-                    "Id MUL: "  + idMulTxt.getText()+"\n"+
-                    "Inverse: " + comboBoxInv.getValue()
-                    ;
-            Tooltip t = new Tooltip(x);
-            Button info = new Button("i");
-            info.setShape(new Circle(1.5));
-            info.setTranslateX(500.0f);
-            info.setTranslateY(125.0f);
-            info.setStyle("-fx-font-size: 30 px");
-            info.getStyleClass().add("button-create");
-            t.setShowDelay(Duration.millis(0));
-            t.setHideDelay(Duration.millis(0));
-            info.setTooltip(t);
+                Button func = new Button("f");
+                func.setStyle("-fx-font-size: 25 px");
+                func.setTranslateX(370.0f);
+                func.setTranslateY(375.0f);
+                func.getStyleClass().add("button-create");
 
-            info.setOnAction(f->{
-                Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
-                alertInfo.setTitle("Info");
-                alertInfo.setHeaderText("Ring Features");
-                String s = "Type: Integer" +"\n" +
-                        "Operation: " + comboBoxAdd.getValue() +"\n"+
-                        "Operation: " + comboBoxMul.getValue() +"\n"+
-                        "Id ADD: " + idAddTxt.getText() +"\n"+
-                        "Id MUL: "  + idMulTxt.getText() +"\n"+
-                        "Inverse: " + comboBoxInv.getValue()
-                        ;
-                alertInfo.setContentText(s);
-                alertInfo.show();
-            });
+                Label division = new Label("|");
+                division.setTranslateY(298.0f);
+                division.setTranslateX(381.0f);
+                division.setStyle("-fx-font-size: 28 px");
 
-            func.setOnAction(g->{
 
-                int idA = Integer.parseInt(idAddTxt.getText());
-                int idM = Integer.parseInt(idMulTxt.getText());
-                IntegerCategory.newRing k = new IntegerCategory.newRing(idA, idM, (String)comboBoxAdd.getValue(),
-                        (String)comboBoxMul.getValue(), (String)comboBoxInv.getValue());
-                int aInt =  Integer.parseInt(a.getText());
-                int bInt = Integer.parseInt(b.getText());
+                String x = "Type: Integer" + "\n" +
+                        "Operation: " + comboBoxAdd.getValue() + "\n" +
+                        "Operation: " + comboBoxMul.getValue() + "\n" +
+                        "Id ADD: " + idAddTxt.getText() + "\n" +
+                        "Id MUL: " + idMulTxt.getText() + "\n" +
+                        "Inverse: " + comboBoxInv.getValue();
+                Tooltip t = new Tooltip(x);
+                Button info = new Button("i");
+                info.setShape(new Circle(1.5));
+                info.setTranslateX(500.0f);
+                info.setTranslateY(125.0f);
+                info.setStyle("-fx-font-size: 30 px");
+                info.getStyleClass().add("button-create");
+                t.setShowDelay(Duration.millis(0));
+                t.setHideDelay(Duration.millis(0));
+                info.setTooltip(t);
 
-                int i = k.add(aInt, bInt);
-                int j = k.mult(aInt, bInt);
 
-                resultA.setText(String.valueOf(i));
-                resultB.setText(String.valueOf(j));
-            });
+                info.setOnAction(f -> {
+                    Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+                    alertInfo.setTitle("Info");
+                    alertInfo.setHeaderText("Ring Features");
+                    String s = "Type: Integer" + "\n" +
+                            "Operation: " + comboBoxAdd.getValue() + "\n" +
+                            "Operation: " + comboBoxMul.getValue() + "\n" +
+                            "Id ADD: " + idAddTxt.getText() + "\n" +
+                            "Id MUL: " + idMulTxt.getText() + "\n" +
+                            "Inverse: " + comboBoxInv.getValue();
+                    alertInfo.setContentText(s);
+                    alertInfo.show();
+                });
 
-            JavaFX.draw.getChildren().clear();
-            JavaFX.draw.getChildren().addAll(circle, name, a, leftArrow, b, rightArrow, func, resultA, info, resultB,
-                    operation, division);
+                func.setOnAction(g -> {
+
+                    int idA = Integer.parseInt(idAddTxt.getText());
+                    int idM = Integer.parseInt(idMulTxt.getText());
+                    IntegerCategory.newRing k = new IntegerCategory.newRing(idA, idM, (String) comboBoxAdd.getValue(),
+                            (String) comboBoxMul.getValue(), (String) comboBoxInv.getValue());
+                    int aInt = Integer.parseInt(a.getText());
+                    int bInt = Integer.parseInt(b.getText());
+
+                    int i = k.add(aInt, bInt);
+                    int j = k.mult(aInt, bInt);
+
+                    resultA.setText(String.valueOf(i));
+                    resultB.setText(String.valueOf(j));
+                });
+
+
+                JavaFX.draw.getChildren().clear();
+                JavaFX.draw.getChildren().addAll(circle, name, a, leftArrow, b, rightArrow, func, resultA, info, resultB,
+                        operation, division);
+
+            }
         });
 
         comboBoxInv.getItems().addAll(inverse);
@@ -287,9 +310,9 @@ public class New_Ring extends Application{
         idAddHBox.getChildren().addAll(idAddText, idAddTxt);
         idMulHBox.getChildren().addAll(idMulText, idMulTxt);
         endHBox.getChildren().addAll(test, empty, create);
-
+        testBox.getChildren().addAll(result);
         invHBox.getChildren().addAll(inverseLabel, comboBoxInv);
-        ringVBox.getChildren().addAll(typeHBox, addHBox, mulHBox, idAddHBox, idMulHBox, invHBox, endHBox);
+        ringVBox.getChildren().addAll(typeHBox, addHBox, mulHBox, idAddHBox, idMulHBox, invHBox, testBox, endHBox);
         ring.show();
     }
 }
