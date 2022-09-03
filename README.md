@@ -6,7 +6,7 @@ Copyright © 2021 Alessio Borgi
 PROJECT SCOPE: Develop a Java Library to represent a Set of Categories.
  
 PROJECT RESULTS:
-• Login Window for entering in the main application
+- Login Window for entering in the main application
 • Made available a Graphical Interface, both JavaFX and Java Swing-based
 • Developed six categories: Semigroup, Monoid, Group, Ring, Set, and Vector Category that could 
  be created via a menu
