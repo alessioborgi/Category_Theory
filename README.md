@@ -3,7 +3,7 @@ Category Theory Project developed in Java.
 
 Copyright © 2021 Alessio Borgi
 
-PROJECT SCOPE: Develop a Java Library to represent a Set of Categories.
+PROJECT SCOPE: Develop a Java Library to represent Category Theory Set.
  
 PROJECT RESULTS:
 • Login Window for entering in the main application
