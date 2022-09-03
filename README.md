@@ -16,5 +16,8 @@ PROJECT RESULTS:
  arrows connecting them (Morphisms)
 • The above feature has permitted to deep dive into the interaction between Java and other 
  Programming Languages (i.e.HTML, CSS, FXML)
+ 
+PROJECT SITE: https://categorytheory.altervista.org/
 
-Project Repository: https://github.com/alessioborgi/Category_Theory_Project
+PROJECT REPOSITORY: https://github.com/alessioborgi/Category_Theory_Project
+
