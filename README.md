@@ -1,11 +1,11 @@
 # Category_Theory_Project
 Category Theory Project developed in Java. 
 
-Copyright © 2021 Alessio Borgi
+**Copyright © 2021 Alessio Borgi**
 
-PROJECT SCOPE: Develop a Java Library to represent Category Theory Set.
+**PROJECT SCOPE**: Develop a Java Library to represent Category Theory Set.
  
-PROJECT RESULTS:
+**PROJECT RESULTS**:
 • User authentication.
 • Graphical Interface (JavaFX & Java Swing-based).
 • Six categories development: Semigroup, Monoid, Group, Ring, Set, and Vector Category. 
@@ -13,6 +13,6 @@ PROJECT RESULTS:
 • Java’s Threads to handle time and date.
 • Nodes (Objects) and Morphisms graphical creation.
 
-PROJECT SITE: https://categorytheory.altervista.org/
-PROJECT REPOSITORY: https://github.com/alessioborgi/Category_Theory_Project
+**PROJECT SITE**: https://categorytheory.altervista.org/
+**PROJECT REPOSITORY**: https://github.com/alessioborgi/Category_Theory_Project
 
