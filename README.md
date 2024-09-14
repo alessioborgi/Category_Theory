@@ -1,4 +1,4 @@
-# Category_Theory_Project
+# Category Theory
 
 **Copyright © 2021 Alessio Borgi, Elena Muia, Francesco Danese, Federica Valeau**
 
