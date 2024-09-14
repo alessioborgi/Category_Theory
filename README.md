@@ -1,6 +1,6 @@
 # Category_Theory_Project
 
-**Copyright © 2021 Alessio Borgi**
+**Copyright © 2021 Alessio Borgi, Elena Muia, Francesco Danese, Federica Valeau**
 
 **PROJECT SCOPE**: Develop a Java Library to represent Category Theory Set. This project consists in an exploration of category theory concepts and their applications in computer science and mathematics, providing implementations, examples, and explanations of key category theory principles, making abstract mathematical ideas more accessible. Ideal for students, researchers, and developers interested in the theoretical foundations of programming and logic.
  
